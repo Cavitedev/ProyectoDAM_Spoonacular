@@ -1,4 +1,4 @@
-package com.cavitedet.proyectodam_spooncolar;
+package com.cavitedet.proyectodam_spoonacular;
 
 import android.os.Bundle;
 

@@ -3,10 +3,10 @@
   https://spoonacular.com/food-api/sdk
  */
 
-package com.cavitedet.proyectodam_spooncolar.infrastructure.spooncolar;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
-import com.cavitedet.proyectodam_spooncolar.domain.spooncolar.ingredient.Ingredient;
-import com.cavitedet.proyectodam_spooncolar.domain.spooncolar.ingredient.Ingredients;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredient;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredients;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

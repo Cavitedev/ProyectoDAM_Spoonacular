@@ -2,7 +2,7 @@
   Modified from
   https://spoonacular.com/food-api/sdk
  */
-package com.cavitedet.proyectodam_spooncolar.infrastructure.spooncolar;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
 public class ApiException extends Exception {
   int code = 0;

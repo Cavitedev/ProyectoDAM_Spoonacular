@@ -1,8 +1,8 @@
-package com.cavitedet.proyectodam_spooncolar.spooncolar;
+package com.cavitedet.proyectodam_spoonacular.spoonacular;
 
-import com.cavitedet.proyectodam_spooncolar.domain.spooncolar.ingredient.Ingredient;
-import com.cavitedet.proyectodam_spooncolar.domain.spooncolar.ingredient.Ingredients;
-import com.cavitedet.proyectodam_spooncolar.infrastructure.spooncolar.JsonUtil;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredient;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredients;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.JsonUtil;
 
 import org.junit.Assert;
 import org.junit.Test;

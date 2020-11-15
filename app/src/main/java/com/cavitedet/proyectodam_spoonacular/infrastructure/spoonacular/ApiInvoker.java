@@ -2,9 +2,9 @@
   Modified from
   https://spoonacular.com/food-api/sdk
  */
-package com.cavitedet.proyectodam_spooncolar.infrastructure.spooncolar;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
-import com.cavitedet.proyectodam_spooncolar.Secrets;
+import com.cavitedet.proyectodam_spoonacular.Secrets;
 
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;

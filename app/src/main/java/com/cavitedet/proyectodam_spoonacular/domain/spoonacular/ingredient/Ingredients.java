@@ -1,4 +1,4 @@
-package com.cavitedet.proyectodam_spooncolar.domain.spooncolar.ingredient;
+package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient;
 
 import com.google.gson.annotations.SerializedName;
 

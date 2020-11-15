@@ -1,9 +1,9 @@
-package com.cavitedet.proyectodam_spooncolar.spooncolar;
+package com.cavitedet.proyectodam_spoonacular.spoonacular;
 
 
-import com.cavitedet.proyectodam_spooncolar.domain.spooncolar.ingredient.Ingredients;
-import com.cavitedet.proyectodam_spooncolar.infrastructure.spooncolar.ApiException;
-import com.cavitedet.proyectodam_spooncolar.infrastructure.spooncolar.DefaultApi;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredients;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.DefaultApi;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

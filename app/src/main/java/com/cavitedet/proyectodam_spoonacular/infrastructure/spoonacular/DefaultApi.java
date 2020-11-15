@@ -3,9 +3,9 @@
   https://spoonacular.com/food-api/sdk
  */
 
-package com.cavitedet.proyectodam_spooncolar.infrastructure.spooncolar;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
-import com.cavitedet.proyectodam_spooncolar.domain.spooncolar.ingredient.Ingredients;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredients;
 
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 

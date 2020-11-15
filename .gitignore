@@ -13,4 +13,9 @@ app/src/main/java/com/cavitedet/proyectodam_spooncolar/Secrets.java
 /captures
 .externalNativeBuild
 .cxx
+*.jks
+*.apk
+*.ap_
+.dex
+*.class
 local.properties

@@ -22,11 +22,11 @@ En la pantalla principal se mostrará un `EditText` pidiendo el nombre (en ingl�
 
 ### 2) Lista de ingredientes
 
-Se mostrará primero un indicador de carga, y una vez cargado mediante un `RecylerView` la lista de ingredientes que con un menú en el `actionbar` que te dará opciones de cambiar la dirección de los elementos mostrados (ascendente descendente), otra para ir a la pantalla de [filtrado](###4 Filtraje de ingredientes), y la última para ir una pantalla de [ordenado](###5 Ordenado de ingredientes) con los `SharedPreferences` actualizados en estos casos para cambiar la petición de la [API](https://spoonacular.com/food-api/docs#Ingredient-Search) al volver. Además cada ingrediente se debe poder pulsar y entrar en una ventana con [información adicional del ingrediente](###3 Detalles del ingrediente)
+Se mostrará primero un indicador de carga, y una vez cargado mediante un `RecylerView` la lista de ingredientes que con un menú en el `actionbar` que te dará opciones de cambiar la dirección de los elementos mostrados (ascendente descendente), otra para ir a la pantalla de [filtrado](###4 Filtraje de ingredientes), y la última para ir una pantalla de [ordenado](###5-Ordenado-de-ingredientes) con los `SharedPreferences` actualizados en estos casos para cambiar la petición de la [API](https://spoonacular.com/food-api/docs#Ingredient-Search) al volver. Además cada ingrediente se debe poder pulsar y entrar en una ventana con [información adicional del ingrediente](###3 Detalles del ingrediente)
 
 ### 3) Detalles del ingrediente
 
-Se cargará lo que encuentre en está llamada a la [API](https://spoonacular.com/food-api/docs#Get-Ingredient-Information) y recibirá el id del producto a través del `Intent`, de aquí solo se podrá volver a la [lista de ingredientes](###2 Lista de ingredientes) con los `SharedPreferences` actualizados
+Se cargará lo que encuentre en está llamada a la [API](https://spoonacular.com/food-api/docs#Get-Ingredient-Information) y recibirá el id del producto a través del `Intent`, de aquí solo se podrá volver a la [lista de ingredientes](##estructura) con los `SharedPreferences` actualizados
 
 ### 4) Filtraje de ingredientes
 

@@ -55,3 +55,7 @@ Todas las clases que gestionan la UI, activities, etc. desde Java
 ### 4) Presentación
 
 Los ficheros en res son la parte de la interfaz gráfica
+
+## Idioma
+
+La aplicación estará en español aunque seguiré utilizando los términos propios de Android, para poder trabajar con la API, tendré que trabajar con una API de traducción para poder visualizar los elementos correctamente aunque sea muy complicado

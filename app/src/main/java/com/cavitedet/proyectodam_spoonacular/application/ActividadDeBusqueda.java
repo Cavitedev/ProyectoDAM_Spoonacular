@@ -60,6 +60,7 @@ public class ActividadDeBusqueda extends AppCompatActivity {
 
     public void buscarIngrediente(View view) {
         try {
+
             Ingredients ingredients = DefaultApi.getInstance().ingredientSearch(
                     textoBusqueda.getText().toString(),
                     null,
@@ -85,5 +86,6 @@ public class ActividadDeBusqueda extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
 
 }

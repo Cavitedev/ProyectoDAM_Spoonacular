@@ -17,13 +17,12 @@ public class SearchRecipesApiTest {
 
     @Test
     public void testApi2() {
-        DefaultApi apiInstance = new DefaultApi();
 
 //        apiInstance.addHeader("Authorization" ,"Basic " + Secrets.base64ApiKey());
         String query = "banana";
         BigDecimal number = new BigDecimal(2);
         try {
-            Ingredients result = apiInstance.ingredientSearch(query, null, null, null,
+            Ingredients result = DefaultApi.getInstance().ingredientSearch(query, null, null, null,
                     null, null, null, null,
                     null, null, "calories", "desc", null,
                     number);

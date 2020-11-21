@@ -1,5 +1,7 @@
 package com.cavitedet.proyectodam_spoonacular.application;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cavitedet.proyectodam_spoonacular.R;
@@ -18,42 +21,20 @@ import java.math.BigDecimal;
 
 public class ActividadDeBusqueda extends AppCompatActivity {
 
+
+    private EditText textoBusqueda;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.actividad_de_busqueda);
 
 
-        EditText textoBusqueda = findViewById(R.id.search_ingredientText);
-        Button botonBusqueda = findViewById(R.id.search_button);
-
-        botonBusqueda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    Ingredients ingredients = DefaultApi.getInstance().ingredientSearch(
-                            textoBusqueda.getText().toString(),
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            "asc",
-                            null,
-                            new BigDecimal(10)
-                    );
-
-
-                } catch (ApiException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        textoBusqueda = findViewById(R.id.busqueda_textoIngrediente);
+        Button botonBusqueda = findViewById(R.id.boton_busqueda);
 
 
         textoBusqueda.addTextChangedListener(new TextWatcher() {
@@ -76,6 +57,35 @@ public class ActividadDeBusqueda extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    public void buscarIngrediente(View view) {
+        try {
+            Ingredients ingredients = DefaultApi.getInstance().ingredientSearch(
+                    textoBusqueda.getText().toString(),
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    new BigDecimal(10)
+            );
+            if (ingredients != null) {
+                Intent listadoIngredientesIntent = new Intent(this, ActividadDeListado.class);
+                startActivity(listadoIngredientesIntent);
+            }
+
+        } catch (ApiException e) {
+            e.printStackTrace();
+        }
     }
 
 }

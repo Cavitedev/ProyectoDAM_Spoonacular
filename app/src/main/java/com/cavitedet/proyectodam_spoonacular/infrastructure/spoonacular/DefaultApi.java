@@ -7,8 +7,6 @@ package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredients;
 
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +35,7 @@ public class DefaultApi {
     }
 
     // create path and map variables
-    String localVarPath = "/food/ingredients/search".replaceAll("\\{format}", "json");
+    String localVarPath = "/food/ingredients/search";
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<>();
@@ -64,13 +62,6 @@ public class DefaultApi {
 
     String localVarContentType = "application/json";
 
-    if (localVarContentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-
-
-      localVarPostBody = localVarBuilder.build();
-    }
 
 
     String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);

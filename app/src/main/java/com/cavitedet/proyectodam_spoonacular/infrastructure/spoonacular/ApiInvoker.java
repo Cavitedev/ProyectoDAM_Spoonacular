@@ -4,41 +4,49 @@
  */
 package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+
 import com.cavitedet.proyectodam_spoonacular.Secrets;
 
 import org.apache.http.Consts;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPatch;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.net.URLEncoder;
+import java.security.KeyStore;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
+
 public class ApiInvoker {
     /**
      * Content type "text/plain" with UTF-8 encoding.
      */
     public static final ContentType TEXT_PLAIN_UTF8 = ContentType.create("text/plain", Consts.UTF_8);
+
     private static final ApiInvoker INSTANCE = new ApiInvoker();
     private final Map<String, String> defaultHeaderMap = new HashMap<>();
-    private HttpClient client = null;
+    private Context context;
 
-    public ApiInvoker() {
+    public ApiInvoker(Context context) {
+        this.context = context
     }
 
     /**
@@ -154,7 +162,7 @@ public class ApiInvoker {
     }
 
     public String invokeAPI(String host, String path, String method, List<Pair> queryParams, Object body, Map<String, String> headerParams, Map<String, String> formParams, String contentType) throws ApiException {
-        HttpClient client = getClient();
+
 
         StringBuilder b = new StringBuilder();
         b.append("?");
@@ -209,84 +217,38 @@ public class ApiInvoker {
             formParamStr = formParamBuilder.toString();
         }
 
-        HttpResponse response = null;
-        try {
-            if ("GET".equals(method)) {
-                HttpGet get = new HttpGet(url + "&apiKey=" + Secrets.apiKey);
-                get.addHeader("Accept", "application/json");
-                for (String key : headers.keySet()) {
-                    get.setHeader(key, headers.get(key));
-                }
-                response = client.execute(get);
-            } else if ("POST".equals(method)) {
-                HttpPost post = new HttpPost(url);
-                if (formParamStr != null) {
-                    post.setHeader("Content-Type", contentType);
-                    post.setEntity(new StringEntity(formParamStr, "UTF-8"));
-                } else if (body != null) {
-                    if (body instanceof HttpEntity) {
-                        // this is for file uploading
-                        post.setEntity((HttpEntity) body);
-                    } else {
-                        post.setHeader("Content-Type", contentType);
-                        post.setEntity(new StringEntity(serialize(body), "UTF-8"));
-                    }
-                }
-                for (String key : headers.keySet()) {
-                    post.setHeader(key, headers.get(key));
-                }
-                response = client.execute(post);
-            } else if ("PUT".equals(method)) {
-                HttpPut put = new HttpPut(url);
-                if (formParamStr != null) {
-                    put.setHeader("Content-Type", contentType);
-                    put.setEntity(new StringEntity(formParamStr, "UTF-8"));
-                } else if (body != null) {
-                    put.setHeader("Content-Type", contentType);
-                    put.setEntity(new StringEntity(serialize(body), "UTF-8"));
-                }
-                for (String key : headers.keySet()) {
-                    put.setHeader(key, headers.get(key));
-                }
-                response = client.execute(put);
-            } else if ("DELETE".equals(method)) {
-                HttpDelete delete = new HttpDelete(url);
-                for (String key : headers.keySet()) {
-                    delete.setHeader(key, headers.get(key));
-                }
-                response = client.execute(delete);
-            } else if ("PATCH".equals(method)) {
-                HttpPatch patch = new HttpPatch(url);
-                if (formParamStr != null) {
-                    patch.setHeader("Content-Type", contentType);
-                    patch.setEntity(new StringEntity(formParamStr, "UTF-8"));
-                } else if (body != null) {
-                    patch.setHeader("Content-Type", contentType);
-                    patch.setEntity(new StringEntity(serialize(body), "UTF-8"));
-                }
-                for (String key : headers.keySet()) {
-                    patch.setHeader(key, headers.get(key));
-                }
-                response = client.execute(patch);
-            }
 
-            int code = response.getStatusLine().getStatusCode();
-            String responseString = null;
+        try {
+            URL pageUrl = null;
+
+
+            if ("GET".equals(method)) {
+
+
+                pageUrl = new URL(url + "&apiKey=" + Secrets.apiKey);
+
+
+            }
+            HttpsURLConnection urlConnection = (HttpsURLConnection) pageUrl.openConnection();
+
+            urlConnection.setRequestProperty("Accept", "application/json");
+            urlConnection.setRequestProperty("X-Environment", "android");
+
+            urlConnection.setSSLSocketFactory((SSLSocketFactory) SSLSocketFactory.getDefault());
+            urlConnection.connect();
+
+            int code = urlConnection.getResponseCode();
+            String responseString = urlConnection.getResponseMessage();
+
             if (code == 204) {
                 responseString = "";
                 return responseString;
             } else if (code >= 200 && code < 300) {
-                if (response.getEntity() != null) {
-                    HttpEntity resEntity = response.getEntity();
-                    responseString = EntityUtils.toString(resEntity);
-                }
                 return responseString;
             } else {
-                if (response.getEntity() != null) {
-                    HttpEntity resEntity = response.getEntity();
-                    responseString = EntityUtils.toString(resEntity);
-                } else
+                if (responseString == null) {
                     responseString = "no data";
+                }
             }
             throw new ApiException(code, responseString);
         } catch (IOException e) {
@@ -294,14 +256,57 @@ public class ApiInvoker {
         }
     }
 
-    private HttpClient getClient() {
-        if (client == null) {
 
-            client = HttpClientBuilder.create().build();
+    private TrustManager[] getWrappedTrustManagers(TrustManager[] trustManagers) {
+        final X509TrustManager originalTrustManager = (X509TrustManager) trustManagers[0];
+        return new TrustManager[]{
+                new X509TrustManager() {
+                    public X509Certificate[] getAcceptedIssuers() {
+                        return originalTrustManager.getAcceptedIssuers();
+                    }
 
-        }
-        return client;
+                    public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                        try {
+                            originalTrustManager.checkClientTrusted(certs, authType);
+                        } catch (CertificateException ignored) {
+                        }
+                    }
+
+                    public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                        try {
+                            originalTrustManager.checkServerTrusted(certs, authType);
+                        } catch (CertificateException ignored) {
+                        }
+                    }
+                }
+        };
     }
 
+    private SSLSocketFactory getSSLSocketFactory() {
+        try {
+            CertificateFactory cf = CertificateFactory.getInstance("X.509");
+
+            AssetManager assetManager = MyApp.getContext().getAssets();
+            InputStream caInput = assetManager.open("spooncolarCert.cer").openRawResource(R.raw.your_cert);
+            Certificate ca = cf.generateCertificate(caInput);
+
+            caInput.close();
+
+            KeyStore keyStore = KeyStore.getInstance("BKS");
+            keyStore.load(null, null);
+            keyStore.setCertificateEntry("ca", ca);
+
+            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+            tmf.init(keyStore);
+
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, getWrappedTrustManagers(tmf.getTrustManagers()), null);
+
+            return sslContext.getSocketFactory();
+        } catch (Exception e) {
+            return HttpsURLConnection.getDefaultSSLSocketFactory();
+        }
+    }
 
 }

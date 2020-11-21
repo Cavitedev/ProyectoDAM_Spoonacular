@@ -22,6 +22,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    testOptions {
+        animationsDisabled = true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -49,6 +54,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation "com.google.code.gson:gson:$gson_version"
-    implementation ("org.apache.httpcomponents:httpmime:$http_version")
     testImplementation "junit:junit:$junit_version"
+
+    implementation "org.apache.httpcomponents:httpclient:$http_version"
+
+
+
 }

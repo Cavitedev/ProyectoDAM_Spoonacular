@@ -11,7 +11,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.ProyectoDAM_Spoonacular">
-        <activity android:name="com.cavitedet.proyectodam_spoonacular.MainActivity">
+        <activity android:name="com.cavitedet.proyectodam_spoonacular.application.ActividadDeBusqueda">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

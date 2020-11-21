@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">ProyectoDAM_Spoonacular</string>
+    <string name="search_ingredient">Search ingredient</string>
+    <string name="banana">banana</string>
+    <string name="search">Search</string>
 </resources>

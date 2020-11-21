@@ -19,6 +19,15 @@ public class DefaultApi {
   private final String basePath = "https://api.spoonacular.com";
   private final ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
+  private static DefaultApi instance;
+
+  public static DefaultApi getInstance() {
+    if (instance == null) {
+      instance = new DefaultApi();
+    }
+    return instance;
+  }
+
 
   public Ingredients ingredientSearch(String query, Boolean addChildren, BigDecimal minProteinPercent, BigDecimal maxProteinPercent, BigDecimal minFatPercent, BigDecimal maxFatPercent, BigDecimal minCarbsPercent, BigDecimal maxCarbsPercent, Boolean metaInformation, String intolerances, String sort, String sortDirection, BigDecimal offset, BigDecimal number) throws ApiException {
     Object localVarPostBody = null;

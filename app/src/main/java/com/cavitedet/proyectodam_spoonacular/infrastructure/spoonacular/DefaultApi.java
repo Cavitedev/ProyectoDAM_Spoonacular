@@ -19,6 +19,7 @@ public class DefaultApi {
 
   private static DefaultApi instance;
 
+
   public static DefaultApi getInstance() {
     if (instance == null) {
       instance = new DefaultApi();
@@ -27,7 +28,7 @@ public class DefaultApi {
   }
 
 
-  public Ingredients ingredientSearch(String query, Boolean addChildren, BigDecimal minProteinPercent, BigDecimal maxProteinPercent, BigDecimal minFatPercent, BigDecimal maxFatPercent, BigDecimal minCarbsPercent, BigDecimal maxCarbsPercent, Boolean metaInformation, String intolerances, String sort, String sortDirection, BigDecimal offset, BigDecimal number) throws ApiException {
+  public Ingredients ingredientSearch(String query, Boolean addChildren, BigDecimal minProteinPercent, BigDecimal maxProteinPercent, BigDecimal minFatPercent, BigDecimal maxFatPercent, BigDecimal minCarbsPercent, BigDecimal maxCarbsPercent, Boolean metaInformation, String intolerances, String sort, String sortDirection, BigDecimal offset, Integer number) throws ApiException {
     Object localVarPostBody = null;
     // verify the required parameter 'query' is set
     if (query == null) {

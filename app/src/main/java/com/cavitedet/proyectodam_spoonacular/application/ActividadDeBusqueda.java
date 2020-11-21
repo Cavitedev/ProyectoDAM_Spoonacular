@@ -17,8 +17,6 @@ import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingre
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.DefaultApi;
 
-import java.math.BigDecimal;
-
 public class ActividadDeBusqueda extends AppCompatActivity {
 
 
@@ -76,7 +74,7 @@ public class ActividadDeBusqueda extends AppCompatActivity {
                     null,
                     null,
                     null,
-                    new BigDecimal(10)
+                    10
             );
             if (ingredients != null) {
                 Intent listadoIngredientesIntent = new Intent(this, ActividadDeListado.class);

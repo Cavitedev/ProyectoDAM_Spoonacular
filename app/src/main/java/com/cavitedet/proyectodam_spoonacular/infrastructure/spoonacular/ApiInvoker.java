@@ -4,24 +4,18 @@
  */
 package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
-import android.content.Context;
-import android.content.res.AssetManager;
-
 import com.cavitedet.proyectodam_spoonacular.Secrets;
 
 import org.apache.http.Consts;
 import org.apache.http.entity.ContentType;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.security.KeyStore;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,11 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
 
 public class ApiInvoker {
     /**
@@ -41,19 +31,14 @@ public class ApiInvoker {
      */
     public static final ContentType TEXT_PLAIN_UTF8 = ContentType.create("text/plain", Consts.UTF_8);
 
-    private static final ApiInvoker INSTANCE = new ApiInvoker();
+    private static final ApiInvoker instance = new ApiInvoker();
+
     private final Map<String, String> defaultHeaderMap = new HashMap<>();
-    private Context context;
 
-    public ApiInvoker(Context context) {
-        this.context = context
+
+    public static ApiInvoker getInstance() {
+        return instance;
     }
-
-    /**
-     * ISO 8601 date time format.
-     *
-     * @see "https://en.wikipedia.org/wiki/ISO_8601"
-     */
 
 
     public static String parameterToString(Object param) {
@@ -134,9 +119,6 @@ public class ApiInvoker {
         return params;
     }
 
-    public static ApiInvoker getInstance() {
-        return INSTANCE;
-    }
 
     public static String serialize(Object obj) throws ApiException {
         try {
@@ -240,11 +222,19 @@ public class ApiInvoker {
             int code = urlConnection.getResponseCode();
             String responseString = urlConnection.getResponseMessage();
 
+
             if (code == 204) {
                 responseString = "";
                 return responseString;
             } else if (code >= 200 && code < 300) {
-                return responseString;
+                InputStream contentStream = (InputStream) urlConnection.getContent();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(contentStream));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                return response.toString();
             } else {
                 if (responseString == null) {
                     responseString = "no data";
@@ -257,56 +247,5 @@ public class ApiInvoker {
     }
 
 
-    private TrustManager[] getWrappedTrustManagers(TrustManager[] trustManagers) {
-        final X509TrustManager originalTrustManager = (X509TrustManager) trustManagers[0];
-        return new TrustManager[]{
-                new X509TrustManager() {
-                    public X509Certificate[] getAcceptedIssuers() {
-                        return originalTrustManager.getAcceptedIssuers();
-                    }
-
-                    public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                        try {
-                            originalTrustManager.checkClientTrusted(certs, authType);
-                        } catch (CertificateException ignored) {
-                        }
-                    }
-
-                    public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                        try {
-                            originalTrustManager.checkServerTrusted(certs, authType);
-                        } catch (CertificateException ignored) {
-                        }
-                    }
-                }
-        };
-    }
-
-    private SSLSocketFactory getSSLSocketFactory() {
-        try {
-            CertificateFactory cf = CertificateFactory.getInstance("X.509");
-
-            AssetManager assetManager = MyApp.getContext().getAssets();
-            InputStream caInput = assetManager.open("spooncolarCert.cer").openRawResource(R.raw.your_cert);
-            Certificate ca = cf.generateCertificate(caInput);
-
-            caInput.close();
-
-            KeyStore keyStore = KeyStore.getInstance("BKS");
-            keyStore.load(null, null);
-            keyStore.setCertificateEntry("ca", ca);
-
-            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-            tmf.init(keyStore);
-
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, getWrappedTrustManagers(tmf.getTrustManagers()), null);
-
-            return sslContext.getSocketFactory();
-        } catch (Exception e) {
-            return HttpsURLConnection.getDefaultSSLSocketFactory();
-        }
-    }
 
 }

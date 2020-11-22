@@ -9,19 +9,22 @@
 
 
     <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="26sp"
+            android:paddingHorizontal="@dimen/margen_borde_horizontal"
+            android:gravity="center"
+            android:textSize="@dimen/encabezado2"
             android:text="@string/ingrediente_busqueda"
+            android:textColor="#000"
 
             />
 
     <EditText
             android:id="@+id/busqueda_textoIngrediente"
-            android:layout_marginStart="10dp"
-            android:textSize="40sp"
+            android:textSize="@dimen/encabezado1"
             android:hint="@string/banana"
-            android:layout_width="200dp"
+            android:layout_marginHorizontal="@dimen/margen_borde_horizontal"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:gravity="center|bottom"
             android:inputType="text"
@@ -40,7 +43,7 @@
             android:id="@+id/mensaje_error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="@dimen/tamano_texto_mediano"
             android:textColor="#f00"
             android:textStyle="bold"
 

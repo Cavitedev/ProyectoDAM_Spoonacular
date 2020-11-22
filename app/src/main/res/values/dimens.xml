@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tamano_texto_mediano">20sp</dimen>
+    <dimen name="encabezado2">26sp</dimen>
+    <dimen name="encabezado1">40sp</dimen>
+    <dimen name="margen_borde_horizontal">10dp</dimen>
+    <dimen name="margen_vertical_entre_elementos">5dp</dimen>
+</resources>

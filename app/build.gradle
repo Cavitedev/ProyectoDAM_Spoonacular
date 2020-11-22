@@ -27,6 +27,10 @@ android {
         animationsDisabled = true
     }
 
+    buildFeatures{
+        dataBinding true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -56,7 +60,7 @@ dependencies {
     implementation "com.google.code.gson:gson:$gson_version"
     testImplementation "junit:junit:$junit_version"
 
-    implementation "org.apache.httpcomponents:httpclient:$http_version"
+
 
 
 

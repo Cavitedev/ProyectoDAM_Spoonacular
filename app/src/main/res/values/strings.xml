@@ -7,4 +7,6 @@
     <string name="error_respuesta_api">No responde la API</string>
     <string name="error_interrupcion_hilo_api">Se ha interrumpido el hilo de petición de datos</string>
     <string name="error_no_internet">No hay internet</string>
+    <string name="imagen_ingrediente">imagen_ingrediente</string>
+    <string name="intent_ingredientes">Ingredientes</string>
 </resources>

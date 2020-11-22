@@ -28,7 +28,7 @@ public class DefaultApi {
   }
 
 
-  public Ingredientes ingredientSearch(String query, Boolean addChildren, BigDecimal minProteinPercent, BigDecimal maxProteinPercent, BigDecimal minFatPercent, BigDecimal maxFatPercent, BigDecimal minCarbsPercent, BigDecimal maxCarbsPercent, Boolean metaInformation, String intolerances, String sort, String sortDirection, BigDecimal offset, Integer number) throws ApiException {
+  public String busquedaIngredientesEnJSONString(String query, Boolean addChildren, Double minProteinPercent, Double maxProteinPercent, Double minFatPercent, Double maxFatPercent, Double minCarbsPercent, Double maxCarbsPercent, Boolean metaInformation, String intolerances, String sort, String sortDirection, BigDecimal offset, Integer number) throws ApiException {
     Object localVarPostBody = null;
     // verify the required parameter 'query' is set
     if (query == null) {
@@ -64,10 +64,14 @@ public class DefaultApi {
     String localVarContentType = "application/json";
 
 
+    return apiInvoker.invokeAPI(basePath, localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
 
-    String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
 
-    return JsonUtil.deserializeIngredients(localVarResponse);
+  }
+
+  public Ingredientes busquedaIngredientes(String query, Boolean addChildren, Double minProteinPercent, Double maxProteinPercent, Double minFatPercent, Double maxFatPercent, Double minCarbsPercent, Double maxCarbsPercent, Boolean metaInformation, String intolerances, String sort, String sortDirection, BigDecimal offset, Integer number) throws ApiException {
+    String respuesta = busquedaIngredientesEnJSONString(query, addChildren, minProteinPercent, maxProteinPercent, minFatPercent, maxFatPercent, minCarbsPercent, maxCarbsPercent, metaInformation, intolerances, sort, sortDirection, offset, number);
+    return JsonUtil.deserializeIngredients(respuesta);
 
   }
 

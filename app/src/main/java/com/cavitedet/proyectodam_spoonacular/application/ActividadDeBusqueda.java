@@ -14,8 +14,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cavitedet.proyectodam_spoonacular.R;
+import com.cavitedet.proyectodam_spoonacular.application.listado.ActividadDeListado;
 import com.cavitedet.proyectodam_spoonacular.application.util.AccionesEnPantalla;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.CheckNetworkAccess;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.DefaultApi;
@@ -81,10 +81,10 @@ public class ActividadDeBusqueda extends AppCompatActivity {
                 return;
             }
 
-            Callable<Ingredientes> callIngredientes = new Callable() {
+            Callable<String> callIngredientes = new Callable() {
                 @Override
-                public Ingredientes call() throws ApiException {
-                    return DefaultApi.getInstance().ingredientSearch(
+                public String call() throws ApiException {
+                    return DefaultApi.getInstance().busquedaIngredientesEnJSONString(
                             textoBusqueda.getText().toString(),
                             null,
                             null,
@@ -102,14 +102,16 @@ public class ActividadDeBusqueda extends AppCompatActivity {
                 }
             };
             ExecutorService executor = Executors.newFixedThreadPool(1);
-            FutureTask<Ingredientes> futureTask = new FutureTask<>(callIngredientes);
+            FutureTask<String> futureTask = new FutureTask<>(callIngredientes);
             executor.submit(futureTask);
 
-            Ingredientes ingredientes = futureTask.get(10, TimeUnit.SECONDS);
+            String ingredientesEnJson = futureTask.get(10, TimeUnit.SECONDS);
 
 
-            if (ingredientes != null) {
+            if (ingredientesEnJson != null) {
                 Intent listadoIngredientesIntent = new Intent(this, ActividadDeListado.class);
+
+                listadoIngredientesIntent.putExtra(getString(R.string.intent_ingredientes), ingredientesEnJson);
                 startActivity(listadoIngredientesIntent);
             }
 

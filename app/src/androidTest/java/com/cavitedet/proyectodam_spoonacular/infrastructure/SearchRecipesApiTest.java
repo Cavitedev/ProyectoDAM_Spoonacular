@@ -23,7 +23,7 @@ public class SearchRecipesApiTest {
     public void testEjemploOnline() throws ApiException {
 
 
-        searchIngredient("banana", 2, 13, "calories", "desc");
+        buscarIngredientes("banana", 2, 13, "calories", "desc");
 
     }
 
@@ -31,12 +31,12 @@ public class SearchRecipesApiTest {
     public void testBuscarBananaEnApp() throws ApiException {
 
 
-        searchIngredient("banana", 10, 13, null, null);
+        buscarIngredientes("banana", 10, 13, null, null);
 
     }
 
-    private void searchIngredient(String query, Integer number, Integer expectedCount, String sort, String dir) throws ApiException {
-        Ingredientes result = DefaultApi.getInstance().ingredientSearch(query, null, null, null,
+    private void buscarIngredientes(String query, Integer number, Integer expectedCount, String sort, String dir) throws ApiException {
+        Ingredientes result = DefaultApi.getInstance().busquedaIngredientes(query, null, null, null,
                 null, null, null, null,
                 null, null, sort, dir, null,
                 number);

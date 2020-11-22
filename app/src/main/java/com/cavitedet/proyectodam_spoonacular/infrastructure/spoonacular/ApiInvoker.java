@@ -6,9 +6,6 @@ package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
 import com.cavitedet.proyectodam_spoonacular.Secrets;
 
-import org.apache.http.Consts;
-import org.apache.http.entity.ContentType;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,7 +26,6 @@ public class ApiInvoker {
     /**
      * Content type "text/plain" with UTF-8 encoding.
      */
-    public static final ContentType TEXT_PLAIN_UTF8 = ContentType.create("text/plain", Consts.UTF_8);
 
     private static final ApiInvoker instance = new ApiInvoker();
 

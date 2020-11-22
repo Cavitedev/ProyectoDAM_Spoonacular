@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/margen_borde_horizontal"
+        android:layout_marginVertical="@dimen/margen_vertical_entre_elementos"
+        android:background="#ddd">
+
+    <TextView
+            android:id="@+id/nombre_ingrediente"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:text="Nombre ingrediente"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/tamano_texto_mediano"
+            android:textColor="#000"
+
+            android:layout_weight="1" />
+
+    <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription="@string/imagen_ingrediente" />
+
+</LinearLayout>

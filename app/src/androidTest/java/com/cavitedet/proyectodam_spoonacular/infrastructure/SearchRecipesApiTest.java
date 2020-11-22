@@ -3,7 +3,7 @@ package com.cavitedet.proyectodam_spoonacular.infrastructure;
 
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.DefaultApi;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.llamadorApi;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -36,7 +36,7 @@ public class SearchRecipesApiTest {
     }
 
     private void buscarIngredientes(String query, Integer number, Integer expectedCount, String sort, String dir) throws ApiException {
-        Ingredientes result = DefaultApi.getInstance().busquedaIngredientes(query, null, null, null,
+        Ingredientes result = llamadorApi.getInstance().busquedaIngredientes(query, null, null, null,
                 null, null, null, null,
                 null, null, sort, dir, null,
                 number);

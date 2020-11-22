@@ -1,6 +1,9 @@
 package com.cavitedet.proyectodam_spoonacular.application.listado;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -9,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.usecases.ObtenerListadoDeIngredientesUsecase;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.CheckNetworkAccess;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.DefaultApi;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
@@ -21,6 +24,8 @@ public class ActividadDeListado extends AppCompatActivity {
 
 
     private TextView mensajeError;
+    private ObtenerListadoDeIngredientesUsecase listadoUsecase;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +41,21 @@ public class ActividadDeListado extends AppCompatActivity {
             mensajeError.setText(getString(R.string.error_no_resultado));
 
         } else {
-            RecyclerView listado = findViewById(R.id.lista_ingredientes);
-            listado.setAdapter(new AdaptadorIngredientes(ingredientes, this));
+            mostrarIngredientes(ingredientes);
         }
 
 
+    }
+
+    private void mostrarIngredientes(Ingredientes ingredientes) {
+        LinearLayout padre = findViewById(R.id.listaLinearLayoutPadre);
+        padre.setVisibility(View.VISIBLE);
+        ProgressBar barraDeProgreso = findViewById(R.id.barra_circular_de_progreso);
+        barraDeProgreso.setVisibility(View.GONE);
+
+
+        RecyclerView listado = findViewById(R.id.lista_ingredientes);
+        listado.setAdapter(new AdaptadorIngredientes(ingredientes, this));
     }
 
     private Ingredientes devolverIngredientesDelIntent() {
@@ -53,24 +68,8 @@ public class ActividadDeListado extends AppCompatActivity {
                 return null;
             }
 
-
-            FutureTask<Ingredientes> futureTask = DefaultApi.getInstance().busquedaIngredientesEnHiloGenerado(
-                    peticionIngrediente,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    10
-            );
-
+            listadoUsecase = new ObtenerListadoDeIngredientesUsecase(peticionIngrediente);
+            FutureTask<Ingredientes> futureTask = listadoUsecase.buscarIngredientesEnOtroHilo();
 
             return futureTask.get(10, TimeUnit.SECONDS);
 

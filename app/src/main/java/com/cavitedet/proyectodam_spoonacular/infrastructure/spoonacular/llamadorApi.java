@@ -16,14 +16,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
-public class DefaultApi {
-    private static DefaultApi instance;
+public class llamadorApi {
+    private static llamadorApi instance;
     private final String basePath = "https://api.spoonacular.com";
     private final ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
-    public static DefaultApi getInstance() {
+    public static llamadorApi getInstance() {
         if (instance == null) {
-            instance = new DefaultApi();
+            instance = new llamadorApi();
         }
         return instance;
     }
@@ -71,17 +71,13 @@ public class DefaultApi {
                                                                 String sort, String sortDirection, Double offset,
                                                                 Integer number) throws ApiException {
 
-        // verify the required parameter 'query' is set
         if (query == null) {
             throw new ApiException(400, "Missing the required parameter 'query' when calling ingredientSearch");
         }
 
-        // create path and map variables
         String localVarPath = "/food/ingredients/search";
 
-        // query params
         List<Pair> localVarQueryParams = new ArrayList<>();
-        // header params
         Map<String, String> localVarHeaderParams = new HashMap<>();
 
 

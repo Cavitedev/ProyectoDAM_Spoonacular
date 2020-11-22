@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/listaLinearLayoutPadre"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_width="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/lista_ingredientes"
+
+    <ProgressBar
+            android:id="@+id/barra_circular_de_progreso"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true" />
+
+    <LinearLayout
+            android:id="@+id/listaLinearLayoutPadre"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lista_ingredientes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
 
-            />
+                />
 
-    <TextView
-            android:id="@+id/mensaje_error"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="#f00"
-            android:textSize="@dimen/tamano_texto_mediano"
-            android:textStyle="bold" />
+        <TextView
+                android:id="@+id/mensaje_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#f00"
+                android:textSize="@dimen/tamano_texto_mediano"
+                android:textStyle="bold" />
 
-</LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
+
 
 
 

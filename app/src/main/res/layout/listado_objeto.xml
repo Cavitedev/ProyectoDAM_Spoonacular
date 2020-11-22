@@ -3,6 +3,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:id="@+id/ingrediente_objeto"
         android:paddingHorizontal="@dimen/margen_borde_horizontal"
         android:layout_marginVertical="@dimen/margen_vertical_entre_elementos"
         android:background="@color/colorAcentoPrimario">

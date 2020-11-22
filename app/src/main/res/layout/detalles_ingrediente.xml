@@ -60,5 +60,18 @@
                 android:contentDescription="@string/imagen_ingrediente" />
     </LinearLayout>
 
+    <TextView
+            android:id="@+id/mensaje_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:gravity="center"
+            android:textColor="#f00"
+            android:textSize="@dimen/tamano_texto_mediano"
+            android:textStyle="bold" />
 
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/propiedades_ingrediente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 </LinearLayout>

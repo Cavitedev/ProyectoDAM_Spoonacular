@@ -3,12 +3,14 @@
     <string name="ingrediente_busqueda">Buscar ingrediente (en inglés)</string>
     <string name="banana">banana</string>
     <string name="busqueda">Buscar</string>
-    <string name="error_ejecucción_api">\"Error al ejecutar API con %s\"</string>
+    <string name="error_ejecucción_busqueda_api">\"Error al ejecutar API con %s como petición\"</string>
+    <string name="error_ejecucción_detalles_api">\"Error al ejecutar API con %d como id\"</string>
     <string name="error_respuesta_api">No responde la API</string>
     <string name="error_interrupcion_hilo_api">Se ha interrumpido el hilo de petición de datos</string>
     <string name="error_no_internet">No hay internet</string>
+    <string name="error_recibir_intent">Error al recibir datos del intent con nombre %s</string>
     <string name="imagen_ingrediente">imagen_ingrediente</string>
-    <string name="ingredientes_query">ingredientes_query</string>
+    <string name="intent_peticion_ingredientes">ingredientes_query</string>
     <string name="image_url_prefix">https://spoonacular.com/cdn/ingredients_500x500/%s</string>
     <string name="error_no_resultado">Error no se ha encontrado ningun resultado</string>
     <string name="ingrediente_id">ingrediente_id</string>

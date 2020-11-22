@@ -15,7 +15,9 @@ public class ObtenerDetallesIngredienteUsecase {
     private String unidad;
 
     public ObtenerDetallesIngredienteUsecase(Integer id) {
+
         this.id = id;
+        cantidad = 1.0;
     }
 
     public FutureTask<IngredienteDetallado> obtenerDetallesIngredienteEnOtroHilo() {
@@ -46,7 +48,8 @@ public class ObtenerDetallesIngredienteUsecase {
     }
 
     public void setCantidad(Double cantidad) {
-        this.cantidad = cantidad;
+
+        this.cantidad = Math.max(1, cantidad);
     }
 
     public String getUnidad() {

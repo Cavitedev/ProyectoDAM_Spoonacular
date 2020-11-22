@@ -50,7 +50,13 @@ public class ActividadDeListado extends AppCompatActivity {
     }
 
     private Ingredientes devolverIngredientesDelIntent() {
-        String peticionIngrediente = getIntent().getStringExtra(getString(R.string.ingredientes_query));
+        String peticionIngrediente = getIntent().getStringExtra(getString(R.string.intent_peticion_ingredientes));
+
+        if (peticionIngrediente == null) {
+            mensajeError.setText(getString(R.string.error_recibir_intent, getString(R.string.intent_peticion_ingredientes)));
+            return null;
+        }
+
         try {
 
 
@@ -66,7 +72,7 @@ public class ActividadDeListado extends AppCompatActivity {
 
 
         } catch (ExecutionException e) {
-            mensajeError.setText(getString(R.string.error_ejecucción_api, peticionIngrediente));
+            mensajeError.setText(getString(R.string.error_ejecucción_busqueda_api, peticionIngrediente));
         } catch (TimeoutException e) {
             mensajeError.setText(getString(R.string.error_respuesta_api));
         } catch (InterruptedException e) {

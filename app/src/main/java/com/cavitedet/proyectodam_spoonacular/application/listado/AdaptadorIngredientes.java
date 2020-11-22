@@ -58,6 +58,7 @@ public class AdaptadorIngredientes extends RecyclerView.Adapter<AdaptadorIngredi
             tituloIngrediente = itemView.findViewById(R.id.nombre_ingrediente);
             imagenIngrediente = itemView.findViewById(R.id.imagen_ingrediente);
             view = itemView;
+            view.setOnClickListener(this);
         }
 
         public void asignarIngrediente(Ingrediente ingrediente) {

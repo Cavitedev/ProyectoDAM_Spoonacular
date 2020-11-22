@@ -72,7 +72,7 @@ public class ActividadDeBusqueda extends AppCompatActivity {
             }
 
                 Intent listadoIngredientesIntent = new Intent(this, ActividadDeListado.class);
-        listadoIngredientesIntent.putExtra(getString(R.string.ingredientes_query), textoBusqueda.getText().toString());
+        listadoIngredientesIntent.putExtra(getString(R.string.intent_peticion_ingredientes), textoBusqueda.getText().toString());
         startActivity(listadoIngredientesIntent);
 
     }

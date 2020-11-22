@@ -1,9 +1,6 @@
 package com.cavitedet.proyectodam_spoonacular.application.listado;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -48,12 +45,6 @@ public class ActividadDeListado extends AppCompatActivity {
     }
 
     private void mostrarIngredientes(Ingredientes ingredientes) {
-        LinearLayout padre = findViewById(R.id.listaLinearLayoutPadre);
-        padre.setVisibility(View.VISIBLE);
-        ProgressBar barraDeProgreso = findViewById(R.id.barra_circular_de_progreso);
-        barraDeProgreso.setVisibility(View.GONE);
-
-
         RecyclerView listado = findViewById(R.id.lista_ingredientes);
         listado.setAdapter(new AdaptadorIngredientes(ingredientes, this));
     }

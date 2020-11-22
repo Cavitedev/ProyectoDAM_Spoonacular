@@ -39,10 +39,12 @@ public class ObtenerListadoDeIngredientesUsecase {
                         metaInformation, intolerances, sort, sortDirection, offset, number);
 
             }
+
         };
         ExecutorService executor = Executors.newFixedThreadPool(1);
         FutureTask<Ingredientes> futureTask = new FutureTask<>(callIngredientes);
         executor.submit(futureTask);
+
         return futureTask;
     }
 

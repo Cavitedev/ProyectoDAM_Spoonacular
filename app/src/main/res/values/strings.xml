@@ -12,4 +12,7 @@
     <string name="image_url_prefix">https://spoonacular.com/cdn/ingredients_500x500/%s</string>
     <string name="error_no_resultado">Error no se ha encontrado ningun resultado</string>
     <string name="ingrediente_id">ingrediente_id</string>
+    <string name="nombre_ingrediente">Nombre:%s</string>
+    <string name="precio_ingrediente">Precio:%s</string>
+    <string name="categoria_ingrediente">Categoria:%s</string>
 </resources>

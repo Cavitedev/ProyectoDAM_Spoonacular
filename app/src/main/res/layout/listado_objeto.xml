@@ -5,7 +5,7 @@
         android:orientation="horizontal"
         android:paddingHorizontal="@dimen/margen_borde_horizontal"
         android:layout_marginVertical="@dimen/margen_vertical_entre_elementos"
-        android:background="#ddd">
+        android:background="@color/colorAcentoPrimario">
 
     <TextView
             android:id="@+id/nombre_ingrediente"

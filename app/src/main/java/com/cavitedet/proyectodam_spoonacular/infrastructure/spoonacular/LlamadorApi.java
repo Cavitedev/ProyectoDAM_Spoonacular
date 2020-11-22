@@ -5,16 +5,13 @@
 
 package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.IngredienteDetallado;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
 
 public class LlamadorApi {
     private static LlamadorApi instance;
@@ -45,31 +42,9 @@ public class LlamadorApi {
      * @param sortDirection     dirección de ordenado asc o desc
      * @param offset            Cuantos resultados se tiene que saltar
      * @param number            números de resultados devueltos
-     * @return
+     * @return ingredientes encontrados de la api
+     * @throws ApiException si falla en la busqueda de la api
      */
-    public FutureTask<Ingredientes> busquedaIngredientesEnHiloGenerado(String query, Boolean addChildren,
-                                                                       Double minProteinPercent, Double maxProteinPercent,
-                                                                       Double minFatPercent, Double maxFatPercent,
-                                                                       Double minCarbsPercent, Double maxCarbsPercent,
-                                                                       Boolean metaInformation, String intolerances,
-                                                                       String sort, String sortDirection, Double offset,
-                                                                       Integer number) {
-
-        Callable<Ingredientes> callIngredientes = new Callable<Ingredientes>() {
-            @Override
-            public Ingredientes call() throws Exception {
-                return busquedaIngredientes(query, addChildren, minProteinPercent,
-                        maxProteinPercent, minFatPercent, maxFatPercent, minCarbsPercent, maxCarbsPercent,
-                        metaInformation, intolerances, sort, sortDirection, offset, number);
-
-            }
-        };
-        ExecutorService executor = Executors.newFixedThreadPool(1);
-        FutureTask<Ingredientes> futureTask = new FutureTask<>(callIngredientes);
-        executor.submit(futureTask);
-        return futureTask;
-    }
-
     public Ingredientes busquedaIngredientes(String query, Boolean addChildren,
                                              Double minProteinPercent, Double maxProteinPercent,
                                              Double minFatPercent, Double maxFatPercent,
@@ -77,18 +52,18 @@ public class LlamadorApi {
                                              Boolean metaInformation, String intolerances, String sort,
                                              String sortDirection, Double offset, Integer number)
             throws ApiException {
-        String respuesta = busquedaIngredientesEnJSONStringHiloPrincipal(query, addChildren, minProteinPercent, maxProteinPercent, minFatPercent, maxFatPercent, minCarbsPercent, maxCarbsPercent, metaInformation, intolerances, sort, sortDirection, offset, number);
+        String respuesta = busquedaIngredientesJsonString(query, addChildren, minProteinPercent, maxProteinPercent, minFatPercent, maxFatPercent, minCarbsPercent, maxCarbsPercent, metaInformation, intolerances, sort, sortDirection, offset, number);
         return JsonUtil.deserializarIngredientes(respuesta);
 
     }
 
-    public String busquedaIngredientesEnJSONStringHiloPrincipal(String query, Boolean addChildren,
-                                                                Double minProteinPercent, Double maxProteinPercent,
-                                                                Double minFatPercent, Double maxFatPercent,
-                                                                Double minCarbsPercent, Double maxCarbsPercent,
-                                                                Boolean metaInformation, String intolerances,
-                                                                String sort, String sortDirection, Double offset,
-                                                                Integer number) throws ApiException {
+    public String busquedaIngredientesJsonString(String query, Boolean addChildren,
+                                                 Double minProteinPercent, Double maxProteinPercent,
+                                                 Double minFatPercent, Double maxFatPercent,
+                                                 Double minCarbsPercent, Double maxCarbsPercent,
+                                                 Boolean metaInformation, String intolerances,
+                                                 String sort, String sortDirection, Double offset,
+                                                 Integer number) throws ApiException {
 
         if (query == null) {
             throw new ApiException(400, "Missing the required parameter 'query' when calling ingredientSearch");
@@ -130,9 +105,16 @@ public class LlamadorApi {
      * @param amount cantidad para realizar operaciones de precio entre otras
      * @param unit   unidad de medida: "grams", "piece", "slice", "fruit", "oz", "cup", "serbing"
      * @return respuesta json
-     * @throws ApiException
      */
-    public String obtenerInformacionIngrediente(Integer id, Double amount, String unit) throws ApiException {
+
+
+    public IngredienteDetallado obtenerInformacionIngrediente(Integer id, Double amount, String unit) throws ApiException {
+        String respuesta = obtenerInformacionIngredienteJsonString(id, amount, unit);
+        return JsonUtil.deserializarIngredienteDetallado(respuesta);
+    }
+
+
+    public String obtenerInformacionIngredienteJsonString(Integer id, Double amount, String unit) throws ApiException {
         if (id == null) {
             throw new ApiException(400, "Missing the required parameter 'id' when calling getIngredientInformation");
         }
@@ -149,7 +131,6 @@ public class LlamadorApi {
                 localVarQueryParams, localVarHeaderParams);
 
     }
-
 
 
 }

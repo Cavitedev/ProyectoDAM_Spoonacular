@@ -3,6 +3,9 @@ package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.usecases;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.LlamadorApi;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
 public class ObtenerListadoDeIngredientesUsecase {
@@ -28,15 +31,19 @@ public class ObtenerListadoDeIngredientesUsecase {
 
 
     public FutureTask<Ingredientes> buscarIngredientesEnOtroHilo() {
-        return LlamadorApi.getInstance().busquedaIngredientesEnHiloGenerado(
-                query, addChildren,
-                minProteinPercent, maxProteinPercent,
-                minFatPercent, maxFatPercent,
-                minCarbsPercent, maxCarbsPercent,
-                metaInformation, intolerances,
-                sort, sortDirection, offset,
-                number
-        );
+        Callable<Ingredientes> callIngredientes = new Callable<Ingredientes>() {
+            @Override
+            public Ingredientes call() throws Exception {
+                return LlamadorApi.getInstance().busquedaIngredientes(query, addChildren, minProteinPercent,
+                        maxProteinPercent, minFatPercent, maxFatPercent, minCarbsPercent, maxCarbsPercent,
+                        metaInformation, intolerances, sort, sortDirection, offset, number);
+
+            }
+        };
+        ExecutorService executor = Executors.newFixedThreadPool(1);
+        FutureTask<Ingredientes> futureTask = new FutureTask<>(callIngredientes);
+        executor.submit(futureTask);
+        return futureTask;
     }
 
 

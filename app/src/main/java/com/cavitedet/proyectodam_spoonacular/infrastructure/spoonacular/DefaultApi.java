@@ -28,27 +28,39 @@ public class DefaultApi {
         return instance;
     }
 
-    public FutureTask<String> busquedaIngredientesEnJSONStringHiloGenerado(String query, Boolean addChildren,
-                                                                           Double minProteinPercent, Double maxProteinPercent,
-                                                                           Double minFatPercent, Double maxFatPercent,
-                                                                           Double minCarbsPercent, Double maxCarbsPercent,
-                                                                           Boolean metaInformation, String intolerances,
-                                                                           String sort, String sortDirection, Double offset,
-                                                                           Integer number) {
+    public FutureTask<Ingredientes> busquedaIngredientesEnHiloGenerado(String query, Boolean addChildren,
+                                                                       Double minProteinPercent, Double maxProteinPercent,
+                                                                       Double minFatPercent, Double maxFatPercent,
+                                                                       Double minCarbsPercent, Double maxCarbsPercent,
+                                                                       Boolean metaInformation, String intolerances,
+                                                                       String sort, String sortDirection, Double offset,
+                                                                       Integer number) {
 
-        Callable<String> callIngredientes = new Callable<String>() {
+        Callable<Ingredientes> callIngredientes = new Callable<Ingredientes>() {
             @Override
-            public String call() throws Exception {
-                return busquedaIngredientesEnJSONStringHiloPrincipal(query, addChildren, minProteinPercent,
+            public Ingredientes call() throws Exception {
+                return busquedaIngredientes(query, addChildren, minProteinPercent,
                         maxProteinPercent, minFatPercent, maxFatPercent, minCarbsPercent, maxCarbsPercent,
                         metaInformation, intolerances, sort, sortDirection, offset, number);
 
             }
         };
         ExecutorService executor = Executors.newFixedThreadPool(1);
-        FutureTask<String> futureTask = new FutureTask<>(callIngredientes);
+        FutureTask<Ingredientes> futureTask = new FutureTask<>(callIngredientes);
         executor.submit(futureTask);
         return futureTask;
+    }
+
+    public Ingredientes busquedaIngredientes(String query, Boolean addChildren,
+                                             Double minProteinPercent, Double maxProteinPercent,
+                                             Double minFatPercent, Double maxFatPercent,
+                                             Double minCarbsPercent, Double maxCarbsPercent,
+                                             Boolean metaInformation, String intolerances, String sort,
+                                             String sortDirection, Double offset, Integer number)
+            throws ApiException {
+        String respuesta = busquedaIngredientesEnJSONStringHiloPrincipal(query, addChildren, minProteinPercent, maxProteinPercent, minFatPercent, maxFatPercent, minCarbsPercent, maxCarbsPercent, metaInformation, intolerances, sort, sortDirection, offset, number);
+        return JsonUtil.deserializeIngredients(respuesta);
+
     }
 
     public String busquedaIngredientesEnJSONStringHiloPrincipal(String query, Boolean addChildren,
@@ -95,16 +107,6 @@ public class DefaultApi {
 
     }
 
-    public Ingredientes busquedaIngredientes(String query, Boolean addChildren,
-                                             Double minProteinPercent, Double maxProteinPercent,
-                                             Double minFatPercent, Double maxFatPercent,
-                                             Double minCarbsPercent, Double maxCarbsPercent,
-                                             Boolean metaInformation, String intolerances, String sort,
-                                             String sortDirection, Double offset, Integer number)
-            throws ApiException {
-        String respuesta = busquedaIngredientesEnJSONStringHiloPrincipal(query, addChildren, minProteinPercent, maxProteinPercent, minFatPercent, maxFatPercent, minCarbsPercent, maxCarbsPercent, metaInformation, intolerances, sort, sortDirection, offset, number);
-        return JsonUtil.deserializeIngredients(respuesta);
 
-    }
 
 }

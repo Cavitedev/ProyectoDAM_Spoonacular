@@ -17,12 +17,6 @@ import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.application.listado.ActividadDeListado;
 import com.cavitedet.proyectodam_spoonacular.application.util.AccionesEnPantalla;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.CheckNetworkAccess;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.DefaultApi;
-
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 public class ActividadDeBusqueda extends AppCompatActivity {
 
@@ -68,7 +62,7 @@ public class ActividadDeBusqueda extends AppCompatActivity {
 
 
     public void buscarIngrediente(View view) {
-        try {
+
 
 
             if (!CheckNetworkAccess.isNetworkConnected(this)) {
@@ -77,45 +71,10 @@ public class ActividadDeBusqueda extends AppCompatActivity {
                 return;
             }
 
-            FutureTask<String> futureTask = DefaultApi.getInstance().busquedaIngredientesEnJSONStringHiloGenerado(
-                    textoBusqueda.getText().toString(),
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    10
-            );
-
-
-            String ingredientesEnJson = futureTask.get(10, TimeUnit.SECONDS);
-
-
-            if (ingredientesEnJson != null) {
                 Intent listadoIngredientesIntent = new Intent(this, ActividadDeListado.class);
+        listadoIngredientesIntent.putExtra(getString(R.string.ingredientes_query), textoBusqueda.getText().toString());
+        startActivity(listadoIngredientesIntent);
 
-                listadoIngredientesIntent.putExtra(getString(R.string.intent_ingredientes), ingredientesEnJson);
-                startActivity(listadoIngredientesIntent);
-            }
-
-
-        } catch (ExecutionException e) {
-            AccionesEnPantalla.esconderTeclado(ActividadDeBusqueda.this);
-            mensajeError.setText(getString(R.string.error_ejecucción_api, textoBusqueda.getText().toString()));
-        } catch (TimeoutException e) {
-            AccionesEnPantalla.esconderTeclado(ActividadDeBusqueda.this);
-            mensajeError.setText(getString(R.string.error_respuesta_api));
-        } catch (InterruptedException e) {
-            AccionesEnPantalla.esconderTeclado(ActividadDeBusqueda.this);
-            mensajeError.setText(getString(R.string.error_interrupcion_hilo_api));
-        }
     }
 
 

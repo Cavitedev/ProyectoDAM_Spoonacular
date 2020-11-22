@@ -1,6 +1,7 @@
 package com.cavitedet.proyectodam_spoonacular.application.listado;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cavitedet.proyectodam_spoonacular.R;
+import com.cavitedet.proyectodam_spoonacular.application.detalles.ActividadDetalles;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingrediente;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
 
@@ -40,14 +42,15 @@ public class AdaptadorIngredientes extends RecyclerView.Adapter<AdaptadorIngredi
 
     @Override
     public int getItemCount() {
-        return ingredientes.getNumber();
+        return ingredientes.getIngredienteList().size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
         private final TextView tituloIngrediente;
         private final ImageView imagenIngrediente;
+        private Integer ingredienteID;
         private View view;
 
         public ViewHolder(@NonNull View itemView) {
@@ -58,11 +61,18 @@ public class AdaptadorIngredientes extends RecyclerView.Adapter<AdaptadorIngredi
         }
 
         public void asignarIngrediente(Ingrediente ingrediente) {
+            ingredienteID = ingrediente.getId();
             tituloIngrediente.setText(ingrediente.getName());
             String urlImagen = context.getString(R.string.image_url_prefix, ingrediente.getImage());
             Glide.with(view).load(urlImagen).into(imagenIngrediente);
         }
 
 
+        @Override
+        public void onClick(View view) {
+            Intent paginaDetallesIntent = new Intent(context, ActividadDetalles.class);
+            paginaDetallesIntent.putExtra(context.getString(R.string.ingrediente_id), ingredienteID);
+            context.startActivity(paginaDetallesIntent);
+        }
     }
 }

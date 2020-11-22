@@ -42,8 +42,12 @@ public class ActividadBusquedaTest {
     }
 
     @Test
-    public void noInternet_errorInternet() {
+    public void busquedaVacia_muestraError() {
+        Espresso.onView(ViewMatchers.withId(R.id.busqueda_textoIngrediente)).perform(ViewActions.typeText("xd"));
+        Espresso.closeSoftKeyboard();
+        Espresso.onView(ViewMatchers.withId(R.id.boton_busqueda)).perform(ViewActions.click());
 
+        Espresso.onView(ViewMatchers.withId(R.id.mensaje_error)).check(ViewAssertions.matches(ViewMatchers.withText(R.string.error_no_resultado)));
     }
 
 

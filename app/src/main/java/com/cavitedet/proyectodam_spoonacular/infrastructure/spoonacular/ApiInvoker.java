@@ -139,7 +139,8 @@ public class ApiInvoker {
         }
     }
 
-    public String invokeAPI(String host, String path, String method, List<Pair> queryParams, Object body, Map<String, String> headerParams, Map<String, String> formParams, String contentType) throws ApiException {
+    public String invokeAPI(String host, String path, String method, List<Pair> queryParams,
+                            Map<String, String> headerParams) throws ApiException {
 
 
         StringBuilder b = new StringBuilder();
@@ -171,29 +172,6 @@ public class ApiInvoker {
         }
         headers.put("Accept", "application/json");
 
-        // URL encoded string from form parameters
-        String formParamStr = null;
-
-        // for form data
-        if ("application/x-www-form-urlencoded".equals(contentType)) {
-            StringBuilder formParamBuilder = new StringBuilder();
-
-            // encode the form params
-            for (String key : formParams.keySet()) {
-                String value = formParams.get(key);
-                if (value != null && !"".equals(value.trim())) {
-                    if (formParamBuilder.length() > 0) {
-                        formParamBuilder.append("&");
-                    }
-                    try {
-                        formParamBuilder.append(URLEncoder.encode(key, "utf8")).append("=").append(URLEncoder.encode(value, "utf8"));
-                    } catch (Exception e) {
-                        // move on to next
-                    }
-                }
-            }
-            formParamStr = formParamBuilder.toString();
-        }
 
 
         try {

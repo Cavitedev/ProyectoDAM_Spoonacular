@@ -7,7 +7,6 @@ package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +27,14 @@ public class DefaultApi {
   }
 
 
-  public String busquedaIngredientesEnJSONString(String query, Boolean addChildren, Double minProteinPercent, Double maxProteinPercent, Double minFatPercent, Double maxFatPercent, Double minCarbsPercent, Double maxCarbsPercent, Boolean metaInformation, String intolerances, String sort, String sortDirection, BigDecimal offset, Integer number) throws ApiException {
-    Object localVarPostBody = null;
+  public String busquedaIngredientesEnJSONString(String query, Boolean addChildren,
+                                                 Double minProteinPercent, Double maxProteinPercent,
+                                                 Double minFatPercent, Double maxFatPercent,
+                                                 Double minCarbsPercent, Double maxCarbsPercent,
+                                                 Boolean metaInformation, String intolerances,
+                                                 String sort, String sortDirection, Double offset,
+                                                 Integer number) throws ApiException {
+
     // verify the required parameter 'query' is set
     if (query == null) {
       throw new ApiException(400, "Missing the required parameter 'query' when calling ingredientSearch");
@@ -42,8 +47,7 @@ public class DefaultApi {
     List<Pair> localVarQueryParams = new ArrayList<>();
     // header params
     Map<String, String> localVarHeaderParams = new HashMap<>();
-    // form params
-    Map<String, String> localVarFormParams = new HashMap<>();
+
 
     localVarQueryParams.addAll(ApiInvoker.parameterToPairs("", "query", query));
     localVarQueryParams.addAll(ApiInvoker.parameterToPairs("", "addChildren", addChildren));
@@ -61,15 +65,19 @@ public class DefaultApi {
     localVarQueryParams.addAll(ApiInvoker.parameterToPairs("", "number", number));
 
 
-    String localVarContentType = "application/json";
-
-
-    return apiInvoker.invokeAPI(basePath, localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
+    return apiInvoker.invokeAPI(basePath, localVarPath, "GET",
+            localVarQueryParams, localVarHeaderParams);
 
 
   }
 
-  public Ingredientes busquedaIngredientes(String query, Boolean addChildren, Double minProteinPercent, Double maxProteinPercent, Double minFatPercent, Double maxFatPercent, Double minCarbsPercent, Double maxCarbsPercent, Boolean metaInformation, String intolerances, String sort, String sortDirection, BigDecimal offset, Integer number) throws ApiException {
+  public Ingredientes busquedaIngredientes(String query, Boolean addChildren,
+                                           Double minProteinPercent, Double maxProteinPercent,
+                                           Double minFatPercent, Double maxFatPercent,
+                                           Double minCarbsPercent, Double maxCarbsPercent,
+                                           Boolean metaInformation, String intolerances, String sort,
+                                           String sortDirection, Double offset, Integer number)
+          throws ApiException {
     String respuesta = busquedaIngredientesEnJSONString(query, addChildren, minProteinPercent, maxProteinPercent, minFatPercent, maxFatPercent, minCarbsPercent, maxCarbsPercent, metaInformation, intolerances, sort, sortDirection, offset, number);
     return JsonUtil.deserializeIngredients(respuesta);
 

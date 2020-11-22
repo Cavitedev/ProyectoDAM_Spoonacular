@@ -17,6 +17,14 @@ import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingre
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.DefaultApi;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 public class ActividadDeBusqueda extends AppCompatActivity {
 
 
@@ -60,29 +68,47 @@ public class ActividadDeBusqueda extends AppCompatActivity {
 
     public void buscarIngrediente(View view) {
         try {
+            Callable<Ingredients> callIngredientes = new Callable() {
+                @Override
+                public Ingredients call() throws ApiException {
+                    return DefaultApi.getInstance().ingredientSearch(
+                            textoBusqueda.getText().toString(),
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            10);
+                }
+            };
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            FutureTask<Ingredients> futureTask = new FutureTask<>(callIngredientes);
+            executor.submit(futureTask);
+            Ingredients ingredients = futureTask.get(10, TimeUnit.SECONDS);
 
-            Ingredients ingredients = DefaultApi.getInstance().ingredientSearch(
-                    textoBusqueda.getText().toString(),
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    10
-            );
-            if (ingredients != null) {
-                Intent listadoIngredientesIntent = new Intent(this, ActividadDeListado.class);
-                startActivity(listadoIngredientesIntent);
+            while (true) {
+                if (futureTask.isDone()) {
+                    if (ingredients != null) {
+                        Intent listadoIngredientesIntent = new Intent(this, ActividadDeListado.class);
+                        startActivity(listadoIngredientesIntent);
+                    }
+                }
+                break;
             }
 
-        } catch (ApiException e) {
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
             e.printStackTrace();
         }
     }

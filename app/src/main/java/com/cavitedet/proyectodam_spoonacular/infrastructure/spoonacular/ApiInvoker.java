@@ -215,7 +215,8 @@ public class ApiInvoker {
 
             urlConnection.setRequestProperty("Accept", "application/json");
             urlConnection.setRequestProperty("X-Environment", "android");
-
+            urlConnection.setConnectTimeout(5000);
+            urlConnection.setReadTimeout(10000);
             urlConnection.setSSLSocketFactory((SSLSocketFactory) SSLSocketFactory.getDefault());
             urlConnection.connect();
 

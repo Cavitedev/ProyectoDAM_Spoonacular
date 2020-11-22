@@ -1,7 +1,7 @@
 package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.usecases;
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.llamadorApi;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.LlamadorApi;
 
 import java.util.concurrent.FutureTask;
 
@@ -28,7 +28,7 @@ public class ObtenerListadoDeIngredientesUsecase {
 
 
     public FutureTask<Ingredientes> buscarIngredientesEnOtroHilo() {
-        return llamadorApi.getInstance().busquedaIngredientesEnHiloGenerado(
+        return LlamadorApi.getInstance().busquedaIngredientesEnHiloGenerado(
                 query, addChildren,
                 minProteinPercent, maxProteinPercent,
                 minFatPercent, maxFatPercent,

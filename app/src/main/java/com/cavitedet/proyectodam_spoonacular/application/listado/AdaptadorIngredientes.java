@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.application.detalles.ActividadDetalles;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingrediente;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingrediente;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
 
 public class AdaptadorIngredientes extends RecyclerView.Adapter<AdaptadorIngredientes.ViewHolder> {
 
@@ -37,12 +37,12 @@ public class AdaptadorIngredientes extends RecyclerView.Adapter<AdaptadorIngredi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int posicion) {
-        holder.asignarIngrediente(ingredientes.getIngredienteList().get(posicion));
+        holder.asignarIngrediente(ingredientes.getListaIngredientes().get(posicion));
     }
 
     @Override
     public int getItemCount() {
-        return ingredientes.getIngredienteList().size();
+        return ingredientes.getListaIngredientes().size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -62,8 +62,8 @@ public class AdaptadorIngredientes extends RecyclerView.Adapter<AdaptadorIngredi
 
         public void asignarIngrediente(Ingrediente ingrediente) {
             ingredienteID = ingrediente.getId();
-            tituloIngrediente.setText(ingrediente.getName());
-            String urlImagen = context.getString(R.string.image_url_prefix, ingrediente.getImage());
+            tituloIngrediente.setText(ingrediente.getNombre());
+            String urlImagen = context.getString(R.string.image_url_prefix, ingrediente.getImagen());
             Glide.with(view).load(urlImagen).into(imagenIngrediente);
         }
 

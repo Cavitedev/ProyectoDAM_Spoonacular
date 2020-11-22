@@ -1,9 +1,9 @@
 package com.cavitedet.proyectodam_spoonacular.infrastructure;
 
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.llamadorApi;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.LlamadorApi;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -16,7 +16,7 @@ import org.junit.runners.JUnit4;
  * https://spoonacular.com/food-api/docs#Ingredient-Search
  */
 @RunWith(JUnit4.class)
-public class SearchRecipesApiTest {
+public class BuscarIngredientesApiTest {
 
 
     @Test
@@ -36,12 +36,12 @@ public class SearchRecipesApiTest {
     }
 
     private void buscarIngredientes(String query, Integer number, Integer expectedCount, String sort, String dir) throws ApiException {
-        Ingredientes result = llamadorApi.getInstance().busquedaIngredientes(query, null, null, null,
+        Ingredientes result = LlamadorApi.getInstance().busquedaIngredientes(query, null, null, null,
                 null, null, null, null,
                 null, null, sort, dir, null,
                 number);
 
-        MatcherAssert.assertThat(result.getTotalResults(), Matchers.equalTo(expectedCount));
+        MatcherAssert.assertThat(result.getResultadosTotales(), Matchers.equalTo(expectedCount));
     }
 
 

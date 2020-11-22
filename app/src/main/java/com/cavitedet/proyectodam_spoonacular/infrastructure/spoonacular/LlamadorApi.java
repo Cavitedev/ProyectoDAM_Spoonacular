@@ -5,7 +5,7 @@
 
 package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,18 +16,37 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
-public class llamadorApi {
-    private static llamadorApi instance;
+public class LlamadorApi {
+    private static LlamadorApi instance;
     private final String basePath = "https://api.spoonacular.com";
     private final ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
-    public static llamadorApi getInstance() {
+    public static LlamadorApi getInstance() {
         if (instance == null) {
-            instance = new llamadorApi();
+            instance = new LlamadorApi();
         }
         return instance;
     }
 
+    /**
+     * Llama a está api en otro hilo https://spoonacular.com/food-api/docs#Ingredient-Search
+     *
+     * @param query             Peticion de búsqueda por ejemplo "apple"
+     * @param addChildren       Si quieres añadir los hijos de la busqueda
+     * @param minProteinPercent Mínimo de proteinas (entre 0 y 100)
+     * @param maxProteinPercent Maximo de proteínas sobre (entre 0 y 100)100%
+     * @param minFatPercent     Mínimo de grasas (entre 0 y 100)
+     * @param maxFatPercent     Máximo de grasas (entre 0 y 100)
+     * @param minCarbsPercent   Mínimo de hidratos de carbono (entre 0 y 100)
+     * @param maxCarbsPercent   Máximo de hidratos de carbono (entre 0 y 100)
+     * @param metaInformation   Información extra del ingrediente
+     * @param intolerances      lista de intolerancias separadas con coma
+     * @param sort              tipo de ordenado
+     * @param sortDirection     dirección de ordenado asc o desc
+     * @param offset            Cuantos resultados se tiene que saltar
+     * @param number            números de resultados devueltos
+     * @return
+     */
     public FutureTask<Ingredientes> busquedaIngredientesEnHiloGenerado(String query, Boolean addChildren,
                                                                        Double minProteinPercent, Double maxProteinPercent,
                                                                        Double minFatPercent, Double maxFatPercent,
@@ -59,7 +78,7 @@ public class llamadorApi {
                                              String sortDirection, Double offset, Integer number)
             throws ApiException {
         String respuesta = busquedaIngredientesEnJSONStringHiloPrincipal(query, addChildren, minProteinPercent, maxProteinPercent, minFatPercent, maxFatPercent, minCarbsPercent, maxCarbsPercent, metaInformation, intolerances, sort, sortDirection, offset, number);
-        return JsonUtil.deserializeIngredients(respuesta);
+        return JsonUtil.deserializarIngredientes(respuesta);
 
     }
 
@@ -100,6 +119,34 @@ public class llamadorApi {
         return apiInvoker.invokeAPI(basePath, localVarPath, "GET",
                 localVarQueryParams, localVarHeaderParams);
 
+
+    }
+
+
+    /**
+     * LLama a está API https://spoonacular.com/food-api/docs#Get-Ingredient-Information
+     *
+     * @param id     identificador del ingrediente, 9266 es la piña por ejemplo
+     * @param amount cantidad para realizar operaciones de precio entre otras
+     * @param unit   unidad de medida: "grams", "piece", "slice", "fruit", "oz", "cup", "serbing"
+     * @return respuesta json
+     * @throws ApiException
+     */
+    public String obtenerInformacionIngrediente(Integer id, Double amount, String unit) throws ApiException {
+        if (id == null) {
+            throw new ApiException(400, "Missing the required parameter 'id' when calling getIngredientInformation");
+        }
+
+        String localVarPath = "/food/ingredients/{id}/information".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<>();
+        Map<String, String> localVarHeaderParams = new HashMap<>();
+
+        localVarQueryParams.addAll(ApiInvoker.parameterToPairs("", "amount", amount));
+        localVarQueryParams.addAll(ApiInvoker.parameterToPairs("", "unit", unit));
+
+        return apiInvoker.invokeAPI(basePath, localVarPath, "GET",
+                localVarQueryParams, localVarHeaderParams);
 
     }
 

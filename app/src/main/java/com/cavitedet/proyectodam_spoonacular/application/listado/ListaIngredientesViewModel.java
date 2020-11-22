@@ -3,7 +3,7 @@ package com.cavitedet.proyectodam_spoonacular.application.listado;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
 
 public class ListaIngredientesViewModel extends ViewModel {
 

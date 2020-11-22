@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cavitedet.proyectodam_spoonacular.R;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.usecases.ObtenerListadoDeIngredientesUsecase;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.CheckNetworkAccess;
 
@@ -37,7 +37,7 @@ public class ActividadDeListado extends AppCompatActivity {
         Ingredientes ingredientes = devolverIngredientesDelIntent();
         if (ingredientes == null) return;
 
-        if (ingredientes.getIngredienteList().isEmpty()) {
+        if (ingredientes.getListaIngredientes().isEmpty()) {
             mensajeError.setText(getString(R.string.error_no_resultado));
 
         } else {

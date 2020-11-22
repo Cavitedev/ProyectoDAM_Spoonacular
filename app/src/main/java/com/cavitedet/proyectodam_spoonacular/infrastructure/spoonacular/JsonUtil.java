@@ -5,8 +5,9 @@
 
 package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingrediente;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingrediente;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.IngredienteDetallado;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -37,15 +38,18 @@ public class JsonUtil {
         }.getType());
     }
 
-    public static Ingrediente deserializeIngredient(String jsonString) {
+    public static Ingrediente deserializarIngrediente(String jsonString) {
         return getGson().fromJson(jsonString, new TypeToken<Ingrediente>() {
         }.getType());
     }
 
-    public static Ingredientes deserializeIngredients(String jsonString) {
+    public static Ingredientes deserializarIngredientes(String jsonString) {
         return getGson().fromJson(jsonString, new TypeToken<Ingredientes>() {
         }.getType());
     }
 
-
+    public static IngredienteDetallado deserializarIngredienteDetallado(String jsonString) {
+        return getGson().fromJson(jsonString, new TypeToken<IngredienteDetallado>() {
+        }.getType());
+    }
 }

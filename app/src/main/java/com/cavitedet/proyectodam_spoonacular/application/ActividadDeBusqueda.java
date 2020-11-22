@@ -17,13 +17,9 @@ import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.application.listado.ActividadDeListado;
 import com.cavitedet.proyectodam_spoonacular.application.util.AccionesEnPantalla;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.CheckNetworkAccess;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.DefaultApi;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -81,29 +77,23 @@ public class ActividadDeBusqueda extends AppCompatActivity {
                 return;
             }
 
-            Callable<String> callIngredientes = new Callable() {
-                @Override
-                public String call() throws ApiException {
-                    return DefaultApi.getInstance().busquedaIngredientesEnJSONString(
-                            textoBusqueda.getText().toString(),
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            10);
-                }
-            };
-            ExecutorService executor = Executors.newFixedThreadPool(1);
-            FutureTask<String> futureTask = new FutureTask<>(callIngredientes);
-            executor.submit(futureTask);
+            FutureTask<String> futureTask = DefaultApi.getInstance().busquedaIngredientesEnJSONStringHiloGenerado(
+                    textoBusqueda.getText().toString(),
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    10
+            );
+
 
             String ingredientesEnJson = futureTask.get(10, TimeUnit.SECONDS);
 

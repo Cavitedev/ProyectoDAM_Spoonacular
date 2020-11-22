@@ -19,6 +19,7 @@
             android:layout_weight="1" />
 
     <ImageView
+            android:id="@+id/imagen_ingrediente"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:scaleType="fitXY"

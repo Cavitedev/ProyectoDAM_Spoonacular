@@ -1,7 +1,7 @@
 package com.cavitedet.proyectodam_spoonacular.infrastructure;
 
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredients;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.DefaultApi;
 
@@ -36,7 +36,7 @@ public class SearchRecipesApiTest {
     }
 
     private void searchIngredient(String query, Integer number, Integer expectedCount, String sort, String dir) throws ApiException {
-        Ingredients result = DefaultApi.getInstance().ingredientSearch(query, null, null, null,
+        Ingredientes result = DefaultApi.getInstance().ingredientSearch(query, null, null, null,
                 null, null, null, null,
                 null, null, sort, dir, null,
                 number);

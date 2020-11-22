@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Ingredients {
+public class Ingredientes {
 
     @SerializedName("results")
-    private List<Ingredient> ingredientList;
+    private List<Ingrediente> ingredienteList;
 
     @SerializedName("offset")
     private Integer offset;
@@ -18,12 +18,12 @@ public class Ingredients {
     @SerializedName("totalResults")
     private Integer totalResults;
 
-    public List<Ingredient> getIngredientList() {
-        return ingredientList;
+    public List<Ingrediente> getIngredienteList() {
+        return ingredienteList;
     }
 
-    public void setIngredientList(List<Ingredient> ingredientList) {
-        this.ingredientList = ingredientList;
+    public void setIngredienteList(List<Ingrediente> ingredienteList) {
+        this.ingredienteList = ingredienteList;
     }
 
     public Integer getOffset() {
@@ -53,7 +53,7 @@ public class Ingredients {
     @Override
     public String toString() {
         return "Ingredients{" +
-                "ingredientList=" + ingredientList +
+                "ingredientList=" + ingredienteList +
                 ", offset=" + offset +
                 ", number=" + number +
                 ", totalResults=" + totalResults +

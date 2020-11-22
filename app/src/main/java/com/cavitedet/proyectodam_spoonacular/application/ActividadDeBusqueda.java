@@ -8,12 +8,15 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cavitedet.proyectodam_spoonacular.R;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredients;
+import com.cavitedet.proyectodam_spoonacular.application.util.AccionesEnPantalla;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.CheckNetworkAccess;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.DefaultApi;
 
@@ -29,6 +32,7 @@ public class ActividadDeBusqueda extends AppCompatActivity {
 
 
     private EditText textoBusqueda;
+    private TextView mensajeError;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -40,10 +44,15 @@ public class ActividadDeBusqueda extends AppCompatActivity {
 
 
         textoBusqueda = findViewById(R.id.busqueda_textoIngrediente);
+        mensajeError = findViewById(R.id.mensaje_error);
         Button botonBusqueda = findViewById(R.id.boton_busqueda);
 
 
-        textoBusqueda.addTextChangedListener(new TextWatcher() {
+        textoBusqueda.addTextChangedListener(deshabilitarBotonSiNoHayTexto(botonBusqueda));
+    }
+
+    private TextWatcher deshabilitarBotonSiNoHayTexto(Button botonBusqueda) {
+        return new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -51,26 +60,30 @@ public class ActividadDeBusqueda extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length() == 0) {
-                    botonBusqueda.setEnabled(false);
-                } else {
-                    botonBusqueda.setEnabled(true);
-                }
+                botonBusqueda.setEnabled(charSequence.length() != 0);
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
 
             }
-        });
+        };
     }
 
 
     public void buscarIngrediente(View view) {
         try {
-            Callable<Ingredients> callIngredientes = new Callable() {
+
+
+            if (!CheckNetworkAccess.isNetworkConnected(this)) {
+                AccionesEnPantalla.esconderTeclado(ActividadDeBusqueda.this);
+                mensajeError.setText(getString(R.string.error_no_internet));
+                return;
+            }
+
+            Callable<Ingredientes> callIngredientes = new Callable() {
                 @Override
-                public Ingredients call() throws ApiException {
+                public Ingredientes call() throws ApiException {
                     return DefaultApi.getInstance().ingredientSearch(
                             textoBusqueda.getText().toString(),
                             null,
@@ -89,27 +102,27 @@ public class ActividadDeBusqueda extends AppCompatActivity {
                 }
             };
             ExecutorService executor = Executors.newFixedThreadPool(1);
-            FutureTask<Ingredients> futureTask = new FutureTask<>(callIngredientes);
+            FutureTask<Ingredientes> futureTask = new FutureTask<>(callIngredientes);
             executor.submit(futureTask);
-            Ingredients ingredients = futureTask.get(10, TimeUnit.SECONDS);
 
-            while (true) {
-                if (futureTask.isDone()) {
-                    if (ingredients != null) {
-                        Intent listadoIngredientesIntent = new Intent(this, ActividadDeListado.class);
-                        startActivity(listadoIngredientesIntent);
-                    }
-                }
-                break;
+            Ingredientes ingredientes = futureTask.get(10, TimeUnit.SECONDS);
+
+
+            if (ingredientes != null) {
+                Intent listadoIngredientesIntent = new Intent(this, ActividadDeListado.class);
+                startActivity(listadoIngredientesIntent);
             }
 
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            AccionesEnPantalla.esconderTeclado(ActividadDeBusqueda.this);
+            mensajeError.setText(getString(R.string.error_ejecucción_api, textoBusqueda.getText().toString()));
         } catch (TimeoutException e) {
-            e.printStackTrace();
+            AccionesEnPantalla.esconderTeclado(ActividadDeBusqueda.this);
+            mensajeError.setText(getString(R.string.error_respuesta_api));
+        } catch (InterruptedException e) {
+            AccionesEnPantalla.esconderTeclado(ActividadDeBusqueda.this);
+            mensajeError.setText(getString(R.string.error_interrupcion_hilo_api));
         }
     }
 

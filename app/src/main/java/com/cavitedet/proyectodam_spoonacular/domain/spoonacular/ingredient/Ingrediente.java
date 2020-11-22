@@ -3,7 +3,7 @@ package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Ingredient {
+public class Ingrediente {
 
     @SerializedName("id")
     private Integer id;

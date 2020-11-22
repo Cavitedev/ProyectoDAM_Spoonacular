@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">ProyectoDAM_Spoonacular</string>
-    <string name="ingrediente_busqueda">Search ingredient</string>
+    <string name="ingrediente_busqueda">Buscar ingrediente (en inglés)</string>
     <string name="banana">banana</string>
-    <string name="busqueda">Search</string>
+    <string name="busqueda">Buscar</string>
+    <string name="error_ejecucción_api">\"No se pudo ejecutar la API con %s\"</string>
+    <string name="error_respuesta_api">No responde la API</string>
+    <string name="error_interrupcion_hilo_api">Se ha interrumpido el hilo de petición de datos</string>
+    <string name="error_no_internet">No hay internet</string>
 </resources>

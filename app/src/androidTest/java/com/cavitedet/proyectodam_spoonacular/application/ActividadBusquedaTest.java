@@ -35,11 +35,15 @@ public class ActividadBusquedaTest {
     @Test
     public void buscarBanana_encuentraBanana() {
         Espresso.onView(ViewMatchers.withId(R.id.busqueda_textoIngrediente)).perform(ViewActions.typeText("banana"));
-        Espresso.closeSoftKeyboard();
 
         Espresso.onView(ViewMatchers.withId(R.id.boton_busqueda)).perform(ViewActions.click());
 
         Espresso.onView(ViewMatchers.withId(R.id.listaLinearLayoutPadre)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+
+    @Test
+    public void noInternet_errorInternet() {
+
     }
 
 

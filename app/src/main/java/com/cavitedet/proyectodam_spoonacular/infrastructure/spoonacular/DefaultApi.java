@@ -5,7 +5,7 @@
 
 package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredients;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class DefaultApi {
   }
 
 
-  public Ingredients ingredientSearch(String query, Boolean addChildren, BigDecimal minProteinPercent, BigDecimal maxProteinPercent, BigDecimal minFatPercent, BigDecimal maxFatPercent, BigDecimal minCarbsPercent, BigDecimal maxCarbsPercent, Boolean metaInformation, String intolerances, String sort, String sortDirection, BigDecimal offset, Integer number) throws ApiException {
+  public Ingredientes ingredientSearch(String query, Boolean addChildren, BigDecimal minProteinPercent, BigDecimal maxProteinPercent, BigDecimal minFatPercent, BigDecimal maxFatPercent, BigDecimal minCarbsPercent, BigDecimal maxCarbsPercent, Boolean metaInformation, String intolerances, String sort, String sortDirection, BigDecimal offset, Integer number) throws ApiException {
     Object localVarPostBody = null;
     // verify the required parameter 'query' is set
     if (query == null) {

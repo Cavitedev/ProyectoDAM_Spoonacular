@@ -5,8 +5,8 @@
 
 package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredient;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredients;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingrediente;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -32,18 +32,18 @@ public class JsonUtil {
     }
 
 
-    public static List<Ingredient> deserializeIngredientList(String jsonString) {
-        return getGson().fromJson(jsonString, new TypeToken<List<Ingredient>>() {
+    public static List<Ingrediente> deserializeIngredientList(String jsonString) {
+        return getGson().fromJson(jsonString, new TypeToken<List<Ingrediente>>() {
         }.getType());
     }
 
-    public static Ingredient deserializeIngredient(String jsonString) {
-        return getGson().fromJson(jsonString, new TypeToken<Ingredient>() {
+    public static Ingrediente deserializeIngredient(String jsonString) {
+        return getGson().fromJson(jsonString, new TypeToken<Ingrediente>() {
         }.getType());
     }
 
-    public static Ingredients deserializeIngredients(String jsonString) {
-        return getGson().fromJson(jsonString, new TypeToken<Ingredients>() {
+    public static Ingredientes deserializeIngredients(String jsonString) {
+        return getGson().fromJson(jsonString, new TypeToken<Ingredientes>() {
         }.getType());
     }
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingrediente;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.ingredient.Ingredientes;
@@ -45,18 +46,21 @@ public class AdaptadorIngredientes extends RecyclerView.Adapter<AdaptadorIngredi
     class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        private TextView tituloIngrediente;
-        private ImageView imagenIngrediente;
+        private final TextView tituloIngrediente;
+        private final ImageView imagenIngrediente;
+        private View view;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tituloIngrediente = itemView.findViewById(R.id.nombre_ingrediente);
             imagenIngrediente = itemView.findViewById(R.id.imagen_ingrediente);
+            view = itemView;
         }
 
         public void asignarIngrediente(Ingrediente ingrediente) {
             tituloIngrediente.setText(ingrediente.getName());
-            imagenIngrediente.setImageResource(R.drawable.ic_launcher_foreground);
+            String urlImagen = context.getString(R.string.image_url_prefix, ingrediente.getImage());
+            Glide.with(view).load(urlImagen).into(imagenIngrediente);
         }
 
 

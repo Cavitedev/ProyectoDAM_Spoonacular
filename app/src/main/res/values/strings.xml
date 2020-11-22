@@ -9,4 +9,5 @@
     <string name="error_no_internet">No hay internet</string>
     <string name="imagen_ingrediente">imagen_ingrediente</string>
     <string name="intent_ingredientes">Ingredientes</string>
+    <string name="image_url_prefix">https://spoonacular.com/cdn/ingredients_500x500/%s</string>
 </resources>

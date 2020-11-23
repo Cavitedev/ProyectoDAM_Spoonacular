@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.cavitedet.proyectodam_spoonacular.R;
-import com.cavitedet.proyectodam_spoonacular.domain.excepciones.ExcepcionEnPreferencias;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.IngredienteDetallado;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ValorEstimado;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.usecases.ObtenerDetallesIngredienteUsecase;
@@ -50,13 +49,10 @@ public class ActividadDetalles extends AppCompatActivity {
             precioIngrediente.setText(getString(R.string.precio_ingrediente, valorEstimado.valorFormateado()));
             categoriaIngrediente.setText(getString(R.string.categoria_ingrediente, ingredienteDetallado.getCaminoDeCategorias().get(0)));
 
-            try {
-                String urlImagen = ConversorImagen.imagenAUrl(ingredienteDetallado.getImagen(), this);
-                Glide.with(this).load(urlImagen).into(imagenIngrediente);
-            } catch (ExcepcionEnPreferencias excepcionEnPreferencias) {
-                //TODO añadir pop up para elegir resolucion
-                excepcionEnPreferencias.printStackTrace();
-            }
+
+            String urlImagen = ConversorImagen.imagenAUrl(ingredienteDetallado.getImagen(), this);
+            Glide.with(this).load(urlImagen).into(imagenIngrediente);
+
         }
 
     }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.cavitedet.proyectodam_spoonacular.R;
-import com.cavitedet.proyectodam_spoonacular.domain.excepciones.ExcepcionEnPreferencias;
 
 public class ConversorImagen {
 
@@ -17,16 +16,17 @@ public class ConversorImagen {
      * @param imagen   Final de la url
      * @param contexto contexto para sacar las preferencias
      * @return url completa a la que descargar la imágen
-     * @throws ExcepcionEnPreferencias si no encuentra el valor en los sharedPreferences salta un error
      */
-    public static String imagenAUrl(String imagen, Context contexto) throws ExcepcionEnPreferencias {
+    public static String imagenAUrl(String imagen, Context contexto) {
         SharedPreferences preferenciasCompartidas = contexto.getSharedPreferences(contexto.getString(R.string.mis_preferencias), Context.MODE_PRIVATE);
         int idResolucion = preferenciasCompartidas.getInt(contexto.getString(R.string.resolucion_imagen), -1);
+        Resolucion resolucion = Resolucion.GRANDE;
         if (idResolucion == -1) {
-            throw new ExcepcionEnPreferencias(contexto.getString(R.string.resolucion_imagen));
+            guardarEnPreferenciasResolucion(Resolucion.GRANDE, contexto);
+        } else {
+            resolucion = tamanoDesdeNum(idResolucion);
         }
 
-        Resolucion resolucion = tamanoDesdeNum(idResolucion);
         switch (resolucion) {
             case PEQUENO:
                 return prefijoUrl + pequeno + imagen;

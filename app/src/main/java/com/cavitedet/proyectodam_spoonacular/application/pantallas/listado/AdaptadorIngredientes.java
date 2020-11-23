@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.application.pantallas.detalles.ActividadDetalles;
-import com.cavitedet.proyectodam_spoonacular.domain.excepciones.ExcepcionEnPreferencias;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingrediente;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.ConversorImagen;
@@ -66,13 +65,7 @@ public class AdaptadorIngredientes extends RecyclerView.Adapter<AdaptadorIngredi
         public void asignarIngrediente(Ingrediente ingrediente) {
             ingredienteID = ingrediente.getId();
             tituloIngrediente.setText(ingrediente.getNombre());
-            String urlImagen = null;
-            try {
-                urlImagen = ConversorImagen.imagenAUrl(ingrediente.getImagen(), context);
-            } catch (ExcepcionEnPreferencias excepcionEnPreferencias) {
-                //TODO añadir pop up para elegir resolucion
-                excepcionEnPreferencias.printStackTrace();
-            }
+            String urlImagen = ConversorImagen.imagenAUrl(ingrediente.getImagen(), context);
             Glide.with(view).load(urlImagen).into(imagenIngrediente);
         }
 

@@ -4,13 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.cavitedet.proyectodam_spoonacular.R;
-import com.cavitedet.proyectodam_spoonacular.domain.excepciones.ExcepcionEnPreferencias;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.ConversorImagen;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.function.ThrowingRunnable;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -46,27 +44,20 @@ public class ConversorImagenTest {
 
         ConversorImagen.guardarEnPreferenciasResolucion(ConversorImagen.Resolucion.PEQUENO, contexto);
 
-        Mockito.verify(contexto.getSharedPreferences(contexto.getString(R.string.mis_preferencias),
-                Context.MODE_PRIVATE).edit()).putInt(contexto.getString(R.string.resolucion_imagen), 0);
+        Mockito.verify(editor).putInt(contexto.getString(R.string.resolucion_imagen), 0);
 
     }
 
     @Test
-    public void excepcionCuandoPreferenciaNoEsEncontrada() {
+    public void tamanoGrandeSiNoEstaEspecificado() {
 
         Mockito.when(preferencias.getInt(MIRESOLUCION, -1)).thenReturn(-1);
-        ThrowingRunnable ejecuccion = new ThrowingRunnable() {
-            @Override
-            public void run() throws Throwable {
-                ConversorImagen.imagenAUrl("imagen", contexto);
-            }
-        };
-        Assert.assertThrows(ExcepcionEnPreferencias.class,
-                ejecuccion);
+        ConversorImagen.imagenAUrl("imagen", contexto);
+        Mockito.verify(editor).putInt(contexto.getString(R.string.resolucion_imagen), 2);
     }
 
     @Test
-    public void urlCorrectaConPreferenciasEnPequeño() throws ExcepcionEnPreferencias {
+    public void urlCorrectaConPreferenciasEnPequeno() {
         Mockito.when(preferencias.getInt(MIRESOLUCION, -1)).thenReturn(0);
         String esperado = "https://spoonacular.com/cdn/ingredients_100x100/imagen";
         Assert.assertEquals(esperado, ConversorImagen.imagenAUrl("imagen", contexto));

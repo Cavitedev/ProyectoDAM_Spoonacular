@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.application.pantallas.listado.ActividadDeListado;
 import com.cavitedet.proyectodam_spoonacular.application.utilidades.AccionesEnPantalla;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.ConversorImagen;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.CheckNetworkAccess;
 
 public class ActividadDeBusqueda extends AppCompatActivity {
@@ -33,7 +32,6 @@ public class ActividadDeBusqueda extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actividad_de_busqueda);
 
-        ConversorImagen.guardarEnPreferenciasResolucion(ConversorImagen.Resolucion.GRANDE, this);
 
         textoBusqueda = findViewById(R.id.busqueda_textoIngrediente);
         mensajeError = findViewById(R.id.mensaje_error);

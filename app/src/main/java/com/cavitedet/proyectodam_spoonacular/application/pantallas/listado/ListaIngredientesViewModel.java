@@ -1,4 +1,4 @@
-package com.cavitedet.proyectodam_spoonacular.application.listado;
+package com.cavitedet.proyectodam_spoonacular.application.pantallas.listado;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

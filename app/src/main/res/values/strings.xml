@@ -11,10 +11,11 @@
     <string name="error_recibir_intent">Error al recibir datos del intent con nombre %s</string>
     <string name="imagen_ingrediente">imagen_ingrediente</string>
     <string name="intent_peticion_ingredientes">ingredientes_query</string>
-    <string name="image_url_prefix">https://spoonacular.com/cdn/ingredients_500x500/%s</string>
     <string name="error_no_resultado">Error no se ha encontrado ningun resultado</string>
-    <string name="ingrediente_id">ingrediente_id</string>
-    <string name="nombre_ingrediente">Nombre:%s</string>
-    <string name="precio_ingrediente">Precio:%s</string>
-    <string name="categoria_ingrediente">Categoria:%s</string>
+    <string name="intent_ingrediente_id">ingrediente_id</string>
+    <string name="nombre_ingrediente">Nombre: %s</string>
+    <string name="precio_ingrediente">Precio: %s</string>
+    <string name="categoria_ingrediente">Categoria: %s</string>
+    <string name="mis_preferencias">mis_preferencias</string>
+    <string name="resolucion_imagen">resolucion_imagen</string>
 </resources>

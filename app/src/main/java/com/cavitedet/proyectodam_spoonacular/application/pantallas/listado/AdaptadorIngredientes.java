@@ -1,4 +1,4 @@
-package com.cavitedet.proyectodam_spoonacular.application.listado;
+package com.cavitedet.proyectodam_spoonacular.application.pantallas.listado;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cavitedet.proyectodam_spoonacular.R;
-import com.cavitedet.proyectodam_spoonacular.application.detalles.ActividadDetalles;
+import com.cavitedet.proyectodam_spoonacular.application.pantallas.detalles.ActividadDetalles;
+import com.cavitedet.proyectodam_spoonacular.domain.excepciones.ExcepcionEnPreferencias;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingrediente;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.ConversorImagen;
 
 public class AdaptadorIngredientes extends RecyclerView.Adapter<AdaptadorIngredientes.ViewHolder> {
 
@@ -64,7 +66,13 @@ public class AdaptadorIngredientes extends RecyclerView.Adapter<AdaptadorIngredi
         public void asignarIngrediente(Ingrediente ingrediente) {
             ingredienteID = ingrediente.getId();
             tituloIngrediente.setText(ingrediente.getNombre());
-            String urlImagen = context.getString(R.string.image_url_prefix, ingrediente.getImagen());
+            String urlImagen = null;
+            try {
+                urlImagen = ConversorImagen.imagenAUrl(ingrediente.getImagen(), context);
+            } catch (ExcepcionEnPreferencias excepcionEnPreferencias) {
+                //TODO añadir pop up para elegir resolucion
+                excepcionEnPreferencias.printStackTrace();
+            }
             Glide.with(view).load(urlImagen).into(imagenIngrediente);
         }
 
@@ -72,7 +80,7 @@ public class AdaptadorIngredientes extends RecyclerView.Adapter<AdaptadorIngredi
         @Override
         public void onClick(View view) {
             Intent paginaDetallesIntent = new Intent(context, ActividadDetalles.class);
-            paginaDetallesIntent.putExtra(context.getString(R.string.ingrediente_id), ingredienteID);
+            paginaDetallesIntent.putExtra(context.getString(R.string.intent_ingrediente_id), ingredienteID);
             context.startActivity(paginaDetallesIntent);
         }
     }

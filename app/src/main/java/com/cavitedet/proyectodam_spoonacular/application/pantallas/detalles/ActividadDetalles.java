@@ -1,15 +1,20 @@
-package com.cavitedet.proyectodam_spoonacular.application.detalles;
+package com.cavitedet.proyectodam_spoonacular.application.pantallas.detalles;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.cavitedet.proyectodam_spoonacular.R;
+import com.cavitedet.proyectodam_spoonacular.domain.excepciones.ExcepcionEnPreferencias;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.IngredienteDetallado;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ValorEstimado;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.usecases.ObtenerDetallesIngredienteUsecase;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.ConversorImagen;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.CheckNetworkAccess;
 
 import java.util.concurrent.ExecutionException;
@@ -25,6 +30,7 @@ public class ActividadDetalles extends AppCompatActivity {
     private TextView nombreIngrediente;
     private TextView precioIngrediente;
     private TextView categoriaIngrediente;
+    private ImageView imagenIngrediente;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,23 +40,33 @@ public class ActividadDetalles extends AppCompatActivity {
         nombreIngrediente = findViewById(R.id.nombre_ingrediente);
         precioIngrediente = findViewById(R.id.valor_estimado);
         categoriaIngrediente = findViewById(R.id.categoria);
+        imagenIngrediente = findViewById(R.id.imagen_ingrediente);
 
         IngredienteDetallado ingredienteDetallado = devolverIngredienteDetalladoDelIntent();
 
         if (ingredienteDetallado != null) {
             nombreIngrediente.setText(getString(R.string.nombre_ingrediente, ingredienteDetallado.getNombre()));
-            precioIngrediente.setText(getString(R.string.precio_ingrediente, ingredienteDetallado.getValorEstimado()));
+            ValorEstimado valorEstimado = ingredienteDetallado.getValorEstimado();
+            precioIngrediente.setText(getString(R.string.precio_ingrediente, valorEstimado.valorFormateado()));
             categoriaIngrediente.setText(getString(R.string.categoria_ingrediente, ingredienteDetallado.getCaminoDeCategorias().get(0)));
+
+            try {
+                String urlImagen = ConversorImagen.imagenAUrl(ingredienteDetallado.getImagen(), this);
+                Glide.with(this).load(urlImagen).into(imagenIngrediente);
+            } catch (ExcepcionEnPreferencias excepcionEnPreferencias) {
+                //TODO añadir pop up para elegir resolucion
+                excepcionEnPreferencias.printStackTrace();
+            }
         }
 
     }
 
     private IngredienteDetallado devolverIngredienteDetalladoDelIntent() {
-        Integer idIngrediente = getIntent().getIntExtra(getString(R.string.ingrediente_id), 0);
+        Integer idIngrediente = getIntent().getIntExtra(getString(R.string.intent_ingrediente_id), 0);
 
         if (idIngrediente == 0) {
             mensajeError.setVisibility(View.VISIBLE);
-            mensajeError.setText(getString(R.string.error_recibir_intent, getString(R.string.ingrediente_id)));
+            mensajeError.setText(getString(R.string.error_recibir_intent, getString(R.string.intent_ingrediente_id)));
             return null;
         }
         try {

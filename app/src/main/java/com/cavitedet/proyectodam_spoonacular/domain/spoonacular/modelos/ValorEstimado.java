@@ -33,4 +33,8 @@ public class ValorEstimado {
                 ", unidad='" + unidad + '\'' +
                 '}';
     }
+
+    public String valorFormateado() {
+        return valor + " " + unidad;
+    }
 }

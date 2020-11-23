@@ -1,4 +1,4 @@
-package com.cavitedet.proyectodam_spoonacular.application.util;
+package com.cavitedet.proyectodam_spoonacular.application.utilidades;
 
 import android.app.Activity;
 import android.view.inputmethod.InputMethodManager;

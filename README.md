@@ -22,7 +22,7 @@ En la pantalla principal se mostrará un `EditText` pidiendo el nombre (en ingl�
 
 ### 2) Lista de ingredientes
 
-Una vez cargado mediante un `RecylerView` la lista de ingredientes que con un menú en el `actionbar` que te dará opciones de cambiar la dirección de los elementos mostrados (ascendente descendente), otra para ir a la pantalla de [filtrado](#4-filtraje-de-ingredientes), y la última para ir una pantalla de [ordenado](#5-ordenado-de-ingredientes) con los `SharedPreferences` actualizados en estos casos para cambiar la petición de la [API](https://spoonacular.com/food-api/docs#Ingredient-Search) al volver. Además cada ingrediente se debe poder pulsar y entrar en una ventana con [información adicional del ingrediente](#3-detalles-del-ingrediente)
+Una vez cargado mediante un `RecylerView` la lista de ingredientes que con un menú en el `actionbar` que te dará opciones de cambiar la dirección de los elementos mostrados (ascendente descendente), otra para ir a la pantalla de [filtrado](#4-filtraje-de-ingredientes), y la última para ir una pantalla de [ordenado](#5-ordenado-de-ingredientes) para cambiar la petición de la [API](https://spoonacular.com/food-api/docs#Ingredient-Search) al volver. Además cada ingrediente se debe poder pulsar y entrar en una ventana con [información adicional del ingrediente](#3-detalles-del-ingrediente)
 
 Así se está viendo
 ![Lista imagen](/resources/captura_lista.png)
@@ -38,6 +38,10 @@ En esta ventana habrá varios `SeekBar` para filtrar por el mínimo y máximo de
 ### 5) Ordenado de ingredientes
 
 Se mostrará muchos `RadioButton` con las opciones de ordenador que aparecen en esta [página](https://spoonacular.com/food-api/docs#Recipe-Sorting-Options) de aquí solo se podrá volver a la [lista de ingredientes](#2-lista-de-ingredientes) 
+
+### 6) pop-up de resolución
+
+En los `SharedPreferences` se guardará la resolución que querrá el usuario siendo la pequeña 100x100, la mediana 250x250 y la grande 500x500
 
 ## Estructura
 

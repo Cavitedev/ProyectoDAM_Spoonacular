@@ -13,8 +13,8 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import com.cavitedet.proyectodam_spoonacular.R;
-import com.cavitedet.proyectodam_spoonacular.application.detalles.ActividadDetalles;
-import com.cavitedet.proyectodam_spoonacular.application.listado.ActividadDeListado;
+import com.cavitedet.proyectodam_spoonacular.application.pantallas.detalles.ActividadDetalles;
+import com.cavitedet.proyectodam_spoonacular.application.pantallas.listado.ActividadDeListado;
 import com.cavitedet.proyectodam_spoonacular.utils.MyMatchers;
 
 import org.junit.Before;

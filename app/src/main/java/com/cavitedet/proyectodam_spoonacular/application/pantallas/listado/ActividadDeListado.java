@@ -1,4 +1,4 @@
-package com.cavitedet.proyectodam_spoonacular.application.listado;
+package com.cavitedet.proyectodam_spoonacular.application.pantallas.listado;
 
 import android.os.Bundle;
 import android.widget.TextView;

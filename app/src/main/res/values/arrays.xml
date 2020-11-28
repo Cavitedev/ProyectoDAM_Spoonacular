@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="ordenados_mostrar">
+        <item>Calorias</item>
+        <item>Proteinas</item>
+        <item>Grasas</item>
+        <item>Carbohidratos</item>
+    </array>
+
+    <array name="ordenados_api">
+        <item>calories</item>
+        <item>protein</item>
+        <item>total-fat</item>
+        <item>carbs</item>
+    </array>
+</resources>

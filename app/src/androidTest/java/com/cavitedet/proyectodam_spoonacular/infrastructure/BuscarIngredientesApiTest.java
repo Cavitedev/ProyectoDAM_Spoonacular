@@ -1,6 +1,11 @@
 package com.cavitedet.proyectodam_spoonacular.infrastructure;
 
 
+import android.content.Context;
+
+import androidx.test.platform.app.InstrumentationRegistry;
+
+import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.LlamadorApi;
@@ -33,6 +38,35 @@ public class BuscarIngredientesApiTest {
 
         buscarIngredientes("banana", 10, 13, null, null);
 
+    }
+
+    @Test
+    public void probarTodosOrdenados() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        String[] tiposDeOrdenado = context.getResources().getStringArray(R.array.ordenados_api);
+
+        boolean excepcion = false;
+        for (int i = 0; i < tiposDeOrdenado.length; i++) {
+
+            try {
+                Ingredientes result = LlamadorApi.getInstance().busquedaIngredientes("banana", null, null, null,
+                        null, null, null, null,
+                        null, null, tiposDeOrdenado[i], "desc", null,
+                        1);
+            } catch (ApiException e) {
+                excepcion = true;
+                break;
+            }
+        }
+        MatcherAssert.assertThat(excepcion, Matchers.is(false));
+    }
+
+    @Test
+    public void asegurarTamanosOrdenadosEsIgual() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        String[] tiposDeOrdenadoApi = context.getResources().getStringArray(R.array.ordenados_api);
+        String[] tiposDeOrdenadoEspanol = context.getResources().getStringArray(R.array.ordenados_mostrar);
+        MatcherAssert.assertThat(tiposDeOrdenadoApi.length, Matchers.equalTo(tiposDeOrdenadoEspanol.length));
     }
 
 

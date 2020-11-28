@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-            android:id="@+id/menu_cambiar_orden"
-            android:title="@string/cambiar_orden">
+            android:id="@+id/menu_cambiar_dir_orden"
+            android:title="@string/cambiar_orden"></item>
 
+    <item
+            android:id="@+id/menu_cambiar_ordenado"
+            android:title="@string/cambiar_ordenado"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
 
-    </item>
+            app:showAsAction="ifRoom" />
 </menu>

@@ -22,4 +22,7 @@
     <string name="cantidad">Cantidad</string>
     <string name="porcentaje">Porcentaje Diario</string>
     <string name="cambiar_orden">Cambiar orden asc/desc</string>
+    <string name="cambiar_ordenado">Cambiar ordenado</string>
+    <string name="selecciona_orden">Selecciona Orden</string>
+    <string name="aceptar">Aceptar</string>
 </resources>

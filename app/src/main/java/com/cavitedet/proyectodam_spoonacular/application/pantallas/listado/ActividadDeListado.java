@@ -20,7 +20,7 @@ import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-public class ActividadDeListado extends AppCompatActivity {
+public class ActividadDeListado extends AppCompatActivity implements DialogoDeOrdenado.DialogoOrdenadoRespuesta {
 
 
     private TextView mensajeError;
@@ -66,7 +66,6 @@ public class ActividadDeListado extends AppCompatActivity {
     private Ingredientes devolverIngredientesDelIntent() {
 
 
-
         try {
             if (!CheckNetworkAccess.isNetworkConnected(this)) {
                 mensajeError.setText(getString(R.string.error_no_internet));
@@ -96,10 +95,19 @@ public class ActividadDeListado extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.menu_cambiar_orden) {
+        if (item.getItemId() == R.id.menu_cambiar_dir_orden) {
             listadoUsecase.cambiarDireccionOrdenado();
             refrescarIngredientes();
+        } else if (item.getItemId() == R.id.menu_cambiar_ordenado) {
+            DialogoDeOrdenado dialogoDeOrdenado = new DialogoDeOrdenado(listadoUsecase.getSort());
+            dialogoDeOrdenado.show(getSupportFragmentManager(), getString(R.string.cambiar_ordenado));
         }
         return true;
+    }
+
+    @Override
+    public void alAceptar(String respuesta) {
+        listadoUsecase.setSort(respuesta);
+        refrescarIngredientes();
     }
 }

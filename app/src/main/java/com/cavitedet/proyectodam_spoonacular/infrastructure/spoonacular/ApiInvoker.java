@@ -181,7 +181,7 @@ public class ApiInvoker {
             if ("GET".equals(method)) {
 
 
-                pageUrl = new URL(url + "&apiKey=" + Secrets.apiKey);
+                pageUrl = new URL(url + "&apiKey=" + Secrets.getApiKey());
 
 
             }

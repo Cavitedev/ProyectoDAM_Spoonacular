@@ -1,126 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/detalles_ingrediente_padre"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="#FFF092">
+
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:paddingHorizontal="@dimen/margen_borde_horizontal"
-            android:layout_marginVertical="@dimen/margen_vertical_entre_elementos"
-            android:background="#FFBC57"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
         <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingVertical="@dimen/margen_vertical_entre_elementos">
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:paddingHorizontal="@dimen/margen_borde_horizontal"
+                android:layout_marginVertical="@dimen/margen_vertical_entre_elementos"
+                android:background="#FFBC57"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingVertical="@dimen/margen_vertical_entre_elementos">
+
+                <TextView
+                        android:id="@+id/nombre_ingrediente"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="@string/nombre_ingrediente"
+                        android:gravity="top"
+                        android:textSize="@dimen/tamano_texto_mediano"
+                        android:textColor="#000" />
+
+                <TextView
+                        android:id="@+id/valor_estimado"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="@string/precio_ingrediente"
+                        android:gravity="top"
+                        android:textSize="@dimen/tamano_texto_mediano"
+                        android:textColor="#000" />
+
+                <TextView
+                        android:id="@+id/categoria"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="@string/categoria_ingrediente"
+                        android:gravity="top"
+                        android:textSize="@dimen/tamano_texto_mediano"
+                        android:textColor="#000" />
+            </LinearLayout>
+
+
+            <ImageView
+                    android:id="@+id/imagen_ingrediente"
+                    android:paddingVertical="@dimen/margen_vertical_entre_elementos"
+                    android:layout_width="210dp"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/ic_launcher"
+                    android:contentDescription="@string/imagen_ingrediente" />
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/mensaje_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:gravity="center"
+                android:textColor="#f00"
+                android:textSize="@dimen/tamano_texto_mediano"
+                android:textStyle="bold" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:layout_marginVertical="@dimen/margen_vertical_entre_elementos"
+                android:background="@drawable/border"
+                android:layout_marginHorizontal="@dimen/margen_borde_horizontal">
 
             <TextView
-                    android:id="@+id/nombre_ingrediente"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="@string/nombre_ingrediente"
-                    android:gravity="top"
+                    android:id="@+id/titulo_propiedad"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/nutriente"
                     android:textSize="@dimen/tamano_texto_mediano"
-                    android:textColor="#000" />
+                    android:background="@drawable/border"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:gravity="center" />
 
             <TextView
-                    android:id="@+id/valor_estimado"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="@string/precio_ingrediente"
-                    android:gravity="top"
+                    android:id="@+id/titulo_antidad"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/cantidad"
+                    android:background="@drawable/border"
+                    android:textStyle="bold"
                     android:textSize="@dimen/tamano_texto_mediano"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:gravity="center" />
 
             <TextView
-                    android:id="@+id/categoria"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="@string/categoria_ingrediente"
-                    android:gravity="top"
+                    android:id="@+id/titulo_porcentaje_diario"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border"
+                    android:text="@string/porcentaje"
+                    android:textStyle="bold"
                     android:textSize="@dimen/tamano_texto_mediano"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:gravity="center" />
         </LinearLayout>
 
 
-        <ImageView
-                android:id="@+id/imagen_ingrediente"
-                android:paddingVertical="@dimen/margen_vertical_entre_elementos"
-                android:layout_width="210dp"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher"
-                android:contentDescription="@string/imagen_ingrediente" />
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/propiedades_ingrediente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 
-    <TextView
-            android:id="@+id/mensaje_error"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:gravity="center"
-            android:textColor="#f00"
-            android:textSize="@dimen/tamano_texto_mediano"
-            android:textStyle="bold" />
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal"
-            android:layout_marginVertical="@dimen/margen_vertical_entre_elementos"
-            android:background="@drawable/border"
-            android:layout_marginHorizontal="@dimen/margen_borde_horizontal">
-
-        <TextView
-                android:id="@+id/titulo_propiedad"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="@string/nutriente"
-                android:textSize="@dimen/tamano_texto_mediano"
-                android:background="@drawable/border"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:gravity="center" />
-
-        <TextView
-                android:id="@+id/titulo_antidad"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="@string/cantidad"
-                android:background="@drawable/border"
-                android:textStyle="bold"
-                android:textSize="@dimen/tamano_texto_mediano"
-                android:textColor="#000"
-                android:gravity="center" />
-
-        <TextView
-                android:id="@+id/titulo_porcentaje_diario"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/border"
-                android:text="@string/porcentaje"
-                android:textStyle="bold"
-                android:textSize="@dimen/tamano_texto_mediano"
-                android:textColor="#000"
-                android:gravity="center" />
-    </LinearLayout>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/propiedades_ingrediente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

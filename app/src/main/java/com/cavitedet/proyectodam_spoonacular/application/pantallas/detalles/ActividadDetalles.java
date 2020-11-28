@@ -55,6 +55,7 @@ public class ActividadDetalles extends AppCompatActivity {
 
             AdaptadorNutrientes adaptadorNutrientes = new AdaptadorNutrientes(this, ingredienteDetallado.getNutricion().getNutrientes());
             RecyclerView recyclerView = findViewById(R.id.propiedades_ingrediente);
+            recyclerView.setNestedScrollingEnabled(false);
             recyclerView.setAdapter(adaptadorNutrientes);
 
         }

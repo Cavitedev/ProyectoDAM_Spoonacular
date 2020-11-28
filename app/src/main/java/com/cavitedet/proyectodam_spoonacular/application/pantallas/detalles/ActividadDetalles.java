@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cavitedet.proyectodam_spoonacular.R;
@@ -49,9 +50,12 @@ public class ActividadDetalles extends AppCompatActivity {
             precioIngrediente.setText(getString(R.string.precio_ingrediente, valorEstimado.valorFormateado()));
             categoriaIngrediente.setText(getString(R.string.categoria_ingrediente, ingredienteDetallado.getCaminoDeCategorias().get(0)));
 
-
             String urlImagen = ConversorImagen.imagenAUrl(ingredienteDetallado.getImagen(), this);
             Glide.with(this).load(urlImagen).into(imagenIngrediente);
+
+            AdaptadorNutrientes adaptadorNutrientes = new AdaptadorNutrientes(this, ingredienteDetallado.getNutricion().getNutrientes());
+            RecyclerView recyclerView = findViewById(R.id.propiedades_ingrediente);
+            recyclerView.setAdapter(adaptadorNutrientes);
 
         }
 

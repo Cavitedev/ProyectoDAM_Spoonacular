@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/detalles_ingrediente_padre"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -70,8 +71,56 @@
             android:textSize="@dimen/tamano_texto_mediano"
             android:textStyle="bold" />
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_marginVertical="@dimen/margen_vertical_entre_elementos"
+            android:background="@drawable/border"
+            android:layout_marginHorizontal="@dimen/margen_borde_horizontal">
+
+        <TextView
+                android:id="@+id/titulo_propiedad"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/nutriente"
+                android:textSize="@dimen/tamano_texto_mediano"
+                android:background="@drawable/border"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:gravity="center" />
+
+        <TextView
+                android:id="@+id/titulo_antidad"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/cantidad"
+                android:background="@drawable/border"
+                android:textStyle="bold"
+                android:textSize="@dimen/tamano_texto_mediano"
+                android:textColor="#000"
+                android:gravity="center" />
+
+        <TextView
+                android:id="@+id/titulo_porcentaje_diario"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/border"
+                android:text="@string/porcentaje"
+                android:textStyle="bold"
+                android:textSize="@dimen/tamano_texto_mediano"
+                android:textColor="#000"
+                android:gravity="center" />
+    </LinearLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/propiedades_ingrediente"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 </LinearLayout>

@@ -3,14 +3,43 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
+        android:layout_marginVertical="@dimen/margen_vertical_entre_elementos"
+        android:background="@drawable/border"
         android:layout_marginHorizontal="@dimen/margen_borde_horizontal">
 
     <TextView
             android:id="@+id/propiedad"
-            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Proteina : 125g"
+            android:text="Proteina:"
+            android:textSize="@dimen/tamano_texto_pequeno"
+            android:background="@drawable/border"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:gravity="center" />
+
+    <TextView
+            android:id="@+id/cantidad"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="150 g"
+            android:background="@drawable/border"
+            android:textStyle="bold"
             android:textSize="@dimen/tamano_texto_mediano"
             android:textColor="#000"
-            android:gravity="center_vertical" />
+            android:gravity="center" />
+
+    <TextView
+            android:id="@+id/porcentaje_diario"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:text="23%"
+            android:textStyle="bold"
+            android:textSize="@dimen/tamano_texto_mediano"
+            android:textColor="#000"
+            android:gravity="center" />
 </LinearLayout>

@@ -1,8 +1,11 @@
 package com.cavitedet.proyectodam_spoonacular.application.pantallas.listado;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +33,20 @@ public class ActividadDeListado extends AppCompatActivity {
 
         mensajeError = findViewById(R.id.mensaje_error);
 
+        String peticionIngrediente = getIntent().getStringExtra(getString(R.string.intent_peticion_ingredientes));
+        listadoUsecase = new ObtenerListadoDeIngredientesUsecase(peticionIngrediente);
+        if (peticionIngrediente == null) {
+            mensajeError.setText(getString(R.string.error_recibir_intent, getString(R.string.intent_peticion_ingredientes)));
+            return;
+        }
 
+
+        refrescarIngredientes();
+
+
+    }
+
+    private void refrescarIngredientes() {
         Ingredientes ingredientes = devolverIngredientesDelIntent();
         if (ingredientes == null) return;
 
@@ -40,8 +56,6 @@ public class ActividadDeListado extends AppCompatActivity {
         } else {
             mostrarIngredientes(ingredientes);
         }
-
-
     }
 
     private void mostrarIngredientes(Ingredientes ingredientes) {
@@ -50,29 +64,22 @@ public class ActividadDeListado extends AppCompatActivity {
     }
 
     private Ingredientes devolverIngredientesDelIntent() {
-        String peticionIngrediente = getIntent().getStringExtra(getString(R.string.intent_peticion_ingredientes));
 
-        if (peticionIngrediente == null) {
-            mensajeError.setText(getString(R.string.error_recibir_intent, getString(R.string.intent_peticion_ingredientes)));
-            return null;
-        }
+
 
         try {
-
-
             if (!CheckNetworkAccess.isNetworkConnected(this)) {
                 mensajeError.setText(getString(R.string.error_no_internet));
                 return null;
             }
 
-            listadoUsecase = new ObtenerListadoDeIngredientesUsecase(peticionIngrediente);
+
             FutureTask<Ingredientes> futureTask = listadoUsecase.buscarIngredientesEnOtroHilo();
 
             return futureTask.get(10, TimeUnit.SECONDS);
 
-
         } catch (ExecutionException e) {
-            mensajeError.setText(getString(R.string.error_ejecucción_busqueda_api, peticionIngrediente));
+            mensajeError.setText(getString(R.string.error_ejecucción_busqueda_api, listadoUsecase.getQuery()));
         } catch (TimeoutException e) {
             mensajeError.setText(getString(R.string.error_respuesta_api));
         } catch (InterruptedException e) {
@@ -81,4 +88,18 @@ public class ActividadDeListado extends AppCompatActivity {
         return null;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_listado, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_cambiar_orden) {
+            listadoUsecase.cambiarDireccionOrdenado();
+            refrescarIngredientes();
+        }
+        return true;
+    }
 }

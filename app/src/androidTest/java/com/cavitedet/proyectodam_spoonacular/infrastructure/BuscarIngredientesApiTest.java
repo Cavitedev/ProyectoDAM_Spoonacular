@@ -35,6 +35,7 @@ public class BuscarIngredientesApiTest {
 
     }
 
+
     private void buscarIngredientes(String query, Integer number, Integer expectedCount, String sort, String dir) throws ApiException {
         Ingredientes result = LlamadorApi.getInstance().busquedaIngredientes(query, null, null, null,
                 null, null, null, null,

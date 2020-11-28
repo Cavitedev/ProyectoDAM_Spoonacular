@@ -27,6 +27,8 @@ public class ObtenerListadoDeIngredientesUsecase {
 
     public ObtenerListadoDeIngredientesUsecase(String query) {
         this.query = query;
+        sortDirection = "asc";
+        sort = "calories";
     }
 
 
@@ -141,8 +143,8 @@ public class ObtenerListadoDeIngredientesUsecase {
         return sortDirection;
     }
 
-    public void setSortDirection(String sortDirection) {
-        this.sortDirection = sortDirection;
+    public void cambiarDireccionOrdenado() {
+        sortDirection = sortDirection.equals("asc") ? "desc" : "asc";
     }
 
     public Double getOffset() {

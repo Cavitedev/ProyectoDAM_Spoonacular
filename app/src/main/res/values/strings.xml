@@ -21,4 +21,5 @@
     <string name="nutriente">Nutriente</string>
     <string name="cantidad">Cantidad</string>
     <string name="porcentaje">Porcentaje Diario</string>
+    <string name="cambiar_orden">Cambiar orden asc/desc</string>
 </resources>

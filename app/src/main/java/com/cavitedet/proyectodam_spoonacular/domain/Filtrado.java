@@ -7,27 +7,38 @@ public class Filtrado {
     private final int minimo = 0;
     private final int maximo = 100;
 
-    private IntMinMax proteinas;
-    private IntMinMax grasas;
-    private IntMinMax carboHidratos;
+    private DoubleMinMax proteinas;
+    private DoubleMinMax grasas;
+    private DoubleMinMax carboHidratos;
 
     public Filtrado() {
-        proteinas = new IntMinMax(minimo, maximo);
-        grasas = new IntMinMax(minimo, maximo);
-        carboHidratos = new IntMinMax(minimo, maximo);
+        proteinas = new DoubleMinMax(minimo, maximo);
+        grasas = new DoubleMinMax(minimo, maximo);
+        carboHidratos = new DoubleMinMax(minimo, maximo);
     }
 
-    public Filtrado(int minProteinas, int maxProteinas, int minGrasas, int maxGrasas,
-                    int minCarboHidratos, int maxCarboHidratos) {
+    public Filtrado(double minProteinas, double maxProteinas, double minGrasas, double maxGrasas,
+                    double minCarboHidratos, double maxCarboHidratos) {
         this();
         setProteinas(minProteinas, maxProteinas);
         setGrasas(minGrasas, maxGrasas);
         setCarboHidratos(minCarboHidratos, maxCarboHidratos);
     }
 
-    public IntMinMax getProteinas() {
+    public DoubleMinMax getProteinas() {
         return proteinas;
     }
+
+
+    public DoubleMinMax getGrasas() {
+        return grasas;
+    }
+
+
+    public DoubleMinMax getCarboHidratos() {
+        return carboHidratos;
+    }
+
 
     /**
      * @param valores lista con almenos 2 números que representan el mínimo y máximo
@@ -36,8 +47,9 @@ public class Filtrado {
         setProteinas(valores.get(0).intValue(), valores.get(1).intValue());
     }
 
-    public IntMinMax getGrasas() {
-        return grasas;
+    public void setProteinas(double minimo, double maximo) {
+        proteinas.setValorMinimoActual(minimo);
+        proteinas.setValorMaximoActual(maximo);
     }
 
     /**
@@ -47,8 +59,9 @@ public class Filtrado {
         setGrasas(valores.get(0).intValue(), valores.get(1).intValue());
     }
 
-    public IntMinMax getCarboHidratos() {
-        return carboHidratos;
+    public void setGrasas(double minimo, double maximo) {
+        grasas.setValorMinimoActual(minimo);
+        grasas.setValorMaximoActual(maximo);
     }
 
     /**
@@ -58,17 +71,7 @@ public class Filtrado {
         setCarboHidratos(valores.get(0).intValue(), valores.get(1).intValue());
     }
 
-    public void setProteinas(int minimo, int maximo) {
-        proteinas.setValorMinimoActual(minimo);
-        proteinas.setValorMaximoActual(maximo);
-    }
-
-    public void setGrasas(int minimo, int maximo) {
-        grasas.setValorMinimoActual(minimo);
-        grasas.setValorMaximoActual(maximo);
-    }
-
-    public void setCarboHidratos(int minimo, int maximo) {
+    public void setCarboHidratos(double minimo, double maximo) {
         carboHidratos.setValorMinimoActual(minimo);
         carboHidratos.setValorMaximoActual(maximo);
     }

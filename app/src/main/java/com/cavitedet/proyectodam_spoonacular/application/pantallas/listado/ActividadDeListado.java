@@ -49,14 +49,12 @@ public class ActividadDeListado extends AppCompatActivity implements DialogoDeOr
 
     private void refrescarIngredientes() {
         Ingredientes ingredientes = devolverIngredientesDelIntent();
-        if (ingredientes == null) return;
 
-        if (ingredientes.getListaIngredientes().isEmpty()) {
+        if (ingredientes == null || ingredientes.getListaIngredientes().isEmpty()) {
             mensajeError.setText(getString(R.string.error_no_resultado));
 
-        } else {
-            mostrarIngredientes(ingredientes);
         }
+        mostrarIngredientes(ingredientes);
     }
 
     private void mostrarIngredientes(Ingredientes ingredientes) {

@@ -16,6 +16,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.application.pantallas.detalles.ActividadDetalles;
 import com.cavitedet.proyectodam_spoonacular.application.pantallas.listado.ActividadDeListado;
+import com.cavitedet.proyectodam_spoonacular.utils.MyActions;
 import com.cavitedet.proyectodam_spoonacular.utils.MyMatchers;
 
 import org.junit.Before;
@@ -81,10 +82,71 @@ public class ActividadListadoTest {
         Espresso.onView(ViewMatchers.withContentDescription(R.string.cambiar_filtrado)).
                 perform(ViewActions.click());
 
-        Espresso.onView(ViewMatchers.withText(R.string.proteina)).
+        Espresso.onView(ViewMatchers.withId(R.id.nombre_proteina)).
                 check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
 
+        Espresso.onView(ViewMatchers.withId(R.id.barra_proteina)).
+                check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
 
+    @Test
+    public void filtradoEsRecordado() {
+        Espresso.onView(ViewMatchers.withContentDescription(R.string.cambiar_filtrado)).
+                perform(ViewActions.click());
+        Espresso.onView(ViewMatchers.withId(R.id.barra_proteina)).
+                perform(MyActions.setProgressRangeSlider(2, 3));
+
+        Espresso.onView(ViewMatchers.withId(android.R.id.button1)).perform(
+                ViewActions.click());
+
+        Espresso.onView(ViewMatchers.withContentDescription(R.string.cambiar_filtrado)).
+                perform(ViewActions.click());
+        Espresso.onView(ViewMatchers.withId(R.id.barra_proteina)).
+                check(ViewAssertions.matches(MyMatchers.withSliderValues(2, 3)));
+    }
+
+    @Test
+    public void filtradoDejaPanDeBanana() {
+        Espresso.onView(ViewMatchers.withContentDescription(R.string.cambiar_filtrado)).
+                perform(ViewActions.click());
+        Espresso.onView(ViewMatchers.withId(R.id.barra_proteina)).
+                perform(MyActions.setProgressRangeSlider(3f, 5f));
+
+        Espresso.onView(ViewMatchers.withId(android.R.id.button1)).perform(
+                ViewActions.click());
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+
+        }
+
+        Espresso.onView(MyMatchers.withIndex(
+                ViewMatchers.withId(R.id.nombre_ingrediente), 0)).check(
+                ViewAssertions.matches(ViewMatchers.withText("banana bread"))
+        );
+    }
+
+    @Test
+    public void filtradoImposibleDaError() {
+        Espresso.onView(ViewMatchers.withContentDescription(R.string.cambiar_filtrado)).
+                perform(ViewActions.click());
+        Espresso.onView(ViewMatchers.withId(R.id.barra_proteina)).
+                perform(MyActions.setProgressRangeSlider(99, 100));
+
+        Espresso.onView(ViewMatchers.withId(android.R.id.button1)).perform(
+                ViewActions.click());
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+
+        }
+
+        Espresso.onView(MyMatchers.withIndex(
+                ViewMatchers.withId(R.id.mensaje_error), 0)).check(
+                ViewAssertions.matches(ViewMatchers.withText(R.string.error_no_resultado))
+        );
     }
 
 }

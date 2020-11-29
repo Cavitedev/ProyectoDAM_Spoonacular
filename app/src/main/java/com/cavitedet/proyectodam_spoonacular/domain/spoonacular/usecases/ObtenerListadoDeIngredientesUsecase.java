@@ -13,12 +13,7 @@ public class ObtenerListadoDeIngredientesUsecase {
 
     private String query;
     private Boolean addChildren;
-    private Double minProteinPercent;
-    private Double maxProteinPercent;
-    private Double minFatPercent;
-    private Double maxFatPercent;
-    private Double minCarbsPercent;
-    private Double maxCarbsPercent;
+    private Filtrado filtrado;
     private Boolean metaInformation;
     private String intolerances;
     private String sort;
@@ -30,6 +25,7 @@ public class ObtenerListadoDeIngredientesUsecase {
         this.query = query;
         sortDirection = "asc";
         sort = "calories";
+        filtrado = new Filtrado();
     }
 
 
@@ -37,8 +33,8 @@ public class ObtenerListadoDeIngredientesUsecase {
         Callable<Ingredientes> callIngredientes = new Callable<Ingredientes>() {
             @Override
             public Ingredientes call() throws Exception {
-                return LlamadorApi.getInstance().busquedaIngredientes(query, addChildren, minProteinPercent,
-                        maxProteinPercent, minFatPercent, maxFatPercent, minCarbsPercent, maxCarbsPercent,
+                return LlamadorApi.getInstance().busquedaIngredientes(query, addChildren, filtrado.getProteinas().getValorMinimoActual(),
+                        filtrado.getProteinas().getValorMaximoActual(), filtrado.getGrasas().getValorMinimoActual(), filtrado.getGrasas().getValorMaximoActual(), filtrado.getCarboHidratos().getValorMinimoActual(), filtrado.getCarboHidratos().getValorMaximoActual(),
                         metaInformation, intolerances, sort, sortDirection, offset, number);
 
             }
@@ -51,13 +47,12 @@ public class ObtenerListadoDeIngredientesUsecase {
         return futureTask;
     }
 
-
-    public void setFiltrado(Filtrado filtrado) {
-
+    public Filtrado getFiltrado() {
+        return filtrado;
     }
 
-    public Filtrado getFiltrado() {
-        return null;
+    public void setFiltrado(Filtrado filtrado) {
+        this.filtrado = filtrado;
     }
 
     public String getQuery() {
@@ -76,53 +71,6 @@ public class ObtenerListadoDeIngredientesUsecase {
         this.addChildren = addChildren;
     }
 
-    public Double getMinProteinPercent() {
-        return minProteinPercent;
-    }
-
-    public void setMinProteinPercent(Double minProteinPercent) {
-        this.minProteinPercent = minProteinPercent;
-    }
-
-    public Double getMaxProteinPercent() {
-        return maxProteinPercent;
-    }
-
-    public void setMaxProteinPercent(Double maxProteinPercent) {
-        this.maxProteinPercent = maxProteinPercent;
-    }
-
-    public Double getMinFatPercent() {
-        return minFatPercent;
-    }
-
-    public void setMinFatPercent(Double minFatPercent) {
-        this.minFatPercent = minFatPercent;
-    }
-
-    public Double getMaxFatPercent() {
-        return maxFatPercent;
-    }
-
-    public void setMaxFatPercent(Double maxFatPercent) {
-        this.maxFatPercent = maxFatPercent;
-    }
-
-    public Double getMinCarbsPercent() {
-        return minCarbsPercent;
-    }
-
-    public void setMinCarbsPercent(Double minCarbsPercent) {
-        this.minCarbsPercent = minCarbsPercent;
-    }
-
-    public Double getMaxCarbsPercent() {
-        return maxCarbsPercent;
-    }
-
-    public void setMaxCarbsPercent(Double maxCarbsPercent) {
-        this.maxCarbsPercent = maxCarbsPercent;
-    }
 
     public Boolean getMetaInformation() {
         return metaInformation;

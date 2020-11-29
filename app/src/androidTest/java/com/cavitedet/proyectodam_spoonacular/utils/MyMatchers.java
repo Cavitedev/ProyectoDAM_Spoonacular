@@ -2,9 +2,15 @@ package com.cavitedet.proyectodam_spoonacular.utils;
 
 import android.view.View;
 
+import androidx.test.espresso.matcher.BoundedMatcher;
+
+import com.google.android.material.slider.RangeSlider;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+
+import java.util.List;
 
 public class MyMatchers {
 
@@ -31,6 +37,26 @@ public class MyMatchers {
             @Override
             public boolean matchesSafely(View view) {
                 return matcher.matches(view) && currentIndex++ == index;
+            }
+        };
+    }
+
+    public static Matcher<View> withSliderValues(final int minValue, final int maxValue) {
+        return new BoundedMatcher<View, RangeSlider>(RangeSlider.class) {
+
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("RangeSlider with values: ");
+                description.appendValue(minValue);
+                description.appendValue(maxValue);
+
+            }
+
+            @Override
+            protected boolean matchesSafely(RangeSlider item) {
+                List<Float> values = item.getValues();
+                return values.get(0) == minValue && values.get(1) == maxValue;
             }
         };
     }

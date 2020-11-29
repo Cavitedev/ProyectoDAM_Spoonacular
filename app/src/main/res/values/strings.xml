@@ -26,5 +26,7 @@
     <string name="selecciona_orden">Selecciona Orden</string>
     <string name="aceptar">Aceptar</string>
     <string name="cambiar_filtrado">Filtrar</string>
-    <string name="proteina">Proteina</string>
+    <string name="proteinas">Proteinas</string>
+    <string name="grasas">Grasas</string>
+    <string name="hidratos_carbono">Hidratos de Carbono</string>
 </resources>

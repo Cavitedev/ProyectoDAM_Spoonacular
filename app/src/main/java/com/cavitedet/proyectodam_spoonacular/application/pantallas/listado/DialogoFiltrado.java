@@ -14,15 +14,14 @@ import androidx.fragment.app.DialogFragment;
 
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.domain.Filtrado;
+import com.google.android.material.slider.LabelFormatter;
 import com.google.android.material.slider.RangeSlider;
 
 public class DialogoFiltrado extends DialogFragment {
 
     private aceptarFiltrar alAceptar;
     private Filtrado filtrado;
-    private RangeSlider proteinasSlider;
-    private RangeSlider grasasSlider;
-    private RangeSlider carbohidratosSlider;
+
 
     public DialogoFiltrado(Filtrado filtrado) {
         this.filtrado = filtrado;
@@ -44,12 +43,22 @@ public class DialogoFiltrado extends DialogFragment {
         View view = inflater.inflate(R.layout.vista_filtrado, null);
 
         constructor.setView(view);
-        proteinasSlider = view.findViewById(R.id.barra_proteina);
+        RangeSlider proteinasSlider = view.findViewById(R.id.barra_proteina);
+        RangeSlider grasasSlider = view.findViewById(R.id.barra_grasa);
+        RangeSlider carbohidratosSlider = view.findViewById(R.id.barra_carbo_hidratos);
+
+        proteinasSlider.setValues(filtrado.getProteinas().toListFloat());
+        grasasSlider.setValues(filtrado.getGrasas().toListFloat());
+        carbohidratosSlider.setValues(filtrado.getCarboHidratos().toListFloat());
+
+        anadirFormatter(proteinasSlider, grasasSlider, carbohidratosSlider);
 
         constructor.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 filtrado.setProteinas(proteinasSlider.getValues());
+                filtrado.setGrasas(grasasSlider.getValues());
+                filtrado.setCarboHidratos(carbohidratosSlider.getValues());
                 alAceptar.aceptarFiltrado(filtrado);
             }
         });
@@ -61,6 +70,19 @@ public class DialogoFiltrado extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         alAceptar = (aceptarFiltrar) context;
+    }
+
+    private void anadirFormatter(RangeSlider... sliders) {
+        LabelFormatter formatter = new LabelFormatter() {
+            @NonNull
+            @Override
+            public String getFormattedValue(float value) {
+                return String.format("%3.1f %%", value);
+            }
+        };
+        for (RangeSlider slider : sliders) {
+            slider.setLabelFormatter(formatter);
+        }
     }
 
     public interface aceptarFiltrar {

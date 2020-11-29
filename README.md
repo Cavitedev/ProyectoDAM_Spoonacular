@@ -6,6 +6,10 @@ Proyecto para Programación Multimedia y Dispositivos Móviles 2020-2021 por Car
 
 Quería hacer algún proyecto con APIs y buscando por internet me tope con este. Luego concretando intentaré hacer una aplicación que maneje datos de comida y nutrición
 
+## Instalación
+
+Clona el proyecto en android studio y copia o crea el fichero Secrets.java en este directorio "app/src/main/java/com/cavitedet/proyectodam_spoonacular/". Este fichero no lo subiré a github porque contiene mi clave privada, esta clase tiene una variable privada final statica llama `apiKey` y si getter
+
 ## Idioma
 
 Estoy muy acostumbrado al inglés, he empezado haciendo *commits* en español, pero lo que planeo al final es tener el código enteramente en inglés, solo está documentación y los *commits* estarán en español

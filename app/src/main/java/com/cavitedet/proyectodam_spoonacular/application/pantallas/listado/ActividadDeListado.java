@@ -50,10 +50,6 @@ public class ActividadDeListado extends AppCompatActivity implements DialogoDeOr
     private void refrescarIngredientes() {
         Ingredientes ingredientes = devolverIngredientesDelIntent();
 
-        if (ingredientes == null || ingredientes.getListaIngredientes().isEmpty()) {
-            mensajeError.setText(getString(R.string.error_no_resultado));
-
-        }
         mostrarIngredientes(ingredientes);
     }
 
@@ -74,12 +70,24 @@ public class ActividadDeListado extends AppCompatActivity implements DialogoDeOr
 
             FutureTask<Ingredientes> futureTask = listadoUsecase.buscarIngredientesEnOtroHilo();
 
-            return futureTask.get(10, TimeUnit.SECONDS);
+            Ingredientes ingredientes = futureTask.get(10, TimeUnit.SECONDS);
+
+            if (ingredientes == null || ingredientes.getListaIngredientes().isEmpty()) {
+                mensajeError.setText(getString(R.string.error_no_resultado));
+            }
+
+            return ingredientes;
 
         } catch (ExecutionException e) {
-            mensajeError.setText(getString(R.string.error_ejecucción_busqueda_api, listadoUsecase.getQuery()));
+            if (e.getCause().getMessage().equals(getString(R.string.excepcion_pago_api))) {
+                mensajeError.setText(R.string.llamadas_api_acabadas);
+            } else {
+                mensajeError.setText(getString(R.string.error_ejecucción_busqueda_api, listadoUsecase.getQuery()));
+            }
         } catch (TimeoutException e) {
+
             mensajeError.setText(getString(R.string.error_respuesta_api));
+
         } catch (InterruptedException e) {
             mensajeError.setText(getString(R.string.error_interrupcion_hilo_api));
         }

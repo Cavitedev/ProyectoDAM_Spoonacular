@@ -8,6 +8,7 @@
         android:layout_marginHorizontal="@dimen/margen_borde_horizontal">
 
 
+
         <TextView
                 android:id="@+id/nombre_proteina"
 

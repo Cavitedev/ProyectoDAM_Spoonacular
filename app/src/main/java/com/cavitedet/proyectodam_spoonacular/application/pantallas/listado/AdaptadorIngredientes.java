@@ -43,6 +43,7 @@ public class AdaptadorIngredientes extends RecyclerView.Adapter<AdaptadorIngredi
 
     @Override
     public int getItemCount() {
+        if (ingredientes == null) return 0;
         return ingredientes.getListaIngredientes().size();
     }
 

@@ -3,6 +3,7 @@
     <string name="ingrediente_busqueda">Buscar ingrediente (en inglés)</string>
     <string name="banana">banana</string>
     <string name="busqueda">Buscar</string>
+    <string name="excepcion_pago_api">Payment Required</string>
     <string name="error_ejecucción_busqueda_api">\"Error al ejecutar API con %s como petición\"</string>
     <string name="error_ejecucción_detalles_api">\"Error al ejecutar API con %d como id\"</string>
     <string name="error_respuesta_api">No responde la API</string>
@@ -29,4 +30,5 @@
     <string name="proteinas">Proteinas</string>
     <string name="grasas">Grasas</string>
     <string name="hidratos_carbono">Hidratos de Carbono</string>
+    <string name="llamadas_api_acabadas">Se han acabado las llamadas a la api por hoy</string>
 </resources>

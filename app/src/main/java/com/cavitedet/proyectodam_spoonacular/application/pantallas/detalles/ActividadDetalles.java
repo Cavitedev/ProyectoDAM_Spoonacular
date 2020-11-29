@@ -86,8 +86,12 @@ public class ActividadDetalles extends AppCompatActivity {
 
 
         } catch (ExecutionException e) {
-            mensajeError.setVisibility(View.VISIBLE);
-            mensajeError.setText(getString(R.string.error_ejecucción_detalles_api, idIngrediente));
+            if (e.getCause().getMessage().equals(getString(R.string.excepcion_pago_api))) {
+                mensajeError.setText(R.string.llamadas_api_acabadas);
+            } else {
+                mensajeError.setVisibility(View.VISIBLE);
+                mensajeError.setText(getString(R.string.error_ejecucción_detalles_api, idIngrediente));
+            }
         } catch (TimeoutException e) {
             mensajeError.setVisibility(View.VISIBLE);
             mensajeError.setText(getString(R.string.error_respuesta_api));

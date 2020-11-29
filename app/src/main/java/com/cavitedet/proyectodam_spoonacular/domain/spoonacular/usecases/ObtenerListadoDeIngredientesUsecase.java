@@ -33,17 +33,22 @@ public class ObtenerListadoDeIngredientesUsecase {
         Callable<Ingredientes> callIngredientes = new Callable<Ingredientes>() {
             @Override
             public Ingredientes call() throws Exception {
+
                 return LlamadorApi.getInstance().busquedaIngredientes(query, addChildren, filtrado.getProteinas().getValorMinimoActual(),
                         filtrado.getProteinas().getValorMaximoActual(), filtrado.getGrasas().getValorMinimoActual(), filtrado.getGrasas().getValorMaximoActual(), filtrado.getCarboHidratos().getValorMinimoActual(), filtrado.getCarboHidratos().getValorMaximoActual(),
                         metaInformation, intolerances, sort, sortDirection, offset, number);
 
             }
 
+
         };
+
         ExecutorService executor = Executors.newFixedThreadPool(1);
         FutureTask<Ingredientes> futureTask = new FutureTask<>(callIngredientes);
-        executor.submit(futureTask);
 
+
+        executor.submit(futureTask);
+        executor.shutdown();
         return futureTask;
     }
 

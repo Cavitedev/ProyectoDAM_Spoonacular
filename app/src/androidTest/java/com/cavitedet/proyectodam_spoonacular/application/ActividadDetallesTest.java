@@ -42,4 +42,10 @@ public class ActividadDetallesTest {
                         (context.getString(R.string.precio_ingrediente, "15.73 US Cents")))
         );
     }
+
+    @Test
+    public void detallesAparecenCorrectamente() {
+
+        Espresso.onView(ViewMatchers.withText("105.02 kcal")).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
 }

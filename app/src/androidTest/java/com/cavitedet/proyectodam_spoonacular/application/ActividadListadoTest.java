@@ -11,6 +11,7 @@ import androidx.test.espresso.intent.Intents;
 import androidx.test.espresso.intent.matcher.IntentMatchers;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.application.pantallas.detalles.ActividadDetalles;
@@ -59,6 +60,18 @@ public class ActividadListadoTest {
                 ViewActions.click());
 
         Intents.intended(IntentMatchers.hasComponent(ActividadDetalles.class.getName()));
+    }
+
+    @Test
+    public void aparecenOpciones() {
+
+
+        Espresso.openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());
+
+        Espresso.onView(ViewMatchers.withText(R.string.cambiar_orden)).
+                check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+
+
     }
 
 }

@@ -37,13 +37,13 @@ Se cargará lo que encuentre en está llamada a la [API](https://spoonacular.com
 
 ### 4) Filtraje de ingredientes
 
-En esta ventana habrá varios `SeekBar` para filtrar por el mínimo y máximo de proteína, grasa y carbohidratos, de aquí solo se podrá volver a la [lista de ingredientes](#2-lista-de-ingredientes) con los `SharedPreferences` actualizados
+En esta ventana emergente habrán varios `RangeSlider` para filtrar por el mínimo y máximo de proteína, grasa y carbohidratos, de aquí solo se podrá volver a la [lista de ingredientes](#2-lista-de-ingredientes) 
 
 ### 5) Ordenado de ingredientes
 
-Se mostrará muchos `RadioButton` con las opciones de ordenador que aparecen en esta [página](https://spoonacular.com/food-api/docs#Recipe-Sorting-Options) de aquí solo se podrá volver a la [lista de ingredientes](#2-lista-de-ingredientes) 
+Se mostrará algunos `RadioButton` con las opciones de ordenador que aparecen en esta [página](https://spoonacular.com/food-api/docs#Recipe-Sorting-Options) de aquí solo se podrá volver a la [lista de ingredientes](#2-lista-de-ingredientes) 
 
-### 6) pop-up de resolución
+### 6) Pop-up de resolución
 
 En los `SharedPreferences` se guardará la resolución que querrá el usuario siendo la pequeña 100x100, la mediana 250x250 y la grande 500x500
 

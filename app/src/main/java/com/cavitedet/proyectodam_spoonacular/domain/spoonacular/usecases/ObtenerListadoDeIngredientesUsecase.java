@@ -56,6 +56,10 @@ public class ObtenerListadoDeIngredientesUsecase {
 
     }
 
+    public Filtrado getFiltrado() {
+        return null;
+    }
+
     public String getQuery() {
         return query;
     }

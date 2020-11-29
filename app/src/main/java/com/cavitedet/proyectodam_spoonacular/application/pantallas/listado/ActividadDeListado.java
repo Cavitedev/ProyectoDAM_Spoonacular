@@ -103,7 +103,7 @@ public class ActividadDeListado extends AppCompatActivity implements DialogoDeOr
             DialogoDeOrdenado dialogoDeOrdenado = new DialogoDeOrdenado(listadoUsecase.getSort());
             dialogoDeOrdenado.show(getSupportFragmentManager(), getString(R.string.cambiar_ordenado));
         } else if (item.getItemId() == R.id.menu_cambiar_filtrado) {
-            DialogoFiltrado dialogoFiltrado = new DialogoFiltrado();
+            DialogoFiltrado dialogoFiltrado = new DialogoFiltrado(listadoUsecase.getFiltrado());
             dialogoFiltrado.show(getSupportFragmentManager(), getString(R.string.cambiar_filtrado));
         }
         return true;

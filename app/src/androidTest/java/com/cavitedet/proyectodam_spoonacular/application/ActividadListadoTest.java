@@ -74,4 +74,17 @@ public class ActividadListadoTest {
 
     }
 
+    @Test
+    public void apareceFiltrado() {
+
+
+        Espresso.onView(ViewMatchers.withContentDescription(R.string.cambiar_filtrado)).
+                perform(ViewActions.click());
+
+        Espresso.onView(ViewMatchers.withText(R.string.proteina)).
+                check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+
+
+    }
+
 }

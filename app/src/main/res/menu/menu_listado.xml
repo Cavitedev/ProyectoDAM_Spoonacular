@@ -10,6 +10,13 @@
             android:id="@+id/menu_cambiar_ordenado"
             android:title="@string/cambiar_ordenado"
             android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:contentDescription="@string/cambiar_ordenado"
+            app:showAsAction="ifRoom" />
 
+    <item
+            android:id="@+id/menu_cambiar_filtrado"
+            android:title="@string/cambiar_filtrado"
+            android:icon="@drawable/ic_filter_list"
+            android:contentDescription="@string/cambiar_filtrado"
             app:showAsAction="ifRoom" />
 </menu>

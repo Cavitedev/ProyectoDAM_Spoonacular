@@ -1,5 +1,6 @@
 package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.usecases;
 
+import com.cavitedet.proyectodam_spoonacular.domain.Filtrado;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.LlamadorApi;
 
@@ -50,6 +51,10 @@ public class ObtenerListadoDeIngredientesUsecase {
         return futureTask;
     }
 
+
+    public void setFiltrado(Filtrado filtrado) {
+
+    }
 
     public String getQuery() {
         return query;

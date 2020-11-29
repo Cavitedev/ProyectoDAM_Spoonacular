@@ -14,4 +14,9 @@
         <item>total-fat</item>
         <item>carbs</item>
     </array>
+
+    <array name="valoresSliderRangePorDefect">
+        <item>10</item>
+        <item>90</item>
+    </array>
 </resources>

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cavitedet.proyectodam_spoonacular.R;
+import com.cavitedet.proyectodam_spoonacular.domain.Filtrado;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.usecases.ObtenerListadoDeIngredientesUsecase;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.CheckNetworkAccess;
@@ -20,7 +21,7 @@ import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-public class ActividadDeListado extends AppCompatActivity implements DialogoDeOrdenado.DialogoOrdenadoRespuesta {
+public class ActividadDeListado extends AppCompatActivity implements DialogoDeOrdenado.DialogoOrdenadoRespuesta, DialogoFiltrado.aceptarFiltrar {
 
 
     private TextView mensajeError;
@@ -101,13 +102,22 @@ public class ActividadDeListado extends AppCompatActivity implements DialogoDeOr
         } else if (item.getItemId() == R.id.menu_cambiar_ordenado) {
             DialogoDeOrdenado dialogoDeOrdenado = new DialogoDeOrdenado(listadoUsecase.getSort());
             dialogoDeOrdenado.show(getSupportFragmentManager(), getString(R.string.cambiar_ordenado));
+        } else if (item.getItemId() == R.id.menu_cambiar_filtrado) {
+            DialogoFiltrado dialogoFiltrado = new DialogoFiltrado();
+            dialogoFiltrado.show(getSupportFragmentManager(), getString(R.string.cambiar_filtrado));
         }
         return true;
     }
 
     @Override
-    public void alAceptar(String respuesta) {
+    public void alAceptarOrdenado(String respuesta) {
         listadoUsecase.setSort(respuesta);
+        refrescarIngredientes();
+    }
+
+    @Override
+    public void aceptarFiltrado(Filtrado filtrado) {
+        listadoUsecase.setFiltrado(filtrado);
         refrescarIngredientes();
     }
 }

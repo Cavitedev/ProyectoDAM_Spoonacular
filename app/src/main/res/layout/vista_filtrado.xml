@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/margen_borde_horizontal">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_margin="@dimen/margen_vertical_entre_elementos">
+
+        <TextView
+                android:id="@+id/nombre_proteina"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/proteina"
+                android:layout_marginHorizontal="@dimen/margen_borde_horizontal"
+                android:textSize="@dimen/tamano_texto_grande"
+                android:textColor="@color/black" />
+
+        <com.google.android.material.slider.RangeSlider
+
+                android:id="@+id/barra_proteina"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:valueFrom="0.0"
+                android:valueTo="100.0"
+                app:values="@array/valoresSliderRangePorDefect"
+
+                />
+
+    </LinearLayout>
+
+</LinearLayout>

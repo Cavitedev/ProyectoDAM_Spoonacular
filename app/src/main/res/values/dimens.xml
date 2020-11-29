@@ -6,4 +6,5 @@
     <dimen name="margen_borde_horizontal">10dp</dimen>
     <dimen name="margen_vertical_entre_elementos">5dp</dimen>
     <dimen name="tamano_texto_pequeno">15sp</dimen>
+    <dimen name="tamano_texto_grande">28sp</dimen>
 </resources>

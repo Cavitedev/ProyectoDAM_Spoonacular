@@ -50,7 +50,7 @@ public class DialogoDeOrdenado extends DialogFragment {
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                alResponder.alAceptar(objetoSeleccionado[0]);
+                alResponder.alAceptarOrdenado(objetoSeleccionado[0]);
                 dialogInterface.dismiss();
             }
         });
@@ -70,6 +70,6 @@ public class DialogoDeOrdenado extends DialogFragment {
     }
 
     public interface DialogoOrdenadoRespuesta {
-        public void alAceptar(String respuesta);
+        public void alAceptarOrdenado(String respuesta);
     }
 }

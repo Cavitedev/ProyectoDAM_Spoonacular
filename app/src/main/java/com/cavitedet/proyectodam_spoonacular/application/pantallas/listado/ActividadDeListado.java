@@ -21,7 +21,8 @@ import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-public class ActividadDeListado extends AppCompatActivity implements DialogoDeOrdenado.DialogoOrdenadoRespuesta, DialogoFiltrado.aceptarFiltrar {
+public class ActividadDeListado extends AppCompatActivity implements DialogoDeOrdenado.DialogoOrdenadoRespuesta, DialogoFiltrado.aceptarFiltrar,
+        DialogoDeResolucion.AlAceptarResolucion {
 
 
     private TextView mensajeError;
@@ -79,7 +80,7 @@ public class ActividadDeListado extends AppCompatActivity implements DialogoDeOr
             return ingredientes;
 
         } catch (ExecutionException e) {
-            if (e.getCause().getMessage().equals(getString(R.string.excepcion_pago_api))) {
+            if (e.getCause() != null && e.getCause().getMessage() != null && e.getCause().getMessage().equals(getString(R.string.excepcion_pago_api))) {
                 mensajeError.setText(R.string.llamadas_api_acabadas);
             } else {
                 mensajeError.setText(getString(R.string.error_ejecucción_busqueda_api, listadoUsecase.getQuery()));
@@ -111,6 +112,9 @@ public class ActividadDeListado extends AppCompatActivity implements DialogoDeOr
         } else if (item.getItemId() == R.id.menu_cambiar_filtrado) {
             DialogoFiltrado dialogoFiltrado = new DialogoFiltrado(listadoUsecase.getFiltrado());
             dialogoFiltrado.show(getSupportFragmentManager(), getString(R.string.cambiar_filtrado));
+        } else if (item.getItemId() == R.id.menu_cambiar_resolucion) {
+            DialogoDeResolucion dialogoDeResolucion = new DialogoDeResolucion();
+            dialogoDeResolucion.show(getSupportFragmentManager(), getString(R.string.cambiar_resolucion));
         }
         return true;
     }
@@ -124,6 +128,11 @@ public class ActividadDeListado extends AppCompatActivity implements DialogoDeOr
     @Override
     public void aceptarFiltrado(Filtrado filtrado) {
         listadoUsecase.setFiltrado(filtrado);
+        refrescarIngredientes();
+    }
+
+    @Override
+    public void aceptarResolucion() {
         refrescarIngredientes();
     }
 }

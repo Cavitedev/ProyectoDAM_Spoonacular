@@ -12,6 +12,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.application.pantallas.detalles.ActividadDetalles;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.ConversorImagen;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -28,6 +29,7 @@ public class ActividadDetallesTest {
         intentBanana = new Intent(context, ActividadDetalles.class);
         intentBanana.putExtra(context.getString(R.string.intent_ingrediente_id), 9040);
     }
+
 
     @Rule
     public ActivityScenarioRule<ActividadDetalles> activityRule =
@@ -47,5 +49,14 @@ public class ActividadDetallesTest {
     public void detallesAparecenCorrectamente() {
 
         Espresso.onView(ViewMatchers.withText("105.02 kcal")).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+
+    @Test
+    public void muestraImagenConResolucionBaja() {
+        ConversorImagen.guardarEnPreferenciasResolucion(ConversorImagen.Resolucion.PEQUENO,
+                ApplicationProvider.getApplicationContext());
+
+        Espresso.onView(ViewMatchers.withId(R.id.imagen_ingrediente)).
+                check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 }

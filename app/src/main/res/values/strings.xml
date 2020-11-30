@@ -31,4 +31,6 @@
     <string name="grasas">Grasas</string>
     <string name="hidratos_carbono">Hidratos de Carbono</string>
     <string name="llamadas_api_acabadas">Se han acabado las llamadas a la api por hoy</string>
+    <string name="cambiar_resolucion">Cambiar Resolucion</string>
+    <string name="sin_categoria">Sin Categoria</string>
 </resources>

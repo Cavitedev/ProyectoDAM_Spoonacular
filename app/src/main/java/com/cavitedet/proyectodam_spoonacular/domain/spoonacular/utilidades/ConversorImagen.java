@@ -18,15 +18,8 @@ public class ConversorImagen {
      * @return url completa a la que descargar la imágen
      */
     public static String imagenAUrl(String imagen, Context contexto) {
-        SharedPreferences preferenciasCompartidas = contexto.getSharedPreferences(contexto.getString(R.string.mis_preferencias), Context.MODE_PRIVATE);
-        int idResolucion = preferenciasCompartidas.getInt(contexto.getString(R.string.resolucion_imagen), -1);
-        Resolucion resolucion = Resolucion.GRANDE;
-        if (idResolucion == -1) {
-            guardarEnPreferenciasResolucion(Resolucion.GRANDE, contexto);
-        } else {
-            resolucion = tamanoDesdeNum(idResolucion);
-        }
 
+        Resolucion resolucion = tamanoDesdeNum(getResolucion(contexto));
         switch (resolucion) {
             case PEQUENO:
                 return prefijoUrl + pequeno + imagen;
@@ -41,13 +34,28 @@ public class ConversorImagen {
 
     public static void guardarEnPreferenciasResolucion(Resolucion resolucion, Context contexto) {
         int num = resolucion.ordinal();
+        guardarEnPreferenciasResolucion(num, contexto);
+    }
+
+    public static void guardarEnPreferenciasResolucion(int resolucion, Context contexto) {
         SharedPreferences preferencias = contexto.getSharedPreferences(contexto.getString(R.string.mis_preferencias), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferencias.edit();
-        editor.putInt(contexto.getString(R.string.resolucion_imagen), num);
+        editor.putInt(contexto.getString(R.string.resolucion_imagen), resolucion);
         editor.apply();
     }
 
-    private static Resolucion tamanoDesdeNum(int num) {
+
+    public static int getResolucion(Context contexto) {
+        SharedPreferences preferenciasCompartidas = contexto.getSharedPreferences(contexto.getString(R.string.mis_preferencias), Context.MODE_PRIVATE);
+        int idResolucion = preferenciasCompartidas.getInt(contexto.getString(R.string.resolucion_imagen), -1);
+        if (idResolucion == -1) {
+            guardarEnPreferenciasResolucion(Resolucion.GRANDE, contexto);
+            idResolucion = 2;
+        }
+        return idResolucion;
+    }
+
+    public static Resolucion tamanoDesdeNum(int num) {
         return Resolucion.values()[num];
     }
 

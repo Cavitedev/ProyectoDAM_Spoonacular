@@ -14,9 +14,14 @@ import com.cavitedet.proyectodam_spoonacular.R;
 
 public class DialogoDeOrdenado extends DialogFragment {
 
+    private final String ordenadoSeleccionado;
 
     private DialogoOrdenadoRespuesta alResponder;
-    private String ordenadoSeleccionado;
+
+    public interface DialogoOrdenadoRespuesta {
+        void alAceptarOrdenado(String respuesta);
+    }
+
     private String[] ordenadosMostrar;
     private String[] ordenadosApi;
 
@@ -69,7 +74,5 @@ public class DialogoDeOrdenado extends DialogFragment {
         super.onAttach(context);
     }
 
-    public interface DialogoOrdenadoRespuesta {
-        public void alAceptarOrdenado(String respuesta);
-    }
+
 }

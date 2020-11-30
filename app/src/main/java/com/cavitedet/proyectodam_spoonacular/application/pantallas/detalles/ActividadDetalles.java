@@ -48,7 +48,8 @@ public class ActividadDetalles extends AppCompatActivity {
             nombreIngrediente.setText(getString(R.string.nombre_ingrediente, ingredienteDetallado.getNombre()));
             ValorEstimado valorEstimado = ingredienteDetallado.getValorEstimado();
             precioIngrediente.setText(getString(R.string.precio_ingrediente, valorEstimado.valorFormateado()));
-            categoriaIngrediente.setText(getString(R.string.categoria_ingrediente, ingredienteDetallado.getCaminoDeCategorias().get(0)));
+            String categoria = asignarCategoriaSiExiste(ingredienteDetallado);
+            categoriaIngrediente.setText(getString(R.string.categoria_ingrediente, categoria));
 
             String urlImagen = ConversorImagen.imagenAUrl(ingredienteDetallado.getImagen(), this);
             Glide.with(this).load(urlImagen).into(imagenIngrediente);
@@ -61,6 +62,7 @@ public class ActividadDetalles extends AppCompatActivity {
         }
 
     }
+
 
     private IngredienteDetallado devolverIngredienteDetalladoDelIntent() {
         Integer idIngrediente = getIntent().getIntExtra(getString(R.string.intent_ingrediente_id), 0);
@@ -86,7 +88,7 @@ public class ActividadDetalles extends AppCompatActivity {
 
 
         } catch (ExecutionException e) {
-            if (e.getCause().getMessage().equals(getString(R.string.excepcion_pago_api))) {
+            if (e.getCause() != null && e.getCause().getMessage() != null && e.getCause().getMessage().equals(getString(R.string.excepcion_pago_api))) {
                 mensajeError.setText(R.string.llamadas_api_acabadas);
             } else {
                 mensajeError.setVisibility(View.VISIBLE);
@@ -100,5 +102,18 @@ public class ActividadDetalles extends AppCompatActivity {
             mensajeError.setText(getString(R.string.error_interrupcion_hilo_api));
         }
         return null;
+    }
+
+    private String asignarCategoriaSiExiste(IngredienteDetallado ingredienteDetallado) {
+        String categoria;
+        if (!ingredienteDetallado.getCaminoDeCategorias().isEmpty()) {
+            categoria = ingredienteDetallado.getCaminoDeCategorias().get(0);
+        } else {
+            categoria = ingredienteDetallado.getCategoria();
+        }
+        if (categoria == null) {
+            categoria = getString(R.string.sin_categoria);
+        }
+        return categoria;
     }
 }

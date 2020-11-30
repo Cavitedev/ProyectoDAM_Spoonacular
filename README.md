@@ -29,7 +29,7 @@ En la pantalla principal se mostrará un `EditText` pidiendo el nombre (en ingl�
 Una vez cargado mediante un `RecylerView` la lista de ingredientes que con un menú en el `actionbar` que te dará opciones de cambiar la dirección de los elementos mostrados (ascendente descendente), otra para ir a la pantalla de [filtrado](#4-filtraje-de-ingredientes), y la última para ir una pantalla de [ordenado](#5-ordenado-de-ingredientes) para cambiar la petición de la [API](https://spoonacular.com/food-api/docs#Ingredient-Search) al volver. Además cada ingrediente se debe poder pulsar y entrar en una ventana con [información adicional del ingrediente](#3-detalles-del-ingrediente)
 
 Así se está viendo
-![Lista imagen](/resources/captura_lista.png)
+![Lista imagen](/resources/captura_lista.jpg)
 
 ### 3) Detalles del ingrediente
 

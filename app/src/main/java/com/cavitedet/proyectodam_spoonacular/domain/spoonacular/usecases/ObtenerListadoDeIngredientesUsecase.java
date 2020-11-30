@@ -23,7 +23,7 @@ public class ObtenerListadoDeIngredientesUsecase {
 
     public ObtenerListadoDeIngredientesUsecase(String query) {
         this.query = query;
-        sortDirection = "asc";
+        sortDirection = "desc";
         sort = "calories";
         filtrado = new Filtrado();
     }

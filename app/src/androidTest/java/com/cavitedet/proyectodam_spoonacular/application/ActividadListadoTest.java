@@ -11,14 +11,15 @@ import androidx.test.espresso.intent.Intents;
 import androidx.test.espresso.intent.matcher.IntentMatchers;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.application.pantallas.detalles.ActividadDetalles;
 import com.cavitedet.proyectodam_spoonacular.application.pantallas.listado.ActividadDeListado;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.ConversorImagen;
 import com.cavitedet.proyectodam_spoonacular.utils.MyActions;
 import com.cavitedet.proyectodam_spoonacular.utils.MyMatchers;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -67,7 +68,7 @@ public class ActividadListadoTest {
     public void aparecenOpciones() {
 
 
-        Espresso.openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        Espresso.openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext());
 
         Espresso.onView(ViewMatchers.withText(R.string.cambiar_orden)).
                 check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
@@ -147,6 +148,24 @@ public class ActividadListadoTest {
                 ViewMatchers.withId(R.id.mensaje_error), 0)).check(
                 ViewAssertions.matches(ViewMatchers.withText(R.string.error_no_resultado))
         );
+    }
+
+    @Test
+    public void cambiarResolucionAMedianaFunciona() {
+
+        Espresso.openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext());
+
+        Espresso.onView(ViewMatchers.withText(R.string.cambiar_resolucion)).
+                perform(ViewActions.click());
+
+        Espresso.onView(ViewMatchers.withText("250x250")).
+                perform(ViewActions.click());
+
+        Espresso.onView(ViewMatchers.withId(android.R.id.button1)).perform(
+                ViewActions.click());
+
+        int resolucion = ConversorImagen.getResolucion(ApplicationProvider.getApplicationContext());
+        Assert.assertEquals(1, resolucion);
     }
 
 }

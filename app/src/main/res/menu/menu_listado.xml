@@ -4,7 +4,8 @@
 
     <item
             android:id="@+id/menu_cambiar_dir_orden"
-            android:title="@string/cambiar_orden" />
+            android:title="@string/cambiar_orden"
+            app:showAsAction="never" />
 
     <item
             android:id="@+id/menu_cambiar_ordenado"
@@ -22,5 +23,6 @@
     <item
             android:id="@+id/menu_cambiar_resolucion"
             android:title="@string/cambiar_resolucion"
-            android:contentDescription="@string/cambiar_resolucion" />
+            android:contentDescription="@string/cambiar_resolucion"
+            app:showAsAction="never" />
 </menu>

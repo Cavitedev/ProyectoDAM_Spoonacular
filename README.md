@@ -26,7 +26,7 @@ En la pantalla principal se mostrará un `EditText` pidiendo el nombre (en ingl�
 
 ### 2) Lista de ingredientes
 
-Se intentará cargar los primeros ingredientes de la [API](https://spoonacular.com/food-api/docs#Ingredient-Search), en esta pantalla se mostrarán los errores e información relevante para poner en marcha el sistema. Una vez cargados, se mostrarán mediante un `RecylerView` la lista de ingredientes. Además contará menús en el `actionbar` que te dejará opciones de cambiar la dirección de los elementos mostrados (ascendente descendente), otra para ir a la pantalla de [filtrado](#4-filtraje-de-ingredientes), otra para ir una pantalla de [ordenado](#5-ordenado-de-ingredientes) para cambiar la petición de la [API](https://spoonacular.com/food-api/docs#Ingredient-Search) al volver y por último una opción para cambiar la resolución en los `SharedPreferences` en el [dialogo de resolución](#dialogo-de-resolucion). Además cada ingrediente se debe poder pulsar y entrar en una ventana con [información adicional del ingrediente](#3-detalles-del-ingrediente).
+Se intentará cargar los primeros ingredientes de la [API](https://spoonacular.com/food-api/docs#Ingredient-Search), en esta pantalla se mostrarán los errores e información relevante para poner en marcha el sistema. Una vez cargados, se mostrarán mediante un `RecylerView` la lista de ingredientes. Además contará menús en el `actionbar` que te dejará opciones de cambiar la dirección de los elementos mostrados (ascendente descendente), otra para ir a la pantalla de [filtrado](#4-filtraje-de-ingredientes), otra para ir una pantalla de [ordenado](#5-ordenado-de-ingredientes) para cambiar la petición de la [API](https://spoonacular.com/food-api/docs#Ingredient-Search) al volver y por último una opción para cambiar la resolución en los `SharedPreferences` en el [dialogo de resolución](#-dialogo-de-resolución). Además cada ingrediente se debe poder pulsar y entrar en una ventana con [información adicional del ingrediente](#3-detalles-del-ingrediente).
 
 Así se está viendo
 
@@ -72,23 +72,23 @@ Los ficheros en res son la parte de la interfaz gráfica
 
 ### 1) Tiene que constar de varias actívities, aunque también puede contener otros elementos 
 
-Eso está explicado en la parte de [pantallas](#pantallas), los 3 primeros son los activities [busqueda](#1-main-activity-la-búsqueda), [listado](#2lista-de-ingredientes) y [detalles](#3-detalles-del-ingrediente).
+Eso está explicado en la parte de [pantallas](#pantallas), los 3 primeros son los activities [busqueda](#1-main-activity-la-búsqueda), [listado](#2-lista-de-ingredientes) y [detalles](#3-detalles-del-ingrediente).
 
 ### 2) Debe haber al menos dos o más activities que se comuniquen información con intents
 
-La actividad [busqueda](#1-main-activity-la-búsqueda) pasá un string a la petición de la actividad [listado](#2lista-de-ingredientes) y la actividad [listado](#2lista-de-ingredientes) pasa el id del producto a la actividad [detalles](#3-detalles-del-ingrediente).
+La actividad [busqueda](#1-main-activity-la-búsqueda) pasá un string a la petición de la actividad [listado](#2-lista-de-ingredientes) y la actividad [listado](#2-lista-de-ingredientes) pasa el id del producto a la actividad [detalles](#3-detalles-del-ingrediente).
 
 ### 3) Debe contener al menos un ListView donde al pulsar en los elementos ocurra algo.
 
-La actividad [listado](#2lista-de-ingredientes) contiene un `RecyclerView` con cada ingrediente y al pulsarlo se va a la actividad [detalles](#3-detalles-del-ingrediente), está a su vez tiene otro `RecyclerView` para mostrar sus nutrientes, pero no lleva a ningún sitio al pulsarlo.
+La actividad [listado](#2-lista-de-ingredientes) contiene un `RecyclerView` con cada ingrediente y al pulsarlo se va a la actividad [detalles](#3-detalles-del-ingrediente), está a su vez tiene otro `RecyclerView` para mostrar sus nutrientes, pero no lleva a ningún sitio al pulsarlo.
 
 ### 4) Debe usar Preferences y preferiblemente SharedPreferences
 
-En el [dialogo de resolución](#dialogo-de-resolucion) se ajustan en las preferencias la resolución a la cual se quieren mostrar las imágenes para disminuir el consumo de datos de internet.
+En el [dialogo de resolución](#-dialogo-de-resolución) se ajustan en las preferencias la resolución a la cual se quieren mostrar las imágenes para disminuir el consumo de datos de internet.
 
 ### 5) Debe contener Actionbars o pestañas o menús.
 
-Contiene 4 menus, 3 con dialogos: [dialogo de filtrado](#4-filtraje-de-ingredientes), [dialogo de ordenado](#5-ordenado-de-ingredientes) y [dialogo de resolución](#dialogo-de-resolucion). El último es el de cambiar el orden de mostrar los productos, aunque estoy pensando en mejorar el [dialogo de ordenado](#5-ordenado-de-ingredientes) para que se pueda elegir el orden allí, no sé si llegaré a implementar eso.
+Contiene 4 menus, 3 con dialogos: [dialogo de filtrado](#4-filtraje-de-ingredientes), [dialogo de ordenado](#5-ordenado-de-ingredientes) y [dialogo de resolución](#-dialogo-de-resolución). El último es el de cambiar el orden de mostrar los productos, aunque estoy pensando en mejorar el [dialogo de ordenado](#5-ordenado-de-ingredientes) para que se pueda elegir el orden allí, no sé si llegaré a implementar eso.
 Los iconos son estándares de android para mostrar filtrado y ordenado, aquí una imagen.
 
 ![Lista imagen](/resources/menu.jpg)

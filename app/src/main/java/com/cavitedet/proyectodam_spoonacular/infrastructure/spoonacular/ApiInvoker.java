@@ -185,6 +185,7 @@ public class ApiInvoker {
 
 
             }
+
             HttpsURLConnection urlConnection = (HttpsURLConnection) pageUrl.openConnection();
 
             urlConnection.setRequestProperty("Accept", "application/json");
@@ -209,12 +210,14 @@ public class ApiInvoker {
                 while ((line = reader.readLine()) != null) {
                     response.append(line);
                 }
+                urlConnection.disconnect();
                 return response.toString();
             } else {
                 if (responseString == null) {
                     responseString = "no data";
                 }
             }
+            urlConnection.disconnect();
             throw new ApiException(code, responseString);
         } catch (IOException e) {
             throw new ApiException(500, e.getMessage());

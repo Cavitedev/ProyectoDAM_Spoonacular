@@ -10,8 +10,8 @@ import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.espresso.intent.matcher.IntentMatchers;
 import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
 
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.application.pantallas.detalles.ActividadDetalles;
@@ -20,6 +20,7 @@ import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.Conve
 import com.cavitedet.proyectodam_spoonacular.utils.MyActions;
 import com.cavitedet.proyectodam_spoonacular.utils.MyMatchers;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -28,32 +29,36 @@ import org.junit.Test;
 @LargeTest
 public class ActividadListadoTest {
 
-    static Intent intentConBanana;
-
-    static {
-        Context context = ApplicationProvider.getApplicationContext();
-        intentConBanana = new Intent(context, ActividadDeListado.class);
-        intentConBanana.putExtra(context.getString(R.string.intent_peticion_ingredientes), "banana");
-
-    }
 
     @Rule
-    public ActivityScenarioRule<ActividadDeListado> activityRule
-            = new ActivityScenarioRule<>(intentConBanana);
+    public ActivityTestRule<ActividadDeListado> activityRule
+            = new ActivityTestRule<>(ActividadDeListado.class, true, false);
 
     @Before
     public void init() {
+
+        Context context = ApplicationProvider.getApplicationContext();
+        Intent intentConBanana = new Intent(context, ActividadDeListado.class);
+        intentConBanana.putExtra(context.getString(R.string.intent_peticion_ingredientes), "banana");
+        activityRule.launchActivity(intentConBanana);
+
         Intents.init();
+    }
+
+    @After
+    public void end() {
+        activityRule.finishActivity();
+
     }
 
     @Test
     public void visualizaBananaChips() {
 
+
         Espresso.onView(MyMatchers.withIndex(
                 ViewMatchers.withId(R.id.nombre_ingrediente), 0)).check(
-                ViewAssertions.matches(ViewMatchers.withText("banana"))
+                ViewAssertions.matches(ViewMatchers.withText("banana chips"))
         );
-
     }
 
     @Test

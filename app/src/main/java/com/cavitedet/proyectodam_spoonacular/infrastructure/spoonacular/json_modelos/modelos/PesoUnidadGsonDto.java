@@ -1,17 +1,20 @@
-package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.modelos;
 
-public class PesoUnidad {
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.PesoUnidad;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.reglas.IADominio;
+import com.google.gson.annotations.SerializedName;
 
+public class PesoUnidadGsonDto implements IADominio<PesoUnidad> {
+
+    @SerializedName("amount")
     private Double cantidad;
 
+    @SerializedName("unit")
     private String unidad;
 
-    public PesoUnidad() {
-    }
-
-    public PesoUnidad(Double cantidad, String unidad) {
-        this.cantidad = cantidad;
-        this.unidad = unidad;
+    @Override
+    public PesoUnidad aDominio() {
+        return new PesoUnidad(cantidad, unidad);
     }
 
     public Double getCantidad() {

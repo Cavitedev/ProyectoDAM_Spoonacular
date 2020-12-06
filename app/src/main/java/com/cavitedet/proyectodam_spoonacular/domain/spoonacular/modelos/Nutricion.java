@@ -1,22 +1,27 @@
 package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
 
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class Nutricion {
 
-    @SerializedName("nutrients")
     private List<Nutriente> nutrientes;
 
-    @SerializedName("properties")
     private List<Propiedad> propiedades;
 
-    @SerializedName("caloricBreakdown")
     private DescomposicionCalorica descomposicionCalorica;
 
-    @SerializedName("weightPerServing")
     private PesoUnidad pesoPorRacion;
+
+    public Nutricion() {
+    }
+
+    public Nutricion(List<Nutriente> nutrientes, List<Propiedad> propiedades, DescomposicionCalorica descomposicionCalorica, PesoUnidad pesoPorRacion) {
+        this.nutrientes = nutrientes;
+        this.propiedades = propiedades;
+        this.descomposicionCalorica = descomposicionCalorica;
+        this.pesoPorRacion = pesoPorRacion;
+    }
 
     public List<Nutriente> getNutrientes() {
         return nutrientes;

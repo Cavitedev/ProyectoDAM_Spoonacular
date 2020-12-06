@@ -1,22 +1,28 @@
 package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
 
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class Ingredientes {
 
-    @SerializedName("results")
     private List<Ingrediente> listaIngredientes;
 
-    @SerializedName("offset")
     private Integer offset;
 
-    @SerializedName("number")
     private Integer numeroPedido;
 
-    @SerializedName("totalResults")
     private Integer resultadosTotales;
+
+    public Ingredientes(List<Ingrediente> listaIngredientes) {
+        this.listaIngredientes = listaIngredientes;
+    }
+
+    public Ingredientes(List<Ingrediente> listaIngredientes, Integer offset, Integer numeroPedido, Integer resultadosTotales) {
+        this.listaIngredientes = listaIngredientes;
+        this.offset = offset;
+        this.numeroPedido = numeroPedido;
+        this.resultadosTotales = resultadosTotales;
+    }
 
     public List<Ingrediente> getListaIngredientes() {
         return listaIngredientes;

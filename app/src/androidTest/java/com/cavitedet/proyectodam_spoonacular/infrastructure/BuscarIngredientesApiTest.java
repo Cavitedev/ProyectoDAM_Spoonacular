@@ -6,8 +6,8 @@ import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.cavitedet.proyectodam_spoonacular.R;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.busqueda.ParametrosBuscarIngredientes;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.busqueda.ParametrosBuscarIngredientes;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.LlamadorApi;
 

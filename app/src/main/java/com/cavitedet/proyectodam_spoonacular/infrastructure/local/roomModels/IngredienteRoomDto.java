@@ -1,23 +1,19 @@
-package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.local.roomModels;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+import com.cavitedet.proyectodam_spoonacular.infrastructure.local.RoomConstantes;
 
-public class Ingrediente {
+@Entity(tableName = RoomConstantes.INGREDIENTES_NOMBRE_TABLA)
+public class IngredienteRoomDto {
 
+    @PrimaryKey
     private Integer id;
 
     private String nombre;
 
     private String imagen;
-
-    public Ingrediente() {
-    }
-
-    public Ingrediente(Integer id, String nombre, String imagen) {
-        this.id = id;
-        this.nombre = nombre;
-        this.imagen = imagen;
-    }
 
     public Integer getId() {
         return id;

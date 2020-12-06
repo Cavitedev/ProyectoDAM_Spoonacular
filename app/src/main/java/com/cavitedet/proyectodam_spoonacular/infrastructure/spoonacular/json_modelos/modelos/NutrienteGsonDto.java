@@ -1,26 +1,31 @@
-package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.modelos;
 
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Nutriente;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.reglas.IADominio;
+import com.google.gson.annotations.SerializedName;
 
-public class Nutriente {
+public class NutrienteGsonDto implements IADominio<Nutriente> {
 
+    @SerializedName("title")
     private String nombre;
 
+    @SerializedName("amount")
     private Double cantidad;
 
+    @SerializedName("unit")
     private String unidad;
 
+    @SerializedName("percentOfDailyNeeds")
     private Double porcentajeNecesitadoAlDia;
 
-    public Nutriente(String nombre) {
-        this.nombre = nombre;
-    }
-
-
-    public Nutriente(String nombre, Double cantidad, String unidad, Double porcentajeNecesitadoAlDia) {
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-        this.unidad = unidad;
-        this.porcentajeNecesitadoAlDia = porcentajeNecesitadoAlDia;
+    @Override
+    public Nutriente aDominio() {
+        return new Nutriente(
+                nombre,
+                cantidad,
+                unidad,
+                porcentajeNecesitadoAlDia
+        );
     }
 
     public String getNombre() {

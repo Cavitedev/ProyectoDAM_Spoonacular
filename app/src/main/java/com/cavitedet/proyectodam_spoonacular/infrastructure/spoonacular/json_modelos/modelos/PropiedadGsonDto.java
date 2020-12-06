@@ -1,21 +1,23 @@
-package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.modelos;
 
-public class Propiedad {
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Propiedad;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.reglas.IADominio;
+import com.google.gson.annotations.SerializedName;
 
+public class PropiedadGsonDto implements IADominio<Propiedad> {
+
+    @SerializedName("title")
     private String nombre;
 
+    @SerializedName("amount")
     private Double cantidad;
 
+    @SerializedName("unit")
     private String unidad;
 
-    public Propiedad(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Propiedad(String nombre, Double cantidad, String unidad) {
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-        this.unidad = unidad;
+    @Override
+    public Propiedad aDominio() {
+        return new Propiedad(nombre, cantidad, unidad);
     }
 
     public String getNombre() {

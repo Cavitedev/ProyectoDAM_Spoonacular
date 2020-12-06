@@ -1,67 +1,96 @@
-package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.modelos;
 
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.IngredienteDetallado;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.reglas.IADominio;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
+import static com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.JsonUtil.getGson;
 
-public class IngredienteDetallado {
+/**
+ * Detalles de un ingrediente que devuelve en esta api https://spoonacular.com/food-api/docs#Get-Ingredient-Information
+ */
+public class IngredienteDetalladoGsonDto implements IADominio<IngredienteDetallado> {
 
+    @SerializedName("id")
     private Integer id;
 
+    @SerializedName("original")
     private String original;
 
+    @SerializedName("originalName")
     private String nombreOriginal;
 
+    @SerializedName("name")
     private String nombre;
 
+    @SerializedName("amount")
     private Double cantidad;
 
+    @SerializedName("unit")
     private String unidadDeMedida;
 
+    @SerializedName("unitShort")
     private String unidadDeMedidaReducida;
 
+    @SerializedName("unitLong")
     private String unidadDeMedidaAlargada;
 
+    @SerializedName("possibleUnits")
     private List<String> posiblesUnidades;
 
-    private ValorEstimado valorEstimado;
+    @SerializedName("estimatedCost")
+    private ValorEstimadoGsonDto valorEstimado;
 
+    @SerializedName("consistency")
     private String consistencia;
 
+    @SerializedName("shoppingListUnits")
     private List<String> tiposDeUnidadesAlCobrar;
 
+    @SerializedName("aisle")
     private String categoria;
 
+    @SerializedName("image")
     private String imagen;
 
+    @SerializedName("meta")
     private List<String> metaInformacion;
 
-    private Nutricion nutricion;
+    @SerializedName("nutrition")
+    private NutricionGsonDto nutricion;
 
+    @SerializedName("categoryPath")
     private List<String> caminoDeCategorias;
 
-    public IngredienteDetallado(Integer id) {
-        this.id = id;
+    public static IngredienteDetalladoGsonDto desdeJson(String json) {
+        return getGson().fromJson(json, new TypeToken<IngredienteDetalladoGsonDto>() {
+        }.getType());
     }
 
-    public IngredienteDetallado(Integer id, String original, String nombreOriginal, String nombre, Double cantidad, String unidadDeMedida, String unidadDeMedidaReducida, String unidadDeMedidaAlargada, List<String> posiblesUnidades, ValorEstimado valorEstimado, String consistencia, List<String> tiposDeUnidadesAlCobrar, String categoria, String imagen, List<String> metaInformacion, Nutricion nutricion, List<String> caminoDeCategorias) {
-        this.id = id;
-        this.original = original;
-        this.nombreOriginal = nombreOriginal;
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-        this.unidadDeMedida = unidadDeMedida;
-        this.unidadDeMedidaReducida = unidadDeMedidaReducida;
-        this.unidadDeMedidaAlargada = unidadDeMedidaAlargada;
-        this.posiblesUnidades = posiblesUnidades;
-        this.valorEstimado = valorEstimado;
-        this.consistencia = consistencia;
-        this.tiposDeUnidadesAlCobrar = tiposDeUnidadesAlCobrar;
-        this.categoria = categoria;
-        this.imagen = imagen;
-        this.metaInformacion = metaInformacion;
-        this.nutricion = nutricion;
-        this.caminoDeCategorias = caminoDeCategorias;
+    @Override
+    public IngredienteDetallado aDominio() {
+        IngredienteDetallado ingredienteDetallado = new IngredienteDetallado(id,
+                original,
+                nombreOriginal,
+                nombre,
+                cantidad,
+                unidadDeMedida,
+                unidadDeMedidaReducida,
+                unidadDeMedidaAlargada,
+                posiblesUnidades,
+                valorEstimado.aDominio(),
+                consistencia,
+                tiposDeUnidadesAlCobrar,
+                categoria,
+                imagen,
+                metaInformacion,
+                nutricion.aDominio(),
+                caminoDeCategorias
+        );
+        return ingredienteDetallado;
     }
 
     public Integer getId() {
@@ -136,11 +165,11 @@ public class IngredienteDetallado {
         this.posiblesUnidades = posiblesUnidades;
     }
 
-    public ValorEstimado getValorEstimado() {
+    public ValorEstimadoGsonDto getValorEstimado() {
         return valorEstimado;
     }
 
-    public void setValorEstimado(ValorEstimado valorEstimado) {
+    public void setValorEstimado(ValorEstimadoGsonDto valorEstimado) {
         this.valorEstimado = valorEstimado;
     }
 
@@ -184,11 +213,11 @@ public class IngredienteDetallado {
         this.metaInformacion = metaInformacion;
     }
 
-    public Nutricion getNutricion() {
+    public NutricionGsonDto getNutricion() {
         return nutricion;
     }
 
-    public void setNutricion(Nutricion nutricion) {
+    public void setNutricion(NutricionGsonDto nutricion) {
         this.nutricion = nutricion;
     }
 
@@ -222,4 +251,6 @@ public class IngredienteDetallado {
                 ", caminoDeCategorias=" + caminoDeCategorias +
                 '}';
     }
+
+
 }

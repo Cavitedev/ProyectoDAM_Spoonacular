@@ -5,9 +5,11 @@
 
 package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.busqueda.ParametrosBuscarIngredientes;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.IngredienteDetallado;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.busqueda.ParametrosBuscarIngredientes;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.modelos.IngredienteDetalladoGsonDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.modelos.IngredientesGsonDto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +34,7 @@ public class LlamadorApi {
     public Ingredientes busquedaIngredientes(ParametrosBuscarIngredientes parametrosBusqueda)
             throws ApiException {
         String respuesta = busquedaIngredientesJsonString(parametrosBusqueda);
-        return JsonUtil.deserializarIngredientes(respuesta);
+        return IngredientesGsonDto.desdeJson(respuesta).aDominio();
 
     }
 
@@ -57,7 +59,7 @@ public class LlamadorApi {
      */
     public IngredienteDetallado obtenerInformacionIngrediente(Integer id, Double amount, String unit) throws ApiException {
         String respuesta = obtenerInformacionIngredienteJsonString(id, amount, unit);
-        return JsonUtil.deserializarIngredienteDetallado(respuesta);
+        return IngredienteDetalladoGsonDto.desdeJson(respuesta).aDominio();
     }
 
 

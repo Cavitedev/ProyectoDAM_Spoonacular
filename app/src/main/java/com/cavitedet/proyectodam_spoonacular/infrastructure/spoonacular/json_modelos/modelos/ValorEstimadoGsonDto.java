@@ -1,14 +1,20 @@
-package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.modelos;
 
-public class ValorEstimado {
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ValorEstimado;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.reglas.IADominio;
+import com.google.gson.annotations.SerializedName;
 
+public class ValorEstimadoGsonDto implements IADominio<ValorEstimado> {
+
+    @SerializedName("value")
     private double valor;
 
+    @SerializedName("unit")
     private String unidad;
 
-    public ValorEstimado(double valor, String unidad) {
-        this.valor = valor;
-        this.unidad = unidad;
+    @Override
+    public ValorEstimado aDominio() {
+        return new ValorEstimado(valor, unidad);
     }
 
     public double getValor() {

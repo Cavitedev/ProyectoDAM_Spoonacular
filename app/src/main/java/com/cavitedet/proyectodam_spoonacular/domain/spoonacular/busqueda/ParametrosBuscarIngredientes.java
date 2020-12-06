@@ -1,4 +1,4 @@
-package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.busqueda;
+package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.busqueda;
 
 import com.cavitedet.proyectodam_spoonacular.domain.Filtrado;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiInvoker;

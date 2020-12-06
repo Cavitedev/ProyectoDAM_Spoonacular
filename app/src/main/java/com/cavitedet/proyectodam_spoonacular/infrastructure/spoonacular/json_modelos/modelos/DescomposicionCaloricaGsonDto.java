@@ -1,22 +1,25 @@
-package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.modelos;
 
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.DescomposicionCalorica;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.reglas.IADominio;
+import com.google.gson.annotations.SerializedName;
 
-public class DescomposicionCalorica {
+public class DescomposicionCaloricaGsonDto implements IADominio<DescomposicionCalorica> {
 
+    @SerializedName("percentProtein")
     private Double porcentajeProteinas;
 
+    @SerializedName("percentFats")
     private Double porcentajeGrasas;
 
+    @SerializedName("percentCarbs")
     private Double porcentajeCarbohidratos;
 
-    public DescomposicionCalorica() {
+    @Override
+    public DescomposicionCalorica aDominio() {
+        return new DescomposicionCalorica(porcentajeProteinas, porcentajeGrasas, porcentajeCarbohidratos);
     }
 
-    public DescomposicionCalorica(Double porcentajeProteinas, Double porcentajeGrasas, Double porcentajeCarbohidratos) {
-        this.porcentajeProteinas = porcentajeProteinas;
-        this.porcentajeGrasas = porcentajeGrasas;
-        this.porcentajeCarbohidratos = porcentajeCarbohidratos;
-    }
 
     public Double getPorcentajeProteinas() {
         return porcentajeProteinas;
@@ -50,4 +53,6 @@ public class DescomposicionCalorica {
                 ", porcentajeCarbohidratos=" + porcentajeCarbohidratos +
                 '}';
     }
+
+
 }

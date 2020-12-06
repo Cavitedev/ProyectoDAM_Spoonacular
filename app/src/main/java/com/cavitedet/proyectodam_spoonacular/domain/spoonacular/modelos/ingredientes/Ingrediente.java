@@ -1,4 +1,4 @@
-package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
+package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingredientes;
 
 
 
@@ -50,5 +50,26 @@ public class Ingrediente {
                 ", name='" + nombre + '\'' +
                 ", image='" + imagen + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ingrediente)) return false;
+
+        Ingrediente that = (Ingrediente) o;
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        if (getNombre() != null ? !getNombre().equals(that.getNombre()) : that.getNombre() != null)
+            return false;
+        return getImagen() != null ? getImagen().equals(that.getImagen()) : that.getImagen() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getNombre() != null ? getNombre().hashCode() : 0);
+        result = 31 * result + (getImagen() != null ? getImagen().hashCode() : 0);
+        return result;
     }
 }

@@ -6,10 +6,10 @@
 package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular;
 
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.busqueda.ParametrosBuscarIngredientes;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.IngredienteDetallado;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.modelos.IngredienteDetalladoGsonDto;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.modelos.IngredientesGsonDto;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingrediente_detallado.IngredienteDetallado;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingredientes.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.ingrediente_detallado.IngredienteDetalladoGsonDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.ingredientes.IngredientesGsonDto;
 
 import java.util.ArrayList;
 import java.util.HashMap;

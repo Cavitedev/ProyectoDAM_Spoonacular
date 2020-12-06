@@ -1,6 +1,6 @@
 package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.usecases;
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.IngredienteDetallado;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingrediente_detallado.IngredienteDetallado;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.LlamadorApi;
 
 import java.util.concurrent.Callable;

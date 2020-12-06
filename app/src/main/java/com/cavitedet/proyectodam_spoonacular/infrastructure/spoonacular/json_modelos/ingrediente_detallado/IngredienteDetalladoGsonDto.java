@@ -1,6 +1,6 @@
-package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.modelos;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.ingrediente_detallado;
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.IngredienteDetallado;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingrediente_detallado.IngredienteDetallado;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.reglas.IADominio;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
@@ -72,7 +72,7 @@ public class IngredienteDetalladoGsonDto implements IADominio<IngredienteDetalla
 
     @Override
     public IngredienteDetallado aDominio() {
-        IngredienteDetallado ingredienteDetallado = new IngredienteDetallado(id,
+        return new IngredienteDetallado(id,
                 original,
                 nombreOriginal,
                 nombre,
@@ -90,7 +90,6 @@ public class IngredienteDetalladoGsonDto implements IADominio<IngredienteDetalla
                 nutricion.aDominio(),
                 caminoDeCategorias
         );
-        return ingredienteDetallado;
     }
 
     public Integer getId() {

@@ -1,6 +1,6 @@
-package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.modelos;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.ingrediente_detallado;
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ValorEstimado;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingrediente_detallado.ValorEstimado;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.reglas.IADominio;
 import com.google.gson.annotations.SerializedName;
 

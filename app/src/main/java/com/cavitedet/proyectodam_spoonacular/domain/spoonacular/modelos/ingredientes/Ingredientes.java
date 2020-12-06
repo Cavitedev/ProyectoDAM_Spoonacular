@@ -1,4 +1,4 @@
-package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
+package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingredientes;
 
 
 import java.util.List;
@@ -66,5 +66,27 @@ public class Ingredientes {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ingredientes)) return false;
 
+        Ingredientes that = (Ingredientes) o;
+
+        if (!getListaIngredientes().equals(that.getListaIngredientes())) return false;
+        if (getOffset() != null ? !getOffset().equals(that.getOffset()) : that.getOffset() != null)
+            return false;
+        if (getNumeroPedido() != null ? !getNumeroPedido().equals(that.getNumeroPedido()) : that.getNumeroPedido() != null)
+            return false;
+        return getResultadosTotales() != null ? getResultadosTotales().equals(that.getResultadosTotales()) : that.getResultadosTotales() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getListaIngredientes().hashCode();
+        result = 31 * result + (getOffset() != null ? getOffset().hashCode() : 0);
+        result = 31 * result + (getNumeroPedido() != null ? getNumeroPedido().hashCode() : 0);
+        result = 31 * result + (getResultadosTotales() != null ? getResultadosTotales().hashCode() : 0);
+        return result;
+    }
 }

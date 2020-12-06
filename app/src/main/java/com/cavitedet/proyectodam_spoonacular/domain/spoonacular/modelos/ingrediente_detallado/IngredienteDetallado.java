@@ -1,4 +1,4 @@
-package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
+package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingrediente_detallado;
 
 
 import java.util.List;
@@ -221,5 +221,68 @@ public class IngredienteDetallado {
                 ", nutricion=" + nutricion +
                 ", caminoDeCategorias=" + caminoDeCategorias +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof IngredienteDetallado)) return false;
+
+        IngredienteDetallado that = (IngredienteDetallado) o;
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        if (getOriginal() != null ? !getOriginal().equals(that.getOriginal()) : that.getOriginal() != null)
+            return false;
+        if (getNombreOriginal() != null ? !getNombreOriginal().equals(that.getNombreOriginal()) : that.getNombreOriginal() != null)
+            return false;
+        if (getNombre() != null ? !getNombre().equals(that.getNombre()) : that.getNombre() != null)
+            return false;
+        if (getCantidad() != null ? !getCantidad().equals(that.getCantidad()) : that.getCantidad() != null)
+            return false;
+        if (getUnidadDeMedida() != null ? !getUnidadDeMedida().equals(that.getUnidadDeMedida()) : that.getUnidadDeMedida() != null)
+            return false;
+        if (getUnidadDeMedidaReducida() != null ? !getUnidadDeMedidaReducida().equals(that.getUnidadDeMedidaReducida()) : that.getUnidadDeMedidaReducida() != null)
+            return false;
+        if (getUnidadDeMedidaAlargada() != null ? !getUnidadDeMedidaAlargada().equals(that.getUnidadDeMedidaAlargada()) : that.getUnidadDeMedidaAlargada() != null)
+            return false;
+        if (getPosiblesUnidades() != null ? !getPosiblesUnidades().equals(that.getPosiblesUnidades()) : that.getPosiblesUnidades() != null)
+            return false;
+        if (getValorEstimado() != null ? !getValorEstimado().equals(that.getValorEstimado()) : that.getValorEstimado() != null)
+            return false;
+        if (getConsistencia() != null ? !getConsistencia().equals(that.getConsistencia()) : that.getConsistencia() != null)
+            return false;
+        if (getTiposDeUnidadesAlCobrar() != null ? !getTiposDeUnidadesAlCobrar().equals(that.getTiposDeUnidadesAlCobrar()) : that.getTiposDeUnidadesAlCobrar() != null)
+            return false;
+        if (getCategoria() != null ? !getCategoria().equals(that.getCategoria()) : that.getCategoria() != null)
+            return false;
+        if (getImagen() != null ? !getImagen().equals(that.getImagen()) : that.getImagen() != null)
+            return false;
+        if (getMetaInformacion() != null ? !getMetaInformacion().equals(that.getMetaInformacion()) : that.getMetaInformacion() != null)
+            return false;
+        if (getNutricion() != null ? !getNutricion().equals(that.getNutricion()) : that.getNutricion() != null)
+            return false;
+        return getCaminoDeCategorias() != null ? getCaminoDeCategorias().equals(that.getCaminoDeCategorias()) : that.getCaminoDeCategorias() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getOriginal() != null ? getOriginal().hashCode() : 0);
+        result = 31 * result + (getNombreOriginal() != null ? getNombreOriginal().hashCode() : 0);
+        result = 31 * result + (getNombre() != null ? getNombre().hashCode() : 0);
+        result = 31 * result + (getCantidad() != null ? getCantidad().hashCode() : 0);
+        result = 31 * result + (getUnidadDeMedida() != null ? getUnidadDeMedida().hashCode() : 0);
+        result = 31 * result + (getUnidadDeMedidaReducida() != null ? getUnidadDeMedidaReducida().hashCode() : 0);
+        result = 31 * result + (getUnidadDeMedidaAlargada() != null ? getUnidadDeMedidaAlargada().hashCode() : 0);
+        result = 31 * result + (getPosiblesUnidades() != null ? getPosiblesUnidades().hashCode() : 0);
+        result = 31 * result + (getValorEstimado() != null ? getValorEstimado().hashCode() : 0);
+        result = 31 * result + (getConsistencia() != null ? getConsistencia().hashCode() : 0);
+        result = 31 * result + (getTiposDeUnidadesAlCobrar() != null ? getTiposDeUnidadesAlCobrar().hashCode() : 0);
+        result = 31 * result + (getCategoria() != null ? getCategoria().hashCode() : 0);
+        result = 31 * result + (getImagen() != null ? getImagen().hashCode() : 0);
+        result = 31 * result + (getMetaInformacion() != null ? getMetaInformacion().hashCode() : 0);
+        result = 31 * result + (getNutricion() != null ? getNutricion().hashCode() : 0);
+        result = 31 * result + (getCaminoDeCategorias() != null ? getCaminoDeCategorias().hashCode() : 0);
+        return result;
     }
 }

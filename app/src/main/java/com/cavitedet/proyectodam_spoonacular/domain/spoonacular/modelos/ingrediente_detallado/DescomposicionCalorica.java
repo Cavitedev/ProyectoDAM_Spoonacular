@@ -1,4 +1,4 @@
-package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
+package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingrediente_detallado;
 
 
 public class DescomposicionCalorica {
@@ -49,5 +49,27 @@ public class DescomposicionCalorica {
                 ", porcentajeGrasas=" + porcentajeGrasas +
                 ", porcentajeCarbohidratos=" + porcentajeCarbohidratos +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DescomposicionCalorica)) return false;
+
+        DescomposicionCalorica that = (DescomposicionCalorica) o;
+
+        if (getPorcentajeProteinas() != null ? !getPorcentajeProteinas().equals(that.getPorcentajeProteinas()) : that.getPorcentajeProteinas() != null)
+            return false;
+        if (getPorcentajeGrasas() != null ? !getPorcentajeGrasas().equals(that.getPorcentajeGrasas()) : that.getPorcentajeGrasas() != null)
+            return false;
+        return getPorcentajeCarbohidratos() != null ? getPorcentajeCarbohidratos().equals(that.getPorcentajeCarbohidratos()) : that.getPorcentajeCarbohidratos() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getPorcentajeProteinas() != null ? getPorcentajeProteinas().hashCode() : 0;
+        result = 31 * result + (getPorcentajeGrasas() != null ? getPorcentajeGrasas().hashCode() : 0);
+        result = 31 * result + (getPorcentajeCarbohidratos() != null ? getPorcentajeCarbohidratos().hashCode() : 0);
+        return result;
     }
 }

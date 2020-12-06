@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.domain.Filtrado;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingredientes.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.usecases.ObtenerListadoDeIngredientesUsecase;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.CheckNetworkAccess;
 

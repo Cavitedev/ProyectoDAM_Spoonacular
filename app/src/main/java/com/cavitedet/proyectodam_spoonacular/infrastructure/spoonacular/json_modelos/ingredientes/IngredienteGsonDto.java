@@ -1,6 +1,6 @@
-package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.modelos;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.ingredientes;
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingrediente;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingredientes.Ingrediente;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.reglas.IADominio;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;

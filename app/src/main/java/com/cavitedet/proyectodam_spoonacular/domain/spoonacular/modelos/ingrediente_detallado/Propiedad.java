@@ -1,4 +1,4 @@
-package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos;
+package com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingrediente_detallado;
 
 public class Propiedad {
 
@@ -49,5 +49,28 @@ public class Propiedad {
                 ", cantidad=" + cantidad +
                 ", unidad='" + unidad + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (!(o instanceof Propiedad)) return false;
+
+        Propiedad propiedad = (Propiedad) o;
+
+        if (getNombre() != null ? !getNombre().equals(propiedad.getNombre()) : propiedad.getNombre() != null)
+            return false;
+        if (getCantidad() != null ? !getCantidad().equals(propiedad.getCantidad()) : propiedad.getCantidad() != null)
+            return false;
+        return getUnidad() != null ? getUnidad().equals(propiedad.getUnidad()) : propiedad.getUnidad() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getNombre() != null ? getNombre().hashCode() : 0;
+        result = 31 * result + (getCantidad() != null ? getCantidad().hashCode() : 0);
+        result = 31 * result + (getUnidad() != null ? getUnidad().hashCode() : 0);
+        return result;
     }
 }

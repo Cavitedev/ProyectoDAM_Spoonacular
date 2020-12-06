@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.application.pantallas.detalles.ActividadDetalles;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingrediente;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingredientes.Ingrediente;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingredientes.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.ConversorImagen;
 
 public class AdaptadorIngredientes extends RecyclerView.Adapter<AdaptadorIngredientes.ViewHolder> {

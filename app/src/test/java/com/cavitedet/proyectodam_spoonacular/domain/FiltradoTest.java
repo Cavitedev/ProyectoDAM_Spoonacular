@@ -74,13 +74,20 @@ public class FiltradoTest {
 
         Filtrado filtrado = new Filtrado();
         List<Float> valores = new ArrayList<>();
-        valores.add(new Float(20));
-        valores.add(new Float(10));
+        valores.add(20f);
+        valores.add(10f);
         filtrado.setProteinas(valores);
+        filtrado.setCarboHidratos(valores);
+        filtrado.setGrasas(valores);
 
-        Assert.assertEquals(20, filtrado.getProteinas().getValorMinimoActual(), delta);
         Assert.assertEquals(20, filtrado.getProteinas().getValorMaximoActual(), delta);
+        Assert.assertEquals(20, filtrado.getProteinas().getValorMinimoActual(), delta);
 
+        Assert.assertEquals(20, filtrado.getCarboHidratos().getValorMinimoActual(), delta);
+        Assert.assertEquals(20, filtrado.getCarboHidratos().getValorMaximoActual(), delta);
+
+        Assert.assertEquals(20, filtrado.getGrasas().getValorMinimoActual(), delta);
+        Assert.assertEquals(20, filtrado.getGrasas().getValorMaximoActual(), delta);
     }
 
 }

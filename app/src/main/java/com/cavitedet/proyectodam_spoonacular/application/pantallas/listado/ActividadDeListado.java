@@ -83,7 +83,7 @@ public class ActividadDeListado extends AppCompatActivity implements DialogoDeOr
             if (e.getCause() != null && e.getCause().getMessage() != null && e.getCause().getMessage().equals(getString(R.string.excepcion_pago_api))) {
                 mensajeError.setText(R.string.llamadas_api_acabadas);
             } else {
-                mensajeError.setText(getString(R.string.error_ejecucción_busqueda_api, listadoUsecase.getQuery()));
+                mensajeError.setText(getString(R.string.error_ejecucción_busqueda_api, listadoUsecase.getParametrosBuscarIngredientes().getQuery()));
             }
         } catch (TimeoutException e) {
 
@@ -104,13 +104,13 @@ public class ActividadDeListado extends AppCompatActivity implements DialogoDeOr
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_cambiar_dir_orden) {
-            listadoUsecase.cambiarDireccionOrdenado();
+            listadoUsecase.getParametrosBuscarIngredientes().cambiarDireccionOrdenado();
             refrescarIngredientes();
         } else if (item.getItemId() == R.id.menu_cambiar_ordenado) {
-            DialogoDeOrdenado dialogoDeOrdenado = new DialogoDeOrdenado(listadoUsecase.getSort());
+            DialogoDeOrdenado dialogoDeOrdenado = new DialogoDeOrdenado(listadoUsecase.getParametrosBuscarIngredientes().getSort());
             dialogoDeOrdenado.show(getSupportFragmentManager(), getString(R.string.cambiar_ordenado));
         } else if (item.getItemId() == R.id.menu_cambiar_filtrado) {
-            DialogoFiltrado dialogoFiltrado = new DialogoFiltrado(listadoUsecase.getFiltrado());
+            DialogoFiltrado dialogoFiltrado = new DialogoFiltrado(listadoUsecase.getParametrosBuscarIngredientes().getFiltrado());
             dialogoFiltrado.show(getSupportFragmentManager(), getString(R.string.cambiar_filtrado));
         } else if (item.getItemId() == R.id.menu_cambiar_resolucion) {
             DialogoDeResolucion dialogoDeResolucion = new DialogoDeResolucion();
@@ -121,13 +121,13 @@ public class ActividadDeListado extends AppCompatActivity implements DialogoDeOr
 
     @Override
     public void alAceptarOrdenado(String respuesta) {
-        listadoUsecase.setSort(respuesta);
+        listadoUsecase.getParametrosBuscarIngredientes().setSort(respuesta);
         refrescarIngredientes();
     }
 
     @Override
     public void aceptarFiltrado(Filtrado filtrado) {
-        listadoUsecase.setFiltrado(filtrado);
+        listadoUsecase.getParametrosBuscarIngredientes().setFiltrado(filtrado);
         refrescarIngredientes();
     }
 

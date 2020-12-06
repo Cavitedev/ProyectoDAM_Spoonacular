@@ -7,6 +7,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.busqueda.ParametrosBuscarIngredientes;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.LlamadorApi;
 
@@ -44,15 +45,14 @@ public class BuscarIngredientesApiTest {
     public void probarTodosOrdenados() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
         String[] tiposDeOrdenado = context.getResources().getStringArray(R.array.ordenados_api);
-
+        ParametrosBuscarIngredientes parametros = new ParametrosBuscarIngredientes("banana");
+        parametros.setSortDirection("desc");
+        parametros.setNumber(1);
         boolean excepcion = false;
-        for (int i = 0; i < tiposDeOrdenado.length; i++) {
-
+        for (String s : tiposDeOrdenado) {
+            parametros.setSort(s);
             try {
-                Ingredientes result = LlamadorApi.getInstance().busquedaIngredientes("banana", null, null, null,
-                        null, null, null, null,
-                        null, null, tiposDeOrdenado[i], "desc", null,
-                        1);
+                LlamadorApi.getInstance().busquedaIngredientes(parametros);
             } catch (ApiException e) {
                 excepcion = true;
                 break;
@@ -71,10 +71,12 @@ public class BuscarIngredientesApiTest {
 
 
     private void buscarIngredientes(String query, Integer number, Integer expectedCount, String sort, String dir) throws ApiException {
-        Ingredientes result = LlamadorApi.getInstance().busquedaIngredientes(query, null, null, null,
-                null, null, null, null,
-                null, null, sort, dir, null,
-                number);
+        ParametrosBuscarIngredientes parametros = new ParametrosBuscarIngredientes(query);
+        parametros.setSortDirection(dir);
+        parametros.setNumber(number);
+        parametros.setSort(sort);
+
+        Ingredientes result = LlamadorApi.getInstance().busquedaIngredientes(parametros);
 
         MatcherAssert.assertThat(result.getResultadosTotales(), Matchers.equalTo(expectedCount));
     }

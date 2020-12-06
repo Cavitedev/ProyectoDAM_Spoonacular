@@ -38,4 +38,31 @@ public class Pair {
         if (arg == null) return false;
         return !arg.trim().isEmpty();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pair)) return false;
+
+        Pair pair = (Pair) o;
+
+        if (getName() != null ? !getName().equals(pair.getName()) : pair.getName() != null)
+            return false;
+        return getValue() != null ? getValue().equals(pair.getValue()) : pair.getValue() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getValue() != null ? getValue().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Pair{" +
+                "name='" + name + '\'' +
+                ", value='" + value + '\'' +
+                '}';
+    }
 }

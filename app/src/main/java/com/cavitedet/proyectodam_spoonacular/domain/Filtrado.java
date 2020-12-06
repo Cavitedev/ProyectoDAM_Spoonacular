@@ -41,7 +41,7 @@ public class Filtrado {
 
 
     /**
-     * @param valores lista con almenos 2 números que representan el mínimo y máximo
+     * @param valores lista con al menos 2 números que representan el mínimo y máximo
      */
     public void setProteinas(List<? extends Number> valores) {
         setProteinas(valores.get(0).intValue(), valores.get(1).intValue());
@@ -53,7 +53,7 @@ public class Filtrado {
     }
 
     /**
-     * @param valores lista con almenos 2 números que representan el mínimo y máximo
+     * @param valores lista con al menos 2 números que representan el mínimo y máximo
      */
     public void setGrasas(List<? extends Number> valores) {
         setGrasas(valores.get(0).intValue(), valores.get(1).intValue());
@@ -65,7 +65,7 @@ public class Filtrado {
     }
 
     /**
-     * @param valores lista con almenos 2 números que representan el mínimo y máximo
+     * @param valores lista con al menos 2 números que representan el mínimo y máximo
      */
     public void setCarboHidratos(List<? extends Number> valores) {
         setCarboHidratos(valores.get(0).intValue(), valores.get(1).intValue());

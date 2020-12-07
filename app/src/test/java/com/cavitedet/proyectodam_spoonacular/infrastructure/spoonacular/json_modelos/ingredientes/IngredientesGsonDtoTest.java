@@ -12,11 +12,11 @@ public class IngredientesGsonDtoTest extends IngredientesFixture {
 
     @Test
     public void ingredienteADominio() {
-        Assert.assertEquals(getIngredienteDominio(), getIngredienteDto().aDominio());
+        Assert.assertEquals(getIngredienteDominio(), getIngredienteGsonDto().aDominio());
     }
 
     @Test
     public void ingredientesADominio() {
-        Assert.assertEquals(getIngredientesDominio(), getIngredientesDto().aDominio());
+        Assert.assertEquals(getIngredientesDominio(), getIngredientesGsonDto().aDominio());
     }
 }

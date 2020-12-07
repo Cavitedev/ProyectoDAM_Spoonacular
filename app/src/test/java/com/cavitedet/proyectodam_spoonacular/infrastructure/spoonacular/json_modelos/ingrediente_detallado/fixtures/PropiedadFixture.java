@@ -12,7 +12,7 @@ public class PropiedadFixture extends DecomposicionCaloricaFixture {
         return new Propiedad(nombre, cantidad, unidad);
     }
 
-    protected PropiedadGsonDto getPropiedadDto() {
+    protected PropiedadGsonDto getPropiedadGsonDto() {
         PropiedadGsonDto dto = new PropiedadGsonDto();
         dto.setNombre(nombre);
         dto.setCantidad(cantidad);

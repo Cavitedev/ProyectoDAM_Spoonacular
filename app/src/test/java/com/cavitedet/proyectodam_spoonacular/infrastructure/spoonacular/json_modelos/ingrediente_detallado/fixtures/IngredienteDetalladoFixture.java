@@ -30,7 +30,7 @@ public class IngredienteDetalladoFixture extends NutricionFixture {
                         categoria, imagen, metaInfo, getNutricionDominio(), caminoCategorias);
     }
 
-    protected IngredienteDetalladoGsonDto getIngredienteDetalladoDto() {
+    protected IngredienteDetalladoGsonDto getIngredienteDetalladoGsonDto() {
         IngredienteDetalladoGsonDto dto = new IngredienteDetalladoGsonDto();
         dto.setId(id);
         dto.setOriginal(original);
@@ -47,7 +47,7 @@ public class IngredienteDetalladoFixture extends NutricionFixture {
         dto.setCategoria(categoria);
         dto.setImagen(imagen);
         dto.setMetaInformacion(metaInfo);
-        dto.setNutricion(getNutricionDto());
+        dto.setNutricion(getNutricionGsonDto());
         dto.setCaminoDeCategorias(caminoCategorias);
         return dto;
     }

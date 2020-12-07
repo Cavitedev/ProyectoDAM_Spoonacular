@@ -12,7 +12,7 @@ public class DecomposicionCaloricaFixture extends ValorEstimadoFixture {
         return new DescomposicionCalorica(proteinas, grasas, carbohidratos);
     }
 
-    protected DescomposicionCaloricaGsonDto getDecomposicionCaloricaDto() {
+    protected DescomposicionCaloricaGsonDto getDecomposicionCaloricaGsonDto() {
         DescomposicionCaloricaGsonDto dto = new DescomposicionCaloricaGsonDto();
         dto.setPorcentajeProteinas(10.0);
         dto.setPorcentajeGrasas(20.0);

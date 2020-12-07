@@ -15,9 +15,9 @@ public class IngredientesFixture extends IngredienteFixture {
                 offset, numeroPedido, resultadosTotales);
     }
 
-    protected IngredientesGsonDto getIngredientesDto() {
+    protected IngredientesGsonDto getIngredientesGsonDto() {
         IngredientesGsonDto dto = new IngredientesGsonDto();
-        dto.setListaIngredientes(Collections.singletonList(getIngredienteDto()));
+        dto.setListaIngredientes(Collections.singletonList(getIngredienteGsonDto()));
         dto.setOffset(offset);
         dto.setNumeroPedido(numeroPedido);
         dto.setResultadosTotales(resultadosTotales);

@@ -12,32 +12,32 @@ public class IngredienteDetalladoGsonDtoTest extends com.cavitedet.proyectodam_s
 
     @Test
     public void nutrienteADominito() {
-        Assert.assertEquals(getNutrienteDominio(), getNutrienteDto().aDominio());
+        Assert.assertEquals(getNutrienteDominio(), getNutrienteGsonDto().aDominio());
     }
 
     @Test
     public void propiedadesADominio() {
-        Assert.assertEquals(getPropiedadDominio(), getPropiedadDto().aDominio());
+        Assert.assertEquals(getPropiedadDominio(), getPropiedadGsonDto().aDominio());
     }
 
     @Test
     public void decomposicionCaloricaADominio() {
-        Assert.assertEquals(getDecomposicionCaloricaDominio(), getDecomposicionCaloricaDto().aDominio());
+        Assert.assertEquals(getDecomposicionCaloricaDominio(), getDecomposicionCaloricaGsonDto().aDominio());
     }
 
     @Test
     public void pesoPorUnidadADominio() {
-        Assert.assertEquals(getPesoPorUnidadDominio(), getPesoPorUnidadDto().aDominio());
+        Assert.assertEquals(getPesoPorUnidadDominio(), getPesoPorUnidadGsonDto().aDominio());
     }
 
     @Test
     public void nutricionADominio() {
-        Assert.assertEquals(getNutricionDominio(), getNutricionDto().aDominio());
+        Assert.assertEquals(getNutricionDominio(), getNutricionGsonDto().aDominio());
     }
 
     @Test
     public void ingredienteDetalladoADominio() {
-        Assert.assertEquals(getIngredienteDetalladoDominio(), getIngredienteDetalladoDto().aDominio());
+        Assert.assertEquals(getIngredienteDetalladoDominio(), getIngredienteDetalladoGsonDto().aDominio());
     }
 
 

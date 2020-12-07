@@ -12,7 +12,7 @@ public class IngredienteFixture {
         return new Ingrediente(id, nombre, imagen);
     }
 
-    protected IngredienteGsonDto getIngredienteDto() {
+    protected IngredienteGsonDto getIngredienteGsonDto() {
         IngredienteGsonDto dto = new IngredienteGsonDto();
         dto.setId(id);
         dto.setNombre(nombre);

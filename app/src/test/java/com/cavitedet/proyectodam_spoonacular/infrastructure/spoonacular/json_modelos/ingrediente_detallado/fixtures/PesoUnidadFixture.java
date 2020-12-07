@@ -11,7 +11,7 @@ public class PesoUnidadFixture extends PropiedadFixture {
         return new PesoUnidad(cantidad, unidad);
     }
 
-    protected PesoUnidadGsonDto getPesoPorUnidadDto() {
+    protected PesoUnidadGsonDto getPesoPorUnidadGsonDto() {
         PesoUnidadGsonDto dto = new PesoUnidadGsonDto();
         dto.setCantidad(cantidad);
         dto.setUnidad(unidad);

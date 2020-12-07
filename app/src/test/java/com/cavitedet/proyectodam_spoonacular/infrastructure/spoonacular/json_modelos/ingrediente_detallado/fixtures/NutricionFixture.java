@@ -11,12 +11,12 @@ public class NutricionFixture extends PesoUnidadFixture {
                 getDecomposicionCaloricaDominio(), getPesoPorUnidadDominio());
     }
 
-    protected NutricionGsonDto getNutricionDto() {
+    protected NutricionGsonDto getNutricionGsonDto() {
         NutricionGsonDto dto = new NutricionGsonDto();
-        dto.setNutrientes(Collections.singletonList(getNutrienteDto()));
-        dto.setPropiedades(Collections.singletonList(getPropiedadDto()));
-        dto.setDescomposicionCalorica(getDecomposicionCaloricaDto());
-        dto.setPesoPorRacion(getPesoPorUnidadDto());
+        dto.setNutrientes(Collections.singletonList(getNutrienteGsonDto()));
+        dto.setPropiedades(Collections.singletonList(getPropiedadGsonDto()));
+        dto.setDescomposicionCalorica(getDecomposicionCaloricaGsonDto());
+        dto.setPesoPorRacion(getPesoPorUnidadGsonDto());
         return dto;
     }
 }

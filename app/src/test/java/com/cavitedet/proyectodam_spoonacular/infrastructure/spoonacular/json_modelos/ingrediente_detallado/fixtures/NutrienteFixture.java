@@ -9,16 +9,16 @@ public class NutrienteFixture {
     private final String unidad = "g";
     private final double porcentajeDiario = 0.23;
 
-    protected NutrienteGsonDto getNutrienteDto() {
+    protected Nutriente getNutrienteDominio() {
+        return new Nutriente(nombre, cantidad, unidad, porcentajeDiario);
+    }
+
+    protected NutrienteGsonDto getNutrienteGsonDto() {
         NutrienteGsonDto dto = new NutrienteGsonDto();
         dto.setNombre(nombre);
         dto.setCantidad(cantidad);
         dto.setUnidad(unidad);
         dto.setPorcentajeNecesitadoAlDia(porcentajeDiario);
         return dto;
-    }
-
-    protected Nutriente getNutrienteDominio() {
-        return new Nutriente(nombre, cantidad, unidad, porcentajeDiario);
     }
 }

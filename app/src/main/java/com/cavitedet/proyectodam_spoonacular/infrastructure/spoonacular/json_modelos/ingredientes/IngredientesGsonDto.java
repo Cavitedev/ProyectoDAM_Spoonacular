@@ -24,8 +24,7 @@ public class IngredientesGsonDto implements IADominio<Ingredientes> {
     @SerializedName("totalResults")
     private Integer resultadosTotales;
 
-    public IngredientesGsonDto(List<IngredienteGsonDto> listaIngredientes) {
-        this.listaIngredientes = listaIngredientes;
+    public IngredientesGsonDto() {
     }
 
     public static IngredientesGsonDto desdeJson(String json) {

@@ -1,4 +1,4 @@
-package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.ingrediente_detallado.fixtures;
+package com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.ingredientes.fixtures;
 
 import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingredientes.Ingrediente;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.ingredientes.IngredienteGsonDto;

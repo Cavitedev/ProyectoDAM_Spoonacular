@@ -7,19 +7,20 @@ import androidx.room.ForeignKey;
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.IngredienteDetallado;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.RoomConstantes;
 
-@Entity(tableName = RoomConstantes.CAMINOCATEGORIAS_NOMBRE_TABLA, primaryKeys = {"idDetalles", "categoria"})
-public class CaminoCategoriasRoomDto {
+@Entity(tableName = RoomConstantes.METAINFO_NOMBRE_TABLA, primaryKeys = {"idDetalles", "info"})
+
+public class MetaInfoRoomDto {
     @ForeignKey(entity = IngredienteDetallado.class, childColumns = "idDetalles",
             parentColumns = "id", onUpdate = ForeignKey.CASCADE)
 
     @NonNull
     private Integer idDetalles;
     @NonNull
-    private String categoria;
+    private String info;
 
-    public CaminoCategoriasRoomDto(@NonNull Integer idDetalles, @NonNull String categoria) {
+    public MetaInfoRoomDto(@NonNull Integer idDetalles, @NonNull String info) {
         this.idDetalles = idDetalles;
-        this.categoria = categoria;
+        this.info = info;
     }
 
     @NonNull
@@ -32,30 +33,29 @@ public class CaminoCategoriasRoomDto {
     }
 
     @NonNull
-    public String getCategoria() {
-        return categoria;
+    public String getInfo() {
+        return info;
     }
 
-    public void setCategoria(@NonNull String categoria) {
-        this.categoria = categoria;
+    public void setInfo(@NonNull String info) {
+        this.info = info;
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CaminoCategoriasRoomDto)) return false;
+        if (!(o instanceof MetaInfoRoomDto)) return false;
 
-        CaminoCategoriasRoomDto that = (CaminoCategoriasRoomDto) o;
+        MetaInfoRoomDto that = (MetaInfoRoomDto) o;
 
         if (!getIdDetalles().equals(that.getIdDetalles())) return false;
-        return getCategoria().equals(that.getCategoria());
+        return getInfo().equals(that.getInfo());
     }
 
     @Override
     public int hashCode() {
         int result = getIdDetalles().hashCode();
-        result = 31 * result + getCategoria().hashCode();
+        result = 31 * result + getInfo().hashCode();
         return result;
     }
 }

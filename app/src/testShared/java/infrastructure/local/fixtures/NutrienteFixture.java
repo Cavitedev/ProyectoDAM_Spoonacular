@@ -1,6 +1,7 @@
 package infrastructure.local.fixtures;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.Nutriente;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.NutrienteRoomDto;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.json_modelos.ingrediente_detallado.NutrienteGsonDto;
 
 public class NutrienteFixture {
@@ -12,6 +13,11 @@ public class NutrienteFixture {
     protected Nutriente getNutrienteDominio() {
         return new Nutriente(nombre, cantidad, unidad, porcentajeDiario);
     }
+
+    protected NutrienteRoomDto getNutrienteRoomDto() {
+        return new NutrienteRoomDto(getNutrienteDominio());
+    }
+
 
     protected NutrienteGsonDto getNutrienteGsonDto() {
         NutrienteGsonDto dto = new NutrienteGsonDto();

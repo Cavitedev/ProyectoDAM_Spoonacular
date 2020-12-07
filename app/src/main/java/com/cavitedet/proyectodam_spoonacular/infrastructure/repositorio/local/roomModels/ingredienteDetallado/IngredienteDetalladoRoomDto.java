@@ -1,6 +1,7 @@
 package com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado;
 
 
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -36,7 +37,7 @@ public class IngredienteDetalladoRoomDto implements IADominio<IngredienteDetalla
     @Ignore
     private List<String> posiblesUnidades;
 
-    @Ignore
+    @Embedded
     private ValorEstimadoRoomDto valorEstimado;
 
     private String consistencia;
@@ -51,7 +52,7 @@ public class IngredienteDetalladoRoomDto implements IADominio<IngredienteDetalla
     @Ignore
     private List<String> metaInformacion;
 
-    @Ignore
+    @Embedded
     private NutricionRoomDto nutricion;
 
     @Ignore

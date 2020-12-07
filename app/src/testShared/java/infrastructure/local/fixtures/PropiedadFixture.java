@@ -1,6 +1,7 @@
 package infrastructure.local.fixtures;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.Propiedad;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.PropiedadRoomDto;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.json_modelos.ingrediente_detallado.PropiedadGsonDto;
 
 public class PropiedadFixture extends DecomposicionCaloricaFixture {
@@ -10,6 +11,10 @@ public class PropiedadFixture extends DecomposicionCaloricaFixture {
 
     protected Propiedad getPropiedadDominio() {
         return new Propiedad(nombre, cantidad, unidad);
+    }
+
+    protected PropiedadRoomDto getPropiedadRoomDto() {
+        return new PropiedadRoomDto(getPropiedadDominio());
     }
 
     protected PropiedadGsonDto getPropiedadGsonDto() {

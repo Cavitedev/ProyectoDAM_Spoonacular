@@ -1,20 +1,31 @@
 package com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado;
 
 
+import androidx.room.Embedded;
+import androidx.room.Ignore;
+
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.Nutricion;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.Nutriente;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.Propiedad;
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.reglas.IADominio;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class NutricionRoomDto implements IADominio<Nutricion> {
 
+
+    @Ignore
     private List<NutrienteRoomDto> nutrientes;
 
+    @Ignore
     private List<PropiedadRoomDto> propiedades;
 
+    @Embedded
     private DescomposicionCaloricaRoomDto descomposicionCalorica;
 
+    @Embedded
     private PesoUnidadRoomDto pesoPorRacion;
 
     public NutricionRoomDto() {
@@ -34,12 +45,23 @@ public class NutricionRoomDto implements IADominio<Nutricion> {
 
     @Override
     public Nutricion aDominio() {
-        return new Nutricion(
-                nutrientes.parallelStream().map(NutrienteRoomDto::aDominio).collect(Collectors.toList())
-                , propiedades.parallelStream().map(PropiedadRoomDto::aDominio).collect(Collectors.toList())
+
+        List<Nutriente> nutrientes = null;
+        if (this.nutrientes != null)
+            nutrientes = this.nutrientes.parallelStream().map(NutrienteRoomDto::aDominio).collect(Collectors.toList());
+
+        List<Propiedad> propiedades = null;
+        if (this.propiedades != null) {
+            propiedades = this.propiedades.parallelStream().map(PropiedadRoomDto::aDominio).collect(Collectors.toList());
+        }
+
+
+        return new Nutricion(nutrientes
+                , propiedades
                 , descomposicionCalorica.aDominio()
                 , pesoPorRacion.aDominio());
     }
+
 
     public List<NutrienteRoomDto> getNutrientes() {
         return nutrientes;
@@ -72,8 +94,6 @@ public class NutricionRoomDto implements IADominio<Nutricion> {
     public void setPesoPorRacion(PesoUnidadRoomDto pesoPorRacion) {
         this.pesoPorRacion = pesoPorRacion;
     }
-
-
 
 
 }

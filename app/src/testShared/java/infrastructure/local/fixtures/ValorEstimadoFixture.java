@@ -1,6 +1,7 @@
 package infrastructure.local.fixtures;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.ValorEstimado;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.ValorEstimadoRoomDto;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.json_modelos.ingrediente_detallado.ValorEstimadoGsonDto;
 
 public class ValorEstimadoFixture extends NutrienteFixture {
@@ -9,6 +10,10 @@ public class ValorEstimadoFixture extends NutrienteFixture {
 
     protected ValorEstimado getValorEstimadoDominio() {
         return new ValorEstimado(uniValor, uniMoneda);
+    }
+
+    protected ValorEstimadoRoomDto getValorEstimadoRoomDto() {
+        return new ValorEstimadoRoomDto(getValorEstimadoDominio());
     }
 
     protected ValorEstimadoGsonDto getValorEstimadoGsonDto() {

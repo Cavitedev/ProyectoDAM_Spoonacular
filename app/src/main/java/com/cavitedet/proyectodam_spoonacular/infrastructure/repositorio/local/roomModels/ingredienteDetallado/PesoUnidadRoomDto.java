@@ -1,12 +1,16 @@
 package com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado;
 
+import androidx.room.ColumnInfo;
+
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.PesoUnidad;
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.reglas.IADominio;
 
 public class PesoUnidadRoomDto implements IADominio<PesoUnidad> {
 
+    @ColumnInfo(name = "cantidadPeso")
     private Double cantidad;
 
+    @ColumnInfo(name = "unidadPeso")
     private String unidad;
 
     public PesoUnidadRoomDto() {

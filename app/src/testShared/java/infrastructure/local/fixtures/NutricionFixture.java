@@ -13,9 +13,16 @@ public class NutricionFixture extends PesoUnidadFixture {
     }
 
     protected NutricionRoomDto getNutricionRoomDto() {
-        NutricionRoomDto dto = new NutricionRoomDto(getNutricionDominio());
+        return new NutricionRoomDto(getNutricionDominio());
+    }
+
+    protected NutricionRoomDto getNutricionDao() {
+        NutricionRoomDto dto = new NutricionRoomDto();
+        dto.setDescomposicionCalorica(getDecomposicionCaloricaRoomDto());
+        dto.setPesoPorRacion(getPesoPorUnidadRoomDto());
         return dto;
     }
+
 
     protected NutricionGsonDto getNutricionGsonDto() {
         NutricionGsonDto dto = new NutricionGsonDto();

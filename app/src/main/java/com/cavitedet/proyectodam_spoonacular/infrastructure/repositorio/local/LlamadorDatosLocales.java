@@ -5,11 +5,16 @@ import android.content.Context;
 import androidx.room.Room;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.IngredienteDetallado;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.Nutriente;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.Propiedad;
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingredientes.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.domain.repositorio.IFuenteDeDatos;
 import com.cavitedet.proyectodam_spoonacular.domain.repositorio.ParametrosBuscarIngredientes;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.IngredienteDetalladoRoomDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.NutrienteRoomDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.PropiedadRoomDto;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.listas.CaminoCategoriasRoomDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.listas.MetaInfoRoomDto;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.listas.PosiblesUnidadesRoomDto;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.listas.TipoUnidadesAlCobrarRoomDto;
 
@@ -37,6 +42,23 @@ public class LlamadorDatosLocales implements IFuenteDeDatos {
         return instance;
     }
 
+    public void limpiar() {
+        if (instance != null)
+            instance.database.close();
+        instance = null;
+    }
+
+    public void insertarIngrediente(IngredienteDetallado ingredienteDetalladoDominio) {
+
+        if (ingredienteDetalladoDominio == null)
+            return;
+        getIngredientesDao().insertarIngrediente(new IngredienteDetalladoRoomDto(ingredienteDetalladoDominio));
+        int ingId = ingredienteDetalladoDominio.getId();
+
+        insertarListas(ingredienteDetalladoDominio, ingId);
+
+    }
+
     @Override
     public Ingredientes busquedaIngredientes(ParametrosBuscarIngredientes parametrosBusqueda) throws Exception {
         return null;
@@ -48,12 +70,49 @@ public class LlamadorDatosLocales implements IFuenteDeDatos {
         IngredienteDetalladoRoomDto ingDetalladoDto = getIngredientesDao().getIngrediente(id);
         if (ingDetalladoDto == null) return null;
 
-        anadirListas(id, ingDetalladoDto);
+        leerListas(id, ingDetalladoDto);
 
         return ingDetalladoDto.aDominio();
     }
 
-    private void anadirListas(Integer id, IngredienteDetalladoRoomDto ingDetalladoDto) {
+    private void insertarListas(IngredienteDetallado dominio, int ingId) {
+
+        if (dominio.getNutricion() != null) {
+            for (Nutriente nutriente : dominio.getNutricion().getNutrientes()) {
+                NutrienteRoomDto nutrienteDto = new NutrienteRoomDto(nutriente);
+                nutrienteDto.setIdDetalles(dominio.getId());
+                getIngredientesDao().insertarNutriente(nutrienteDto);
+            }
+
+            for (Propiedad propiedad : dominio.getNutricion().getPropiedades()) {
+                PropiedadRoomDto propiedadDto = new PropiedadRoomDto(propiedad);
+                propiedadDto.setIdDetalles(dominio.getId());
+                getIngredientesDao().insertarPropiedad(propiedadDto);
+            }
+        }
+
+        for (String camino : dominio.getCaminoDeCategorias()) {
+            CaminoCategoriasRoomDto camDto = new CaminoCategoriasRoomDto(ingId, camino);
+            getIngredientesDao().insertarCaminoCategoria(camDto);
+        }
+
+        for (String posUnid : dominio.getPosiblesUnidades()) {
+            PosiblesUnidadesRoomDto posUnidDto = new PosiblesUnidadesRoomDto(ingId, posUnid);
+            getIngredientesDao().insertarPosibleUnidad(posUnidDto);
+        }
+
+        for (String tipoUnid : dominio.getTiposDeUnidadesAlCobrar()) {
+            TipoUnidadesAlCobrarRoomDto tipoUnidadCob = new TipoUnidadesAlCobrarRoomDto(ingId, tipoUnid);
+            getIngredientesDao().insertarUnidadCobrar(tipoUnidadCob);
+        }
+
+        for (String metaInfo : dominio.getMetaInformacion()) {
+            MetaInfoRoomDto metaInfoDto = new MetaInfoRoomDto(ingId, metaInfo);
+            getIngredientesDao().insertarMetainfo(metaInfoDto);
+        }
+    }
+
+    private void leerListas(Integer id, IngredienteDetalladoRoomDto ingDetalladoDto) {
         List<CaminoCategoriasRoomDto> categoriasDto = getIngredientesDao().getCategorias(id);
         List<String> categorias = categoriasDto.parallelStream().map(CaminoCategoriasRoomDto::getCategoria).collect(Collectors.toList());
         ingDetalladoDto.setCaminoDeCategorias(categorias);
@@ -65,9 +124,23 @@ public class LlamadorDatosLocales implements IFuenteDeDatos {
         List<TipoUnidadesAlCobrarRoomDto> tiposDto = getIngredientesDao().getUnidadesCobrar(id);
         List<String> tipos = tiposDto.parallelStream().map(TipoUnidadesAlCobrarRoomDto::getTipo).collect(Collectors.toList());
         ingDetalladoDto.setTiposDeUnidadesAlCobrar(tipos);
+
+        List<MetaInfoRoomDto> metaInfoDto = getIngredientesDao().getMetaInfo(id);
+        List<String> metaInfo = metaInfoDto.parallelStream().map(MetaInfoRoomDto::getInfo).collect(Collectors.toList());
+        ingDetalladoDto.setMetaInformacion(metaInfo);
+
+
+        if (ingDetalladoDto.getNutricion() == null) return;
+        List<NutrienteRoomDto> nutrientes = getIngredientesDao().getNutrientes(id);
+        ingDetalladoDto.getNutricion().setNutrientes(nutrientes);
+
+        List<PropiedadRoomDto> propiedades = getIngredientesDao().getPropiedades(id);
+        ingDetalladoDto.getNutricion().setPropiedades(propiedades);
     }
 
     private IngredientesDao getIngredientesDao() {
         return database.ingredientesDao();
     }
+
+
 }

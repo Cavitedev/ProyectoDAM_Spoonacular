@@ -13,6 +13,10 @@ public class DecomposicionCaloricaFixture extends ValorEstimadoFixture {
         return new DescomposicionCalorica(proteinas, grasas, carbohidratos);
     }
 
+    protected DescomposicionCaloricaRoomDto getDecomposicionCaloricaRoomDto() {
+        return new DescomposicionCaloricaRoomDto(getDecomposicionCaloricaDominio());
+    }
+
     protected DescomposicionCaloricaGsonDto getDecomposicionCaloricaGsonDto() {
         DescomposicionCaloricaGsonDto dto = new DescomposicionCaloricaGsonDto();
         dto.setPorcentajeProteinas(10.0);
@@ -21,11 +25,5 @@ public class DecomposicionCaloricaFixture extends ValorEstimadoFixture {
         return dto;
     }
 
-    protected DescomposicionCaloricaRoomDto getDecomposicionCaloricaRoomDto() {
-        DescomposicionCaloricaRoomDto dto = new DescomposicionCaloricaRoomDto();
-        dto.setPorcentajeProteinas(10.0);
-        dto.setPorcentajeGrasas(20.0);
-        dto.setPorcentajeCarbohidratos(30.0);
-        return dto;
-    }
+
 }

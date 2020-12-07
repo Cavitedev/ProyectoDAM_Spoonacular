@@ -56,6 +56,15 @@ public class IngredientesDaoTest extends IngredienteDetalladoFixture {
         Assert.assertNotNull(ingredienteDevuelto);
         Assert.assertEquals(ingredienteDto.getId(),
                 ingredienteDevuelto.getId());
+
+        Assert.assertEquals(ingredienteDto.aDominio().getValorEstimado(),
+                ingredienteDevuelto.aDominio().getValorEstimado());
+
+        Assert.assertEquals(ingredienteDto.aDominio().getNutricion().getPesoPorRacion(),
+                ingredienteDevuelto.aDominio().getNutricion().getPesoPorRacion());
+
+        Assert.assertEquals(ingredienteDto.aDominio().getNutricion().getDescomposicionCalorica(),
+                ingredienteDevuelto.aDominio().getNutricion().getDescomposicionCalorica());
     }
 
 

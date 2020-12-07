@@ -39,4 +39,22 @@ public class TipoUnidadesAlCobrarRoomDto {
     public void setTipo(@NonNull String tipo) {
         this.tipo = tipo;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TipoUnidadesAlCobrarRoomDto)) return false;
+
+        TipoUnidadesAlCobrarRoomDto that = (TipoUnidadesAlCobrarRoomDto) o;
+
+        if (!getIdDetalles().equals(that.getIdDetalles())) return false;
+        return getTipo().equals(that.getTipo());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getIdDetalles().hashCode();
+        result = 31 * result + getTipo().hashCode();
+        return result;
+    }
 }

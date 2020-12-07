@@ -9,6 +9,9 @@ public class ValorEstimadoRoomDto implements IADominio<ValorEstimado> {
 
     private String unidad;
 
+    public ValorEstimadoRoomDto() {
+    }
+
     public ValorEstimadoRoomDto(ValorEstimado dominio) {
         this.valor = dominio.getValor();
         this.unidad = dominio.getUnidad();

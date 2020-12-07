@@ -49,6 +49,8 @@ public class IngredienteDetalladoFixture extends NutricionFixture {
         dto.setConsistencia(consistencia);
         dto.setCategoria(categoria);
         dto.setImagen(imagen);
+        dto.setValorEstimado(getValorEstimadoRoomDto());
+        dto.setNutricion(getNutricionDao());
         return dto;
     }
 

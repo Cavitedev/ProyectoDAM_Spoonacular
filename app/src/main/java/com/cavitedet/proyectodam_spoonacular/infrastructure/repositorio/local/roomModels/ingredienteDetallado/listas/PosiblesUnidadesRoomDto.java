@@ -39,4 +39,22 @@ public class PosiblesUnidadesRoomDto {
     public void setUnidad(@NonNull String unidad) {
         this.unidad = unidad;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PosiblesUnidadesRoomDto)) return false;
+
+        PosiblesUnidadesRoomDto that = (PosiblesUnidadesRoomDto) o;
+
+        if (!getIdDetalles().equals(that.getIdDetalles())) return false;
+        return getUnidad().equals(that.getUnidad());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getIdDetalles().hashCode();
+        result = 31 * result + getUnidad().hashCode();
+        return result;
+    }
 }

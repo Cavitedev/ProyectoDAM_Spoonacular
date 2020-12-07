@@ -6,10 +6,10 @@ import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.cavitedet.proyectodam_spoonacular.R;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.busqueda.ParametrosBuscarIngredientes;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingredientes.Ingredientes;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.LlamadorApi;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingredientes.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.domain.repositorio.ParametrosBuscarIngredientes;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.ApiException;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.LlamadorApi;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;

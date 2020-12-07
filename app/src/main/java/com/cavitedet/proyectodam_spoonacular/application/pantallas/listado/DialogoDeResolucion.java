@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.cavitedet.proyectodam_spoonacular.R;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.ConversorImagen;
+import com.cavitedet.proyectodam_spoonacular.domain.utilidades.ConversorImagen;
 
 public class DialogoDeResolucion extends DialogFragment {
 

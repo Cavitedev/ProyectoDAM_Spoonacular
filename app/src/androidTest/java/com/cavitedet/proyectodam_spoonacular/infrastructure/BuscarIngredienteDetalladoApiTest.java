@@ -1,8 +1,8 @@
 package com.cavitedet.proyectodam_spoonacular.infrastructure;
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingrediente_detallado.IngredienteDetallado;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiException;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.LlamadorApi;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.IngredienteDetallado;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.ApiException;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.LlamadorApi;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;

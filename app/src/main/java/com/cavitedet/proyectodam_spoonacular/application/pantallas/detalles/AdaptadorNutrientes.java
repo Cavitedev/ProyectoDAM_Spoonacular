@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cavitedet.proyectodam_spoonacular.R;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingrediente_detallado.Nutriente;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.Nutriente;
 
 import java.util.List;
 

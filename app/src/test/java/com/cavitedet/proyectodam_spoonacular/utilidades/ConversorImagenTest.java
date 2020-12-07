@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.cavitedet.proyectodam_spoonacular.R;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.ConversorImagen;
+import com.cavitedet.proyectodam_spoonacular.domain.utilidades.ConversorImagen;
 
 import org.junit.Assert;
 import org.junit.Before;

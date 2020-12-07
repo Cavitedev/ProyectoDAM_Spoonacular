@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cavitedet.proyectodam_spoonacular.R;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingrediente_detallado.IngredienteDetallado;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingrediente_detallado.ValorEstimado;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.usecases.ObtenerDetallesIngredienteUsecase;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.ConversorImagen;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.IngredienteDetallado;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.ValorEstimado;
+import com.cavitedet.proyectodam_spoonacular.domain.usecases.ObtenerDetallesIngredienteUsecase;
+import com.cavitedet.proyectodam_spoonacular.domain.utilidades.ConversorImagen;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.CheckNetworkAccess;
 
 import java.util.concurrent.ExecutionException;

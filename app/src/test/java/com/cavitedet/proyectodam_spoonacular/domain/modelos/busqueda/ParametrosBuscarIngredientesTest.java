@@ -1,9 +1,9 @@
 package com.cavitedet.proyectodam_spoonacular.domain.modelos.busqueda;
 
 import com.cavitedet.proyectodam_spoonacular.domain.Filtrado;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.busqueda.ParametrosBuscarIngredientes;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.ApiInvoker;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.Pair;
+import com.cavitedet.proyectodam_spoonacular.domain.repositorio.ParametrosBuscarIngredientes;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.ApiInvoker;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.Pair;
 
 import org.junit.Assert;
 import org.junit.Test;

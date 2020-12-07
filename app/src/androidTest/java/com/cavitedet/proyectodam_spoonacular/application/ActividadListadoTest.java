@@ -16,7 +16,7 @@ import androidx.test.rule.ActivityTestRule;
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.application.pantallas.detalles.ActividadDetalles;
 import com.cavitedet.proyectodam_spoonacular.application.pantallas.listado.ActividadDeListado;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.ConversorImagen;
+import com.cavitedet.proyectodam_spoonacular.domain.utilidades.ConversorImagen;
 import com.cavitedet.proyectodam_spoonacular.utils.MyActions;
 import com.cavitedet.proyectodam_spoonacular.utils.MyMatchers;
 
@@ -47,8 +47,7 @@ public class ActividadListadoTest {
 
     @After
     public void end() {
-        activityRule.finishActivity();
-
+        Intents.release();
     }
 
     @Test

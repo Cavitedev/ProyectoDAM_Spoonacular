@@ -12,7 +12,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import com.cavitedet.proyectodam_spoonacular.R;
 import com.cavitedet.proyectodam_spoonacular.application.pantallas.detalles.ActividadDetalles;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.utilidades.ConversorImagen;
+import com.cavitedet.proyectodam_spoonacular.domain.utilidades.ConversorImagen;
 
 import org.junit.Rule;
 import org.junit.Test;

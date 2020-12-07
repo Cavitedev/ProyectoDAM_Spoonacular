@@ -1,11 +1,11 @@
 package com.cavitedet.proyectodam_spoonacular.spoonacular;
 
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingrediente_detallado.IngredienteDetallado;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingredientes.Ingrediente;
-import com.cavitedet.proyectodam_spoonacular.domain.spoonacular.modelos.ingredientes.Ingredientes;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.ingrediente_detallado.IngredienteDetalladoGsonDto;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.ingredientes.IngredienteGsonDto;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.spoonacular.json_modelos.ingredientes.IngredientesGsonDto;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.IngredienteDetallado;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingredientes.Ingrediente;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingredientes.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.json_modelos.ingrediente_detallado.IngredienteDetalladoGsonDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.json_modelos.ingredientes.IngredienteGsonDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.json_modelos.ingredientes.IngredientesGsonDto;
 
 import org.junit.Assert;
 import org.junit.Test;

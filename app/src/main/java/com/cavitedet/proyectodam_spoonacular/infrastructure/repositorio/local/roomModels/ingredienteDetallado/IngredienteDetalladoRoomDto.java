@@ -2,11 +2,16 @@ package com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.r
 
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.IngredienteDetallado;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.Nutricion;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.ValorEstimado;
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.reglas.IADominio;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.RoomConstantes;
+
+import java.util.List;
 
 @Entity(tableName = RoomConstantes.INGREDIENTES_NOMBRE_TABLA)
 public class IngredienteDetalladoRoomDto implements IADominio<IngredienteDetallado> {
@@ -28,21 +33,30 @@ public class IngredienteDetalladoRoomDto implements IADominio<IngredienteDetalla
 
     private String unidadDeMedidaAlargada;
 
-    //    private PosiblesUnidadesRoomDto posiblesUnidades;
-//
-//    private ValorEstimadoRoomDto valorEstimado;
-//
-//    private String consistencia;
-//
-//    private TipoUnidadesAlCobrar tiposDeUnidadesAlCobrar;
-//
-//    private String categoria;
-//
-//    private String imagen;
-//
-//
-//    private NutricionRoomDto nutricion;
-    private Integer caminoDeCategoriasId;
+    @Ignore
+    private List<String> posiblesUnidades;
+
+    @Ignore
+    private ValorEstimadoRoomDto valorEstimado;
+
+    private String consistencia;
+
+    @Ignore
+    private List<String> tiposDeUnidadesAlCobrar;
+
+    private String categoria;
+
+    private String imagen;
+
+    @Ignore
+    private List<String> metaInformacion;
+
+    @Ignore
+    private NutricionRoomDto nutricion;
+
+    @Ignore
+    private List<String> caminoDeCategorias;
+
 
     public IngredienteDetalladoRoomDto() {
     }
@@ -56,28 +70,31 @@ public class IngredienteDetalladoRoomDto implements IADominio<IngredienteDetalla
         this.unidadDeMedida = dominio.getUnidadDeMedida();
         this.unidadDeMedidaReducida = dominio.getUnidadDeMedidaReducida();
         this.unidadDeMedidaAlargada = dominio.getUnidadDeMedidaAlargada();
-//        this.posiblesUnidades = dominio.getPosiblesUnidades();
-////        this.valorEstimado = new ValorEstimadoRoomDto(dominio.getValorEstimado()).aDomino();
-//        this.consistencia = dominio.getConsistencia();
-//        this.tiposDeUnidadesAlCobrar = dominio.getTiposDeUnidadesAlCobrar();
-//        this.categoria = dominio.getCategoria();
-//        this.imagen = dominio.getImagen();
-//        this.nutricion = new NutricionRoomDto(dominio.getNutricion()).aDominio();
-//        this.caminoDeCategorias = dominio.getCaminoDeCategorias();
+        this.posiblesUnidades = dominio.getPosiblesUnidades();
+        this.valorEstimado = new ValorEstimadoRoomDto(dominio.getValorEstimado());
+        this.consistencia = dominio.getConsistencia();
+        this.tiposDeUnidadesAlCobrar = dominio.getTiposDeUnidadesAlCobrar();
+        this.categoria = dominio.getCategoria();
+        this.imagen = dominio.getImagen();
+        this.nutricion = new NutricionRoomDto(dominio.getNutricion());
+        this.caminoDeCategorias = dominio.getCaminoDeCategorias();
     }
 
-    public Integer getCaminoDeCategoriasId() {
-        return caminoDeCategoriasId;
-    }
-
-    public void setCaminoDeCategoriasId(Integer caminoDeCategoriasId) {
-        this.caminoDeCategoriasId = caminoDeCategoriasId;
-    }
 
     @Override
     public IngredienteDetallado aDominio() {
-        IngredienteDetallado dominio = new IngredienteDetallado(id);
-        return dominio;
+        ValorEstimado valorEstimado = null;
+        if (this.valorEstimado != null)
+            valorEstimado = this.valorEstimado.aDominio();
+
+        Nutricion nutricion = null;
+        if (this.nutricion != null)
+            nutricion = this.nutricion.aDominio();
+
+        return new IngredienteDetallado(id, original, nombreOriginal, nombre, cantidad, unidadDeMedida
+                , unidadDeMedidaReducida, unidadDeMedidaAlargada, posiblesUnidades, valorEstimado, consistencia, tiposDeUnidadesAlCobrar, categoria,
+                imagen, metaInformacion, nutricion, caminoDeCategorias);
+
     }
 
     public Integer getId() {
@@ -144,5 +161,75 @@ public class IngredienteDetalladoRoomDto implements IADominio<IngredienteDetalla
         this.unidadDeMedidaAlargada = unidadDeMedidaAlargada;
     }
 
+    public List<String> getPosiblesUnidades() {
+        return posiblesUnidades;
+    }
 
+    public void setPosiblesUnidades(List<String> posiblesUnidades) {
+        this.posiblesUnidades = posiblesUnidades;
+    }
+
+    public ValorEstimadoRoomDto getValorEstimado() {
+        return valorEstimado;
+    }
+
+    public void setValorEstimado(ValorEstimadoRoomDto valorEstimado) {
+        this.valorEstimado = valorEstimado;
+    }
+
+    public String getConsistencia() {
+        return consistencia;
+    }
+
+    public void setConsistencia(String consistencia) {
+        this.consistencia = consistencia;
+    }
+
+    public List<String> getTiposDeUnidadesAlCobrar() {
+        return tiposDeUnidadesAlCobrar;
+    }
+
+    public void setTiposDeUnidadesAlCobrar(List<String> tiposDeUnidadesAlCobrar) {
+        this.tiposDeUnidadesAlCobrar = tiposDeUnidadesAlCobrar;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public List<String> getMetaInformacion() {
+        return metaInformacion;
+    }
+
+    public void setMetaInformacion(List<String> metaInformacion) {
+        this.metaInformacion = metaInformacion;
+    }
+
+    public NutricionRoomDto getNutricion() {
+        return nutricion;
+    }
+
+    public void setNutricion(NutricionRoomDto nutricion) {
+        this.nutricion = nutricion;
+    }
+
+    public List<String> getCaminoDeCategorias() {
+        return caminoDeCategorias;
+    }
+
+    public void setCaminoDeCategorias(List<String> caminoDeCategorias) {
+        this.caminoDeCategorias = caminoDeCategorias;
+    }
 }

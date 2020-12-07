@@ -64,40 +64,7 @@ public class NutrienteRoomDto implements IADominio<Nutriente> {
         this.porcentajeNecesitadoAlDia = porcentajeNecesitadoAlDia;
     }
 
-    @Override
-    public String toString() {
-        return "Nutriente{" +
-                "nombre='" + nombre + '\'' +
-                ", cantidad=" + cantidad +
-                ", unidad='" + unidad + '\'' +
-                ", porcentajeNecesitadoAlDia=" + porcentajeNecesitadoAlDia +
-                '}';
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof NutrienteRoomDto)) return false;
-
-        NutrienteRoomDto nutriente = (NutrienteRoomDto) o;
-
-        if (getNombre() != null ? !getNombre().equals(nutriente.getNombre()) : nutriente.getNombre() != null)
-            return false;
-        if (getCantidad() != null ? !getCantidad().equals(nutriente.getCantidad()) : nutriente.getCantidad() != null)
-            return false;
-        if (getUnidad() != null ? !getUnidad().equals(nutriente.getUnidad()) : nutriente.getUnidad() != null)
-            return false;
-        return getPorcentajeNecesitadoAlDia() != null ? getPorcentajeNecesitadoAlDia().equals(nutriente.getPorcentajeNecesitadoAlDia()) : nutriente.getPorcentajeNecesitadoAlDia() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getNombre() != null ? getNombre().hashCode() : 0;
-        result = 31 * result + (getCantidad() != null ? getCantidad().hashCode() : 0);
-        result = 31 * result + (getUnidad() != null ? getUnidad().hashCode() : 0);
-        result = 31 * result + (getPorcentajeNecesitadoAlDia() != null ? getPorcentajeNecesitadoAlDia().hashCode() : 0);
-        return result;
-    }
 
 
 }

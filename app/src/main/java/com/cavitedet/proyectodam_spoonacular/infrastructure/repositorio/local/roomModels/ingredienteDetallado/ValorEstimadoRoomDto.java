@@ -1,8 +1,9 @@
 package com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.ValorEstimado;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.reglas.IADominio;
 
-public class ValorEstimadoRoomDto {
+public class ValorEstimadoRoomDto implements IADominio<ValorEstimado> {
 
     private double valor;
 
@@ -11,6 +12,11 @@ public class ValorEstimadoRoomDto {
     public ValorEstimadoRoomDto(ValorEstimado dominio) {
         this.valor = dominio.getValor();
         this.unidad = dominio.getUnidad();
+    }
+
+    @Override
+    public ValorEstimado aDominio() {
+        return new ValorEstimado(valor, unidad);
     }
 
     public double getValor() {
@@ -29,36 +35,4 @@ public class ValorEstimadoRoomDto {
         this.unidad = unidad;
     }
 
-    @Override
-    public String toString() {
-        return "ValorEstimado{" +
-                "valor=" + valor +
-                ", unidad='" + unidad + '\'' +
-                '}';
-    }
-
-    public String valorFormateado() {
-        return valor + " " + unidad;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ValorEstimadoRoomDto)) return false;
-
-        ValorEstimadoRoomDto that = (ValorEstimadoRoomDto) o;
-
-        if (Double.compare(that.getValor(), getValor()) != 0) return false;
-        return getUnidad() != null ? getUnidad().equals(that.getUnidad()) : that.getUnidad() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(getValor());
-        result = (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (getUnidad() != null ? getUnidad().hashCode() : 0);
-        return result;
-    }
 }

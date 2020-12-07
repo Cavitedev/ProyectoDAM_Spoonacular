@@ -36,7 +36,7 @@ public class IngredientesDaoTest extends IngredienteDetalladoFixture {
 
     @Test
     public void getIngredienteDevuelveNulo() {
-        IngredienteDetalladoRoomDto ingrediente = ingredientesDao.getIngredientes(id);
+        IngredienteDetalladoRoomDto ingrediente = ingredientesDao.getIngrediente(id);
         Assert.assertNull(ingrediente);
     }
 
@@ -44,7 +44,7 @@ public class IngredientesDaoTest extends IngredienteDetalladoFixture {
     public void anadeIngredieneGetIngrediente_devuelveIngrediente() {
         IngredienteDetalladoRoomDto ingredienteDto = getIngredienteDetalladoRoomDto();
         ingredientesDao.insertarIngrediente(ingredienteDto);
-        IngredienteDetalladoRoomDto ingredienteDevuelto = ingredientesDao.getIngredientes(id);
+        IngredienteDetalladoRoomDto ingredienteDevuelto = ingredientesDao.getIngrediente(id);
         Assert.assertNotNull(ingredienteDevuelto);
     }
 
@@ -52,7 +52,7 @@ public class IngredientesDaoTest extends IngredienteDetalladoFixture {
     public void anadeIngredieneGetIngrediente_devuelveIngredienteCorrectamente() {
         IngredienteDetalladoRoomDto ingredienteDto = getIngredienteDetalladoRoomDto();
         ingredientesDao.insertarIngrediente(ingredienteDto);
-        IngredienteDetalladoRoomDto ingredienteDevuelto = ingredientesDao.getIngredientes(id);
+        IngredienteDetalladoRoomDto ingredienteDevuelto = ingredientesDao.getIngrediente(id);
         Assert.assertNotNull(ingredienteDevuelto);
         Assert.assertEquals(ingredienteDto.getId(),
                 ingredienteDevuelto.getId());

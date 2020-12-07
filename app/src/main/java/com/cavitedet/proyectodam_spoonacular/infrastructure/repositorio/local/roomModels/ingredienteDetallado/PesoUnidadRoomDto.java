@@ -38,32 +38,7 @@ public class PesoUnidadRoomDto implements IADominio<PesoUnidad> {
         this.unidad = unidad;
     }
 
-    @Override
-    public String toString() {
-        return "PesoUnidad{" +
-                "cantidad=" + cantidad +
-                ", unidad='" + unidad + '\'' +
-                '}';
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PesoUnidadRoomDto)) return false;
-
-        PesoUnidadRoomDto that = (PesoUnidadRoomDto) o;
-
-        if (getCantidad() != null ? !getCantidad().equals(that.getCantidad()) : that.getCantidad() != null)
-            return false;
-        return getUnidad() != null ? getUnidad().equals(that.getUnidad()) : that.getUnidad() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getCantidad() != null ? getCantidad().hashCode() : 0;
-        result = 31 * result + (getUnidad() != null ? getUnidad().hashCode() : 0);
-        return result;
-    }
 
 
 }

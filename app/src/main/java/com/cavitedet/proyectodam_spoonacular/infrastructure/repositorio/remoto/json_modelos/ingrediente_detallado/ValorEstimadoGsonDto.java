@@ -41,7 +41,4 @@ public class ValorEstimadoGsonDto implements IADominio<ValorEstimado> {
                 '}';
     }
 
-    public String valorFormateado() {
-        return valor + " " + unidad;
-    }
 }

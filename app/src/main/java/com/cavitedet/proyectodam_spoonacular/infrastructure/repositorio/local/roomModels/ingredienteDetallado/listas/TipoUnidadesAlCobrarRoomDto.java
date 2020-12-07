@@ -7,19 +7,19 @@ import androidx.room.ForeignKey;
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.IngredienteDetallado;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.RoomConstantes;
 
-@Entity(tableName = RoomConstantes.CAMINOCATEGORIAS_NOMBRE_TABLA, primaryKeys = {"idDetalles", "categoria"})
-public class CaminoCategoriasRoomDto {
+@Entity(tableName = RoomConstantes.UNIDADESCOBRAR_NOMBRE_TABLA, primaryKeys = {"idDetalles", "tipo"})
+public class TipoUnidadesAlCobrarRoomDto {
     @ForeignKey(entity = IngredienteDetallado.class, childColumns = "idDetalles",
             parentColumns = "id", onUpdate = ForeignKey.CASCADE)
 
     @NonNull
     private Integer idDetalles;
     @NonNull
-    private String categoria;
+    private String tipo;
 
-    public CaminoCategoriasRoomDto(@NonNull Integer idDetalles, @NonNull String categoria) {
+    public TipoUnidadesAlCobrarRoomDto(@NonNull Integer idDetalles, @NonNull String tipo) {
         this.idDetalles = idDetalles;
-        this.categoria = categoria;
+        this.tipo = tipo;
     }
 
     @NonNull
@@ -32,13 +32,11 @@ public class CaminoCategoriasRoomDto {
     }
 
     @NonNull
-    public String getCategoria() {
-        return categoria;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setCategoria(@NonNull String categoria) {
-        this.categoria = categoria;
+    public void setTipo(@NonNull String tipo) {
+        this.tipo = tipo;
     }
-
-
 }

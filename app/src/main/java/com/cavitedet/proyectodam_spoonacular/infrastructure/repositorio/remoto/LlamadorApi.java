@@ -7,6 +7,7 @@ package com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.IngredienteDetallado;
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingredientes.Ingredientes;
+import com.cavitedet.proyectodam_spoonacular.domain.repositorio.IFuenteDeDatos;
 import com.cavitedet.proyectodam_spoonacular.domain.repositorio.ParametrosBuscarIngredientes;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.json_modelos.ingrediente_detallado.IngredienteDetalladoGsonDto;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.json_modelos.ingredientes.IngredientesGsonDto;
@@ -16,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LlamadorApi {
+public class LlamadorApi implements IFuenteDeDatos {
     private static LlamadorApi instance;
     private final String basePath = "https://api.spoonacular.com";
     private final ApiInvoker apiInvoker = ApiInvoker.getInstance();

@@ -49,35 +49,5 @@ public class PropiedadRoomDto implements IADominio<Propiedad> {
         this.unidad = unidad;
     }
 
-    @Override
-    public String toString() {
-        return "Propiedades{" +
-                "nombre='" + nombre + '\'' +
-                ", cantidad=" + cantidad +
-                ", unidad='" + unidad + '\'' +
-                '}';
-    }
 
-    @Override
-    public boolean equals(Object o) {
-
-        if (this == o) return true;
-        if (!(o instanceof PropiedadRoomDto)) return false;
-
-        PropiedadRoomDto propiedad = (PropiedadRoomDto) o;
-
-        if (getNombre() != null ? !getNombre().equals(propiedad.getNombre()) : propiedad.getNombre() != null)
-            return false;
-        if (getCantidad() != null ? !getCantidad().equals(propiedad.getCantidad()) : propiedad.getCantidad() != null)
-            return false;
-        return getUnidad() != null ? getUnidad().equals(propiedad.getUnidad()) : propiedad.getUnidad() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getNombre() != null ? getNombre().hashCode() : 0;
-        result = 31 * result + (getCantidad() != null ? getCantidad().hashCode() : 0);
-        result = 31 * result + (getUnidad() != null ? getUnidad().hashCode() : 0);
-        return result;
-    }
 }

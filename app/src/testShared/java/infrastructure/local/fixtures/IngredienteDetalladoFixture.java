@@ -33,9 +33,22 @@ public class IngredienteDetalladoFixture extends NutricionFixture {
     }
 
     protected IngredienteDetalladoRoomDto getIngredienteDetalladoRoomDto() {
-        IngredienteDetalladoRoomDto dto =
-                new IngredienteDetalladoRoomDto(getIngredienteDetalladoDominio());
+        return new IngredienteDetalladoRoomDto(getIngredienteDetalladoDominio());
+    }
 
+    protected IngredienteDetalladoRoomDto getIngredienteDetalladoDao() {
+        IngredienteDetalladoRoomDto dto = new IngredienteDetalladoRoomDto();
+        dto.setId(id);
+        dto.setOriginal(original);
+        dto.setNombreOriginal(nombreOriginal);
+        dto.setNombre(nombre);
+        dto.setCantidad(cantidad);
+        dto.setUnidadDeMedida(unidadMedida);
+        dto.setUnidadDeMedidaReducida(unidadReducida);
+        dto.setUnidadDeMedidaAlargada(unidadAlargada);
+        dto.setConsistencia(consistencia);
+        dto.setCategoria(categoria);
+        dto.setImagen(imagen);
         return dto;
     }
 
@@ -49,15 +62,15 @@ public class IngredienteDetalladoFixture extends NutricionFixture {
         dto.setUnidadDeMedida(unidadMedida);
         dto.setUnidadDeMedidaReducida(unidadReducida);
         dto.setUnidadDeMedidaAlargada(unidadAlargada);
-//        dto.setPosiblesUnidades(unidades);
-//        dto.setValorEstimado(getValorEstimadoGsonDto());
-//        dto.setConsistencia(consistencia);
-//        dto.setTiposDeUnidadesAlCobrar(tiposDeUnidadesAlCobrar);
-//        dto.setCategoria(categoria);
-//        dto.setImagen(imagen);
-//        dto.setMetaInformacion(metaInfo);
-//        dto.setNutricion(getNutricionGsonDto());
-//        dto.setCaminoDeCategorias(caminoCategorias);
+        dto.setPosiblesUnidades(unidades);
+        dto.setValorEstimado(getValorEstimadoGsonDto());
+        dto.setConsistencia(consistencia);
+        dto.setTiposDeUnidadesAlCobrar(tiposDeUnidadesAlCobrar);
+        dto.setCategoria(categoria);
+        dto.setImagen(imagen);
+        dto.setMetaInformacion(metaInfo);
+        dto.setNutricion(getNutricionGsonDto());
+        dto.setCaminoDeCategorias(caminoCategorias);
         return dto;
     }
 }

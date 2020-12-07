@@ -2,6 +2,8 @@ package com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local;
 
 public class RoomConstantes {
 
+    public static final String BASEDEDATOS_NOMBRE = "Ingredientes.bd";
+
     public static final String INGREDIENTES_NOMBRE_TABLA = "ingredinetes";
     public static final String NUTRICION_NOMBRE_TABLA = "nutricion";
     public static final String DECOMPOSICIONCALORICA_NOMBRE_TABLA = "decomposicionCalorica";
@@ -12,5 +14,6 @@ public class RoomConstantes {
     public static final String CAMINOCATEGORIAS_NOMBRE_TABLA = "camino_categorias";
     public static final String POSIBLESUNIDADES_NOMBRE_TABLA = "posibles_unidades";
     public static final String UNIDADESCOBRAR_NOMBRE_TABLA = "unidades_cobrar";
+
 
 }

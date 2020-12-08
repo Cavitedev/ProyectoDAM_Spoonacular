@@ -130,3 +130,7 @@ Estos tests no se esperán que estén completos para todas las partes de la apli
 #### Control de Versiones
 
 He utilizado git con github para el control de versiones, llegando a introducir un kanban con el proyecto para ir haciendo algunas tareas actividades y dejando la oportunidad a otros de ver y modificar mi código, también he participado en dos proyectos de mis compañeros [SimpleAndroidRPG](https://github.com/JoseLu-Dev/SimpleAndroidRPG) y [proyectobd](https://github.com/INDOMINUS-ALFA/proyectobd)
+
+#### Continuous Deployment
+
+He puesto una accion de git que genera apks cada vez que se haga un push o pull request para automatizar los lanzamientos de apks

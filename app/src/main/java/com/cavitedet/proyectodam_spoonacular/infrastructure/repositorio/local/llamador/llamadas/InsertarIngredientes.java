@@ -37,6 +37,7 @@ public class InsertarIngredientes {
 
     private static void insertarNutrientes(IngredienteDetallado dominio, IngredientesDao dao) {
         List<Nutriente> nutrientes = dominio.getNutricion().getNutrientes();
+        if (nutrientes == null) return;
         for (int i = 0; i < nutrientes.size(); i++) {
             Nutriente nutriente = nutrientes.get(i);
             NutrienteRoomDto nutrienteDto = new NutrienteRoomDto(nutriente, i);
@@ -47,6 +48,7 @@ public class InsertarIngredientes {
 
     private static void insertarPropiedades(IngredienteDetallado dominio, IngredientesDao dao) {
         List<Propiedad> propiedades = dominio.getNutricion().getPropiedades();
+        if (propiedades == null) return;
         for (int i = 0; i < propiedades.size(); i++) {
             Propiedad propiedad = propiedades.get(i);
             PropiedadRoomDto propiedadDto = new PropiedadRoomDto(propiedad, i);
@@ -57,6 +59,7 @@ public class InsertarIngredientes {
 
     private static void insertarCaminoCategorias(IngredienteDetallado dominio, int ingId, IngredientesDao dao) {
         List<String> caminoDeCategorias = dominio.getCaminoDeCategorias();
+        if (caminoDeCategorias == null) return;
         for (int i = 0; i < caminoDeCategorias.size(); i++) {
             String camino = caminoDeCategorias.get(i);
             CaminoCategoriasRoomDto camDto = new CaminoCategoriasRoomDto(ingId, camino, i);
@@ -66,6 +69,7 @@ public class InsertarIngredientes {
 
     private static void insertarPosiblesUnidades(IngredienteDetallado dominio, int ingId, IngredientesDao dao) {
         List<String> posiblesUnidades = dominio.getPosiblesUnidades();
+        if (posiblesUnidades == null) return;
         for (int i = 0; i < posiblesUnidades.size(); i++) {
             String posUnid = posiblesUnidades.get(i);
             PosiblesUnidadesRoomDto posUnidDto = new PosiblesUnidadesRoomDto(ingId, posUnid, i);
@@ -75,6 +79,7 @@ public class InsertarIngredientes {
 
     private static void insertarUnidadesCobrar(IngredienteDetallado dominio, int ingId, IngredientesDao dao) {
         List<String> tiposDeUnidadesAlCobrar = dominio.getTiposDeUnidadesAlCobrar();
+        if (tiposDeUnidadesAlCobrar == null) return;
         for (int i = 0; i < tiposDeUnidadesAlCobrar.size(); i++) {
             String tipoUnid = tiposDeUnidadesAlCobrar.get(i);
             TipoUnidadesAlCobrarRoomDto tipoUnidadCob = new TipoUnidadesAlCobrarRoomDto(ingId, tipoUnid, i);
@@ -84,6 +89,7 @@ public class InsertarIngredientes {
 
     private static void insertarMetaInformacion(IngredienteDetallado dominio, int ingId, IngredientesDao dao) {
         List<String> metaInformacion = dominio.getMetaInformacion();
+        if (metaInformacion == null) return;
         for (int i = 0; i < metaInformacion.size(); i++) {
             String metaInfo = metaInformacion.get(i);
             MetaInfoRoomDto metaInfoDto = new MetaInfoRoomDto(ingId, metaInfo, i);

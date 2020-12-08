@@ -41,7 +41,14 @@ public class IngredientesRepositorio implements IRepositorio {
             return LlamadorDatosLocales.getInstance(context).obtenerInformacionIngrediente(id, amount, unit);
         } catch (LocalSourceException e) {
             IngredienteDetallado ing = LlamadorApi.getInstance().obtenerInformacionIngrediente(id, amount, unit);
-            LlamadorDatosLocales.getInstance(context).insertarIngrediente(ing);
+
+            new Thread() {
+                @Override
+                public void run() {
+                    LlamadorDatosLocales.getInstance(context).insertarIngrediente(ing);
+                }
+            }.start();
+
             return ing;
 
         }

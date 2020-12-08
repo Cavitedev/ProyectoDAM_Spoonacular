@@ -35,6 +35,5 @@ public class BuscarIngredienteDetalladoApiTest {
 
         MatcherAssert.assertThat(respuesta.toString(), Matchers.equalTo(esperado));
 
-
     }
 }

@@ -58,4 +58,14 @@ public class LlamadorDatosLocalesAndroidTest extends IngredienteDetalladoFixture
         Assert.assertNotNull(ing);
         Assert.assertEquals(getIngredienteDetalladoDominio(), ing);
     }
+
+    @Test
+    public void insertaElementoSencilloDevuelveElMismo() throws Exception {
+        IngredienteDetallado ingIntroducido = new IngredienteDetallado(1000);
+        llamador.insertarIngrediente(ingIntroducido);
+
+        IngredienteDetallado ingDevuelto = llamador.obtenerInformacionIngrediente(1000, 1.0, null);
+        Assert.assertNotNull(ingDevuelto);
+        Assert.assertEquals(ingIntroducido.getId(), ingDevuelto.getId());
+    }
 }

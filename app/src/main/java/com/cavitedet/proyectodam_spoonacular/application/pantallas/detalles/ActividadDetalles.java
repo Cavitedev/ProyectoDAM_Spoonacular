@@ -84,7 +84,7 @@ public class ActividadDetalles extends AppCompatActivity {
             detalleUsecase = new ObtenerDetallesIngredienteUsecase(idIngrediente);
             FutureTask<IngredienteDetallado> futureTask = detalleUsecase.obtenerDetallesIngredienteEnOtroHilo();
 
-            return futureTask.get(10, TimeUnit.SECONDS);
+            return futureTask.get(100, TimeUnit.SECONDS);
 
 
         } catch (ExecutionException e) {

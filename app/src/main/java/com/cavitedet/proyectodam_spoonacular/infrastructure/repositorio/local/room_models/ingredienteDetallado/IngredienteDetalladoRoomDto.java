@@ -1,6 +1,7 @@
 package com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room_models.ingredienteDetallado;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -62,7 +63,7 @@ public class IngredienteDetalladoRoomDto implements IADominio<IngredienteDetalla
     public IngredienteDetalladoRoomDto() {
     }
 
-    public IngredienteDetalladoRoomDto(IngredienteDetallado dominio) {
+    public IngredienteDetalladoRoomDto(@NonNull IngredienteDetallado dominio) {
         this.id = dominio.getId();
         this.original = dominio.getOriginal();
         this.nombreOriginal = dominio.getNombreOriginal();

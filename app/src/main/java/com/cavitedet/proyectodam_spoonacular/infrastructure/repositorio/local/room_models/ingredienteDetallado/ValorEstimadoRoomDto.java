@@ -13,6 +13,7 @@ public class ValorEstimadoRoomDto implements IADominio<ValorEstimado> {
     }
 
     public ValorEstimadoRoomDto(ValorEstimado dominio) {
+        if (dominio == null) return;
         this.valor = dominio.getValor();
         this.unidad = dominio.getUnidad();
     }

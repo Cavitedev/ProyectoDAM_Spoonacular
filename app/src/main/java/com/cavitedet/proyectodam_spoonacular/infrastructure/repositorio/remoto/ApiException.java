@@ -4,7 +4,9 @@
  */
 package com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto;
 
-public class ApiException extends Exception {
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.DataSourceException;
+
+public class ApiException extends DataSourceException {
   int code = 0;
   String message = null;
 

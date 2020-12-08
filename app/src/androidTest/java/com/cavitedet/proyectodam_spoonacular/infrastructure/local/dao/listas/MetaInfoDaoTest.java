@@ -4,9 +4,9 @@ package com.cavitedet.proyectodam_spoonacular.infrastructure.local.dao.listas;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.IngredientesDao;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.LocalDatabase;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.listas.MetaInfoRoomDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room.IngredientesDao;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room.LocalDatabase;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room_models.ingredienteDetallado.listas.MetaInfoRoomDto;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -46,7 +46,7 @@ public class MetaInfoDaoTest {
     @Test
     public void anadePosibleUnidades_devuelveAlgo() {
         MetaInfoRoomDto elem =
-                new MetaInfoRoomDto(id, "algo");
+                new MetaInfoRoomDto(id, "algo", 0);
 
         ingredientesDao.insertarMetainfo(elem);
         List<MetaInfoRoomDto> resultado = ingredientesDao.getMetaInfo(id);
@@ -56,11 +56,11 @@ public class MetaInfoDaoTest {
     @Test
     public void anadeTresCaminos_devuelve2DelMismoId() {
         MetaInfoRoomDto elem =
-                new MetaInfoRoomDto(id, "elem1");
+                new MetaInfoRoomDto(id, "elem1", 0);
         MetaInfoRoomDto elem2 =
-                new MetaInfoRoomDto(id, "elem2");
+                new MetaInfoRoomDto(id, "elem2", 1);
         MetaInfoRoomDto elem3 =
-                new MetaInfoRoomDto(id + 1, "elem3");
+                new MetaInfoRoomDto(id + 1, "elem3", 2);
 
         ingredientesDao.insertarMetainfo(elem);
         ingredientesDao.insertarMetainfo(elem2);

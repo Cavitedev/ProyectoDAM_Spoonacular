@@ -1,7 +1,7 @@
 package infrastructure.local.fixtures;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.DescomposicionCalorica;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.DescomposicionCaloricaRoomDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room_models.ingredienteDetallado.DescomposicionCaloricaRoomDto;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.json_modelos.ingrediente_detallado.DescomposicionCaloricaGsonDto;
 
 public class DecomposicionCaloricaFixture extends ValorEstimadoFixture {

@@ -4,9 +4,9 @@ package com.cavitedet.proyectodam_spoonacular.infrastructure.local.dao.listas;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.IngredientesDao;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.LocalDatabase;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.listas.PosiblesUnidadesRoomDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room.IngredientesDao;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room.LocalDatabase;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room_models.ingredienteDetallado.listas.PosiblesUnidadesRoomDto;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -46,7 +46,7 @@ public class PosiblesUnidadesDaoTest {
     @Test
     public void anadePosibleUnidades_devuelveAlgo() {
         PosiblesUnidadesRoomDto elem =
-                new PosiblesUnidadesRoomDto(id, "algo");
+                new PosiblesUnidadesRoomDto(id, "algo", 0);
 
         ingredientesDao.insertarPosibleUnidad(elem);
         List<PosiblesUnidadesRoomDto> resultado = ingredientesDao.getPosiblesUnidades(id);
@@ -56,11 +56,11 @@ public class PosiblesUnidadesDaoTest {
     @Test
     public void anadeTresCaminos_devuelve2DelMismoId() {
         PosiblesUnidadesRoomDto elem =
-                new PosiblesUnidadesRoomDto(id, "elem1");
+                new PosiblesUnidadesRoomDto(id, "elem1", 0);
         PosiblesUnidadesRoomDto elem2 =
-                new PosiblesUnidadesRoomDto(id, "elem2");
+                new PosiblesUnidadesRoomDto(id, "elem2", 1);
         PosiblesUnidadesRoomDto elem3 =
-                new PosiblesUnidadesRoomDto(id + 1, "elem3");
+                new PosiblesUnidadesRoomDto(id + 1, "elem3", 2);
 
         ingredientesDao.insertarPosibleUnidad(elem);
         ingredientesDao.insertarPosibleUnidad(elem2);

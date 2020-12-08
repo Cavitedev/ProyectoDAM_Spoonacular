@@ -1,14 +1,22 @@
 package infrastructure.local.fixtures;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.Nutricion;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.NutricionRoomDto;
+import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.Propiedad;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room_models.ingredienteDetallado.NutricionRoomDto;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.json_modelos.ingrediente_detallado.NutricionGsonDto;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 public class NutricionFixture extends PesoUnidadFixture {
     protected Nutricion getNutricionDominio() {
-        return new Nutricion(Collections.singletonList(getNutrienteDominio()), Collections.singletonList(getPropiedadDominio()),
+        // Para testear el orden
+        Propiedad prop2 = getPropiedadDominio();
+        prop2.setNombre("a");
+        prop2.setCantidad(0.0);
+        prop2.setUnidad("g");
+        return new Nutricion(Collections.singletonList(getNutrienteDominio()),
+                Arrays.asList(getPropiedadDominio(), prop2),
                 getDecomposicionCaloricaDominio(), getPesoPorUnidadDominio());
     }
 

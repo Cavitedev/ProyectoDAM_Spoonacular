@@ -1,7 +1,7 @@
 package infrastructure.local.fixtures;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.PesoUnidad;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.PesoUnidadRoomDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room_models.ingredienteDetallado.PesoUnidadRoomDto;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.json_modelos.ingrediente_detallado.PesoUnidadGsonDto;
 
 public class PesoUnidadFixture extends PropiedadFixture {

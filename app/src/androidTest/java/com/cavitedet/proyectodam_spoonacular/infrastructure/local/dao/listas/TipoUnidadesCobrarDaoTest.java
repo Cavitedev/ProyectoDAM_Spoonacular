@@ -4,9 +4,9 @@ package com.cavitedet.proyectodam_spoonacular.infrastructure.local.dao.listas;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.IngredientesDao;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.LocalDatabase;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.listas.TipoUnidadesAlCobrarRoomDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room.IngredientesDao;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room.LocalDatabase;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room_models.ingredienteDetallado.listas.TipoUnidadesAlCobrarRoomDto;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -46,7 +46,7 @@ public class TipoUnidadesCobrarDaoTest {
     @Test
     public void anadePosibleUnidades_devuelveAlgo() {
         TipoUnidadesAlCobrarRoomDto elem =
-                new TipoUnidadesAlCobrarRoomDto(id, "algo");
+                new TipoUnidadesAlCobrarRoomDto(id, "algo", 0);
 
         ingredientesDao.insertarUnidadCobrar(elem);
         List<TipoUnidadesAlCobrarRoomDto> resultado = ingredientesDao.getUnidadesCobrar(id);
@@ -56,11 +56,11 @@ public class TipoUnidadesCobrarDaoTest {
     @Test
     public void anadeTresCaminos_devuelve2DelMismoId() {
         TipoUnidadesAlCobrarRoomDto elem =
-                new TipoUnidadesAlCobrarRoomDto(id, "elem1");
+                new TipoUnidadesAlCobrarRoomDto(id, "elem1", 0);
         TipoUnidadesAlCobrarRoomDto elem2 =
-                new TipoUnidadesAlCobrarRoomDto(id, "elem2");
+                new TipoUnidadesAlCobrarRoomDto(id, "elem2", 1);
         TipoUnidadesAlCobrarRoomDto elem3 =
-                new TipoUnidadesAlCobrarRoomDto(id + 1, "elem3");
+                new TipoUnidadesAlCobrarRoomDto(id + 1, "elem3", 2);
 
         ingredientesDao.insertarUnidadCobrar(elem);
         ingredientesDao.insertarUnidadCobrar(elem2);

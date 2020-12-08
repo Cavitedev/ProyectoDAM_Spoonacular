@@ -1,7 +1,7 @@
 package infrastructure.local.fixtures;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.IngredienteDetallado;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.IngredienteDetalladoRoomDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room_models.ingredienteDetallado.IngredienteDetalladoRoomDto;
 import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.json_modelos.ingrediente_detallado.IngredienteDetalladoGsonDto;
 
 import java.util.Arrays;
@@ -16,12 +16,12 @@ public class IngredienteDetalladoFixture extends NutricionFixture {
     private static final String unidadMedida = "Kilo";
     private static final String unidadReducida = "Kg";
     private static final String unidadAlargada = "Kilogramo";
-    private static final List<String> unidades = Arrays.asList("g", "tonelada");
+    private static final List<String> unidades = Arrays.asList("g", "tonelada", "kg");
     private static final String consistencia = "solida";
     private static final List<String> tiposDeUnidadesAlCobrar = Arrays.asList("€", "$");
     private static final String categoria = "Categoria";
     private static final String imagen = "imag";
-    private static final List<String> metaInfo = Arrays.asList("info", "more info");
+    private static final List<String> metaInfo = Arrays.asList("info", "more info", "less info");
     private static final List<String> caminoCategorias = Arrays.asList("Fruta", "Vegetal", "Comida");
 
 

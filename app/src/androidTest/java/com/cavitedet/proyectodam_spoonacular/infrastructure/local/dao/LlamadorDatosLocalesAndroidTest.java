@@ -4,8 +4,9 @@ import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.IngredienteDetallado;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.LlamadorDatosLocales;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.LocalDatabase;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.llamador.LlamadorDatosLocales;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.llamador.LocalSourceException;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room.LocalDatabase;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -37,10 +38,15 @@ public class LlamadorDatosLocalesAndroidTest extends IngredienteDetalladoFixture
     }
 
     @Test
-    public void leeElementoNoEncuentraNada() throws Exception {
+    public void leeElemento_noExiste_lanzaExcepcion() {
 
-        IngredienteDetallado ing = llamador.obtenerInformacionIngrediente(id, 1.0, null);
-        Assert.assertNull(ing);
+        boolean excepcion = false;
+        try {
+            llamador.obtenerInformacionIngrediente(id, 1.0, null);
+        } catch (LocalSourceException e) {
+            excepcion = true;
+        }
+        Assert.assertTrue(excepcion);
     }
 
     @Test

@@ -3,7 +3,9 @@ package com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.
 import org.junit.Assert;
 import org.junit.Test;
 
-public class IngredienteDetalladoGsonDtoTest extends com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.json_modelos.ingrediente_detallado.fixtures.IngredienteDetalladoFixture {
+import infrastructure.local.fixtures.IngredienteDetalladoFixture;
+
+public class IngredienteDetalladoGsonDtoTest extends IngredienteDetalladoFixture {
 
     @Test
     public void valorEstimadoADominio() {

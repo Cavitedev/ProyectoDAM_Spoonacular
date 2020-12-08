@@ -3,9 +3,9 @@ package com.cavitedet.proyectodam_spoonacular.infrastructure.local.dao;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.IngredientesDao;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.LocalDatabase;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.roomModels.ingredienteDetallado.IngredienteDetalladoRoomDto;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room.IngredientesDao;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room.LocalDatabase;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.local.room_models.ingredienteDetallado.IngredienteDetalladoRoomDto;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -65,6 +65,7 @@ public class IngredientesDaoTest extends IngredienteDetalladoFixture {
 
         Assert.assertEquals(ingredienteDto.aDominio().getNutricion().getDescomposicionCalorica(),
                 ingredienteDevuelto.aDominio().getNutricion().getDescomposicionCalorica());
+
     }
 
 

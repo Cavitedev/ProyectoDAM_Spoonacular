@@ -10,8 +10,14 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+     SECRETS_PROPERTIES: ${{ secrets.SECRETS_PROPERTIES }}
+     GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+     APP_FOLDER: app
+     RELEASE_TITLE: Spoonacular
     steps:
+       
+    -  run: echo "$SECRETS_PROPERTIES"
     - name: Move secrets to project
       run: echo "$SECRETS_PROPERTIES" | base64 -d > ./secrets.properties
     - uses: actions/checkout@v1
@@ -27,8 +33,4 @@ jobs:
       run: ./gradlew assembleDebug
     - name: Releasing using Hub
       uses: ShaunLWM/action-release-debugapk@master
-      env:
-       SECRETS_PROPERTIES: ${{ secrets.SECRETS_PROPERTIES }}
-       GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-       APP_FOLDER: app
-       RELEASE_TITLE: Spoonacular
+

@@ -29,6 +29,6 @@ jobs:
       uses: ShaunLWM/action-release-debugapk@master
       env:
        SECRETS_PROPERTIES: ${{ secrets.SECRETS_PROPERTIES }}
-       GITHUB_TOKEN: ${{ secrets.TOKEN }}
+       GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
        APP_FOLDER: app
-       RELEASE_TITLE: New Build
+       RELEASE_TITLE: Spoonacular

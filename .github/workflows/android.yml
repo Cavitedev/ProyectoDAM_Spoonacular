@@ -19,6 +19,4 @@ jobs:
     - name: Android Build
       uses: vgaidarji/android-github-actions-build@v1.0.1
     - name: Build Apk
-      uses: yuanjinsongquyi/action_android_build@v1
-      with:
-        APP_NAME: Spoonacular_DAM
+      uses: ShowMeThe/github_action_release@v0.01

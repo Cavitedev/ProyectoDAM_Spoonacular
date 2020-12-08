@@ -2,6 +2,10 @@ plugins {
     id 'com.android.application'
 }
 
+def secretsPropertiesFile = rootProject.file("./secrets.properties")
+def secretsProperties = new Properties()
+secretsProperties.load(new FileInputStream(secretsPropertiesFile))
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -12,6 +16,8 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+
+        buildConfigField "String", "SPOONACULAR_KEY", "\""+secretsProperties['SPOONACULAR_KEY']+"\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

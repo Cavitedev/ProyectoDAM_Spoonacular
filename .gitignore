@@ -19,3 +19,4 @@ app/src/main/java/com/cavitedet/proyectodam_spoonacular/Secrets.java
 .dex
 *.class
 local.properties
+secrets.properties

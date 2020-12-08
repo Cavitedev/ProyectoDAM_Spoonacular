@@ -4,7 +4,7 @@
  */
 package com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto;
 
-import com.cavitedet.proyectodam_spoonacular.Secrets;
+import com.cavitedet.proyectodam_spoonacular.BuildConfig;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -181,7 +181,7 @@ public class ApiInvoker {
             if ("GET".equals(method)) {
 
 
-                pageUrl = new URL(url + "&apiKey=" + Secrets.getApiKey());
+                pageUrl = new URL(url + "&apiKey=" + BuildConfig.SPOONACULAR_KEY);
 
 
             }

@@ -22,4 +22,4 @@ jobs:
       uses: yuanjinsongquyi/action_android_build@v1
       with:
         APP_NAME: Spoonacular_DAM
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}  
+        GITHUB_TOKEN: ${{secrets.GIT_TOKEN}}  

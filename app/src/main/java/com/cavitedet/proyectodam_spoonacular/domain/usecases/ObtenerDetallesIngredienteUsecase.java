@@ -1,7 +1,7 @@
 package com.cavitedet.proyectodam_spoonacular.domain.usecases;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingrediente_detallado.IngredienteDetallado;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.LlamadorApi;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.IngredientesRepositorio;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -24,7 +24,7 @@ public class ObtenerDetallesIngredienteUsecase {
         Callable<IngredienteDetallado> callDetallesIngrediente = new Callable<IngredienteDetallado>() {
             @Override
             public IngredienteDetallado call() throws Exception {
-                return LlamadorApi.getInstance().obtenerInformacionIngrediente(id, cantidad, unidad);
+                return IngredientesRepositorio.getInstance().obtenerInformacionIngrediente(id, cantidad, unidad);
             }
         };
         ExecutorService executor = Executors.newFixedThreadPool(1);

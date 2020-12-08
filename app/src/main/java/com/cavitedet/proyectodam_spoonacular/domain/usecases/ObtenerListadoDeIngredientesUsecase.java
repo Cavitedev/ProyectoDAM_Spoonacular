@@ -2,7 +2,7 @@ package com.cavitedet.proyectodam_spoonacular.domain.usecases;
 
 import com.cavitedet.proyectodam_spoonacular.domain.modelos.ingredientes.Ingredientes;
 import com.cavitedet.proyectodam_spoonacular.domain.repositorio.ParametrosBuscarIngredientes;
-import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.remoto.LlamadorApi;
+import com.cavitedet.proyectodam_spoonacular.infrastructure.repositorio.IngredientesRepositorio;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -25,7 +25,7 @@ public class ObtenerListadoDeIngredientesUsecase {
             @Override
             public Ingredientes call() throws Exception {
 
-                return LlamadorApi.getInstance().busquedaIngredientes(parametrosBuscarIngredientes);
+                return IngredientesRepositorio.getInstance().busquedaIngredientes(parametrosBuscarIngredientes);
 
             }
 

@@ -19,4 +19,4 @@ jobs:
     - name: Android Build
       uses: vgaidarji/android-github-actions-build@v1.0.1
     - name: Build Apk
-      uses: ShowMeThe/github_action_release@v0.01
+      uses: ShaunLWM/action-release-debugapk@0.0.5

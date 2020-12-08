@@ -113,6 +113,14 @@ Diría que ya he mencionado la mayor parte de cosas y las preguntas anteriores p
 
 He utilizado una [API](https://spoonacular.com) de comida que aumenta el nivel de complejidad de la aplicación junto código asíncrono hecho en java porque `AsyncTask` se quedo obsoleto en la api 30 de Android, es mejorable ya que no muestra ningún indicador de carga, pero personalmente en código asíncrono Java se queda detrás de lenguajes más modernos como Kotlin y hacen más dificil su implementación.
 
+#### Persistencia en Room
+
+Me he complicado la vida, convirtiendo datos que conseguía en json a una base de datos SQLite con Room manteniendo orden en listas y otras cosas díficiles de hacer. Debería haberlo guardado en un fichero json por ejemplo, pero queria aprender y mejorar mi conocimiento en Room
+
+#### Patrón repositorio
+
+Al tener api y persistencia local, he utilizado un patrón repositorio para cachear los datos de los detalles, así ahorro consumo de la API
+
 #### Tests
 
 También he añadido unos pocos [tests unitarios](./app/src/test/java/com/cavitedet/proyectodam_spoonacular) para ir desarrollando cosas específicas como guardar imágenes en `SharedPreferences` o para aplicar cierta lógica al cambiar el mínimo y máximo del filtrado o para comprobar que deserializa correctamente los jsons.

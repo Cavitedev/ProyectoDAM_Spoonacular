@@ -10,11 +10,19 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+     SECRETS_PROPERTIES: ${{ secrets.SECRETS_PROPERTIES }}
+     GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+     APP_FOLDER: app
+     RELEASE_TITLE: Spoonacular
     steps:
+       
+    - uses: actions/checkout@v1
     - name: Move secrets to project
       run: echo "$SECRETS_PROPERTIES" | base64 -d > ./secrets.properties
-    - uses: actions/checkout@v1
+    - name: Add permissions to created file
+      run: chmod 700 ./secrets.properties 
+    
     - name: set up JDK 1.8
       uses: actions/setup-java@v1
       with:
@@ -27,8 +35,4 @@ jobs:
       run: ./gradlew assembleDebug
     - name: Releasing using Hub
       uses: ShaunLWM/action-release-debugapk@master
-      env:
-       SECRETS_PROPERTIES: ${{ secrets.SECRETS_PROPERTIES }}
-       GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-       APP_FOLDER: app
-       RELEASE_TITLE: Spoonacular
+

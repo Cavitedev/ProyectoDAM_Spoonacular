@@ -2,7 +2,9 @@ plugins {
     id 'com.android.application'
 }
 
-
+def secretsPropertiesFile = rootProject.file("./secrets.properties")
+def secretsProperties = new Properties()
+secretsProperties.load(new FileInputStream(secretsPropertiesFile))
 
 android {
     compileSdkVersion 30

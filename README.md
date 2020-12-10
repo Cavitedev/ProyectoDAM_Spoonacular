@@ -16,7 +16,7 @@ Estoy muy acostumbrado al inglés y empecé haciendo las cosas en inglés, pero 
 
 ## Dependencias
 
-La aplicación se ha hecho con un nivel mínimo de API 24 (Nougar) simplemente porque quería utilizar streams en el código de Java. Se utilizarán algunas dependencias del  [SDK](https://spoonacular.com/food-api/sdk), dependiendo de esta API que me permite 150 llamadas al dia y alguna dependecia más poco importante, eso se puede ver en el [gradle](./app/build.gradle).
+La aplicación se ha hecho con un nivel mínimo de API 24 (Nougat) simplemente porque quería utilizar streams en el código de Java. Se utilizarán algunas dependencias del  [SDK](https://spoonacular.com/food-api/sdk), dependiendo de esta API que me permite 150 llamadas al dia y alguna dependecia más poco importante, eso se puede ver en el [gradle](./app/build.gradle).
 
 ## Pantallas
 

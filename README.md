@@ -8,7 +8,7 @@ Quería hacer algún proyecto con APIs y buscando por internet me tope con este.
 
 ## Instalación
 
-Clona el proyecto en android studio y copia o crea el fichero Secrets.java en este directorio "app/src/main/java/com/cavitedet/proyectodam_spoonacular/". Este fichero no lo subiré a github porque contiene mi clave privada, esta clase tiene una variable privada final statica llama `apiKey` y si getter.
+Clona el proyecto en android studio y copia o crea el fichero Secrets.properties en la raiz del proyecto. Este fichero no lo subiré a github porque contiene mi clave privada, esta clase tiene una variable llamada `SPOONACULAR_KEY` con la clave de la página de la [API](https://spoonacular.com/food-api/console#Dashboard)
 
 ## Idioma
 

@@ -174,4 +174,48 @@ public class ActividadListadoTest {
         Assert.assertEquals(1, resolucion);
     }
 
+
+    @Test
+    public void noEncuentraResultadoYLuegoEncuentra_noMuestraError() {
+
+        Espresso.onView(ViewMatchers.withContentDescription(R.string.cambiar_filtrado)).
+                perform(ViewActions.click());
+        Espresso.onView(ViewMatchers.withId(R.id.barra_proteina)).
+                perform(MyActions.setProgressRangeSlider(80f, 100f));
+
+        Espresso.onView(ViewMatchers.withId(android.R.id.button1)).perform(
+                ViewActions.click());
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+
+        }
+
+        Espresso.onView(ViewMatchers.withId(R.id.mensaje_error)).check(
+                ViewAssertions.matches(ViewMatchers.withText(R.string.error_no_resultado))
+        );
+
+        Espresso.onView(ViewMatchers.withContentDescription(R.string.cambiar_filtrado)).
+                perform(ViewActions.click());
+        Espresso.onView(ViewMatchers.withId(R.id.barra_proteina)).
+                perform(MyActions.setProgressRangeSlider(0f, 100f));
+        Espresso.onView(ViewMatchers.withId(R.id.barra_carbo_hidratos)).
+                perform(MyActions.setProgressRangeSlider(60f, 100f));
+
+        Espresso.onView(ViewMatchers.withId(android.R.id.button1)).perform(
+                ViewActions.click());
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+
+        }
+
+        Espresso.onView(ViewMatchers.withId(R.id.mensaje_error)).check(
+                ViewAssertions.matches(ViewMatchers.withText(""))
+        );
+
+    }
+
 }

@@ -73,10 +73,10 @@ public class ActividadDeListado extends AppCompatActivity implements DialogoDeOr
 
             Ingredientes ingredientes = futureTask.get(10, TimeUnit.SECONDS);
 
+            mensajeError.setText("");
             if (ingredientes == null || ingredientes.getListaIngredientes().isEmpty()) {
                 mensajeError.setText(getString(R.string.error_no_resultado));
             }
-
             return ingredientes;
 
         } catch (ExecutionException e) {

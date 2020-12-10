@@ -16,7 +16,7 @@ Estoy muy acostumbrado al inglés y empecé haciendo las cosas en inglés, pero 
 
 ## Dependencias
 
-La aplicación se ha hecho con un nivel mínimo de API 21 (lollipop) y con Java. Se utilizarán algunas dependencias del  [SDK](https://spoonacular.com/food-api/sdk) y puede que otras más con el tiempo, eso se puede ver en el [gradle](./app/build.gradle).
+La aplicación se ha hecho con un nivel mínimo de API 24 (Nougar) simplemente porque quería utilizar streams en el código de Java. Se utilizarán algunas dependencias del  [SDK](https://spoonacular.com/food-api/sdk), dependiendo de esta API que me permite 150 llamadas al dia y alguna dependecia más poco importante, eso se puede ver en el [gradle](./app/build.gradle).
 
 ## Pantallas
 
@@ -52,15 +52,15 @@ En esta venta, se guardará la resolución que querrá el usuario siendo la pequ
 
 La aplicación se dividirá en 4 capas que serán las siguientes:
 
-### 1) Dominio
+### 1) Dominio (domain)
 
 Aquí estarán todas las [clases de datos](./app/src/main/java/com/cavitedet/proyectodam_spoonacular/domain/spoonacular/modelos) con las que se trabajará y las que devolverá el api, también otras [utilidades](./app/src/main/java/com/cavitedet/proyectodam_spoonacular/domain/spoonacular/utilidades) no ligadas a la presentación y una [clase por cada llamada a la api](./app/src/main/java/com/cavitedet/proyectodam_spoonacular/domain/spoonacular/usecases) para manejar los datos necesarios para su llamada y la adaptación de estos
 
-### 2) Infraestructura
+### 2) Infraestructura (infrastructure)
 
 Aquí están varias clases modificadas a partir del [SDK](https://spoonacular.com/food-api/sdk) de la aplicación para android, desde aquí se podrán hacer las peticiones a la API
 
-### 3) Aplicación
+### 3) Aplicación (application)
 
 Todas las clases que gestionan la UI, activities, etc. desde Java
 
